@@ -1,14 +1,13 @@
 class UsersController < ApplicationController
+    before_action :set_user
 
-    def index
+    def reservations
+        @reservations = @user.reservations
     end
 
-    def new
-    end
+    private
 
-    def create
-    end
-
-    def show
+    def set_user
+        @user = current_user
     end
 end
