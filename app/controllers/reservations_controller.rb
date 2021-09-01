@@ -1,7 +1,4 @@
 class ReservationsController < ApplicationController
-
-    def index
-    end
     
     def new
         @reservation = Reservation.new
@@ -14,7 +11,7 @@ class ReservationsController < ApplicationController
         @reservation.user = current_user
         @reservation.artist = @artist
         if @reservation.save
-            redirect_to artist_reservation_path(@artist, @reservation)
+            redirect_to reservation_path(@reservation)
         else
             render :new
         end
@@ -25,12 +22,20 @@ class ReservationsController < ApplicationController
     end
 
     def edit
+        @reservation = Reservation.find(params[:id])
+        @artist = Artist.find(params[:artist_id])
     end
 
     def update
+        @reservation = Reservation.find(params[:id])
+        @reservation.update(reservation_params)
+        redirect_to reservation_path(@reservation)
     end
 
     def destroy
+        @reservation = Reservation.find(params[:id])
+        @reservation.destroy
+        redirect_to users_reservations_path
     end
 
     private

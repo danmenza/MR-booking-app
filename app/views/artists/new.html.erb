@@ -1,0 +1,12 @@
+<div class="container">
+  <h3 class="text-center">Artist Info</h3>
+  <p class="text-center">Wanting an easier way to help manage tattoo appointments?</p>
+  <p class="text-center">Mad Rabbit can help! we would love to partner with you!</p>
+  <%= simple_form_for [@artist, @reservation] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :phone %>
+  <%= f.input :address %>
+  <%= f.submit "SUBMIT INFO", class: "btn btn-primary" %>
+  <% end %>
+</div>
