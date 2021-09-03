@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_08_30_013014) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "artists", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -29,8 +32,8 @@ ActiveRecord::Schema.define(version: 2021_08_30_013014) do
     t.string "style"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
-    t.integer "artist_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "artist_id", null: false
     t.index ["artist_id"], name: "index_reservations_on_artist_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
