@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
     def new
         @reservation = Reservation.new
         @artist = Artist.find(params[:artist_id])
+        authorize @reservation
     end
 
     def create
@@ -10,6 +11,7 @@ class ReservationsController < ApplicationController
         @resservation = Reservation.new(reservation_params)
         @reservation.user = current_user
         @reservation.artist = @artist
+        authorize @reservation
         if @reservation.save
             redirect_to reservation_path(@reservation)
         else
@@ -18,16 +20,19 @@ class ReservationsController < ApplicationController
     end
 
     def show
+        authorize @reservation
         @reservation = Reservation.find(params[:id])
     end
 
     def edit
         @reservation = Reservation.find(params[:id])
         @artist = Artist.find(params[:artist_id])
+        authorize @reservation
     end
 
     def update
         @reservation = Reservation.find(params[:id])
+        authorize @reservation
         @reservation.update(reservation_params)
         redirect_to reservation_path(@reservation)
     end

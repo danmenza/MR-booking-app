@@ -1,0 +1,8 @@
+<h1>artist info</h1>
+<p><%= @artist.name %></p>
+<% @artist.styles.each do |style| %>
+    <p><%= style %></p>
+<% end %>
+<p><%= @artist.minimum %></p>
+<%= link_to "MAKE AN APPOINTMENT", new_reservation_path %>
+<%= link_to "Back to artist explore", explore_artists_path %>

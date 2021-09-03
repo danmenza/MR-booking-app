@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_30_013014) do
+ActiveRecord::Schema.define(version: 2021_09_03_032250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2021_08_30_013014) do
     t.text "styles"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.decimal "minimum", precision: 10, scale: 2
+    t.string "studio"
   end
 
   create_table "reservations", force: :cascade do |t|
