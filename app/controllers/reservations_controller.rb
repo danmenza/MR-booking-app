@@ -3,25 +3,26 @@ class ReservationsController < ApplicationController
     def new
         @reservation = Reservation.new
         @artist = Artist.find(params[:artist_id])
+        @user = current_user
         authorize @reservation
     end
 
     def create
         @artist = Artist.find(params[:artist_id])
-        @resservation = Reservation.new(reservation_params)
+        @reservation = Reservation.new(reservation_params)
         @reservation.user = current_user
         @reservation.artist = @artist
         authorize @reservation
         if @reservation.save
-            redirect_to reservation_path(@reservation)
+            redirect_to artist_reservations_path(@reservation)
         else
             render :new
         end
     end
 
     def show
-        authorize @reservation
         @reservation = Reservation.find(params[:id])
+        authorize @reservation
     end
 
     def edit
@@ -46,6 +47,6 @@ class ReservationsController < ApplicationController
     private
 
     def reservation_params
-        params.require(:reservation).permit(:appt_date, :tattoo_location, :cover_up, :style)
+        params.require(:reservation).permit(:appt_date, :tattoo_location, :cover_up, :style, artwork: [])
     end
 end

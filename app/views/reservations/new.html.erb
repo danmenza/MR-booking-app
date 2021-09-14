@@ -1,10 +1,10 @@
 <div class="container">
   <h3 class="text-center">New Reservation</h3>
   <%= simple_form_for [@artist, @reservation] do |f| %>
-  <%= f.input :phone %>
   <%= f.input :tattoo_location %>
-  <%= f.input :artwork %>
-  <%= f.input :artist %>
+  <%= f.input :artwork, as: :file, input_html: { multiple: true } %>
+  <%= f.input :cover_up %>
+  <%= f.input :style %>
   <%= f.input :appt_date %>
   <%= f.submit "BOOK APPOINTMENT", class: "btn btn-primary" %>
   <% end %>

@@ -30,8 +30,9 @@ gem 'pundit'
 gem 'bootstrap'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'autoprefixer-rails'
-gem 'font-awesome-sass', '~> 5.6.1'
+gem 'font-awesome-sass'
 gem 'simple_form'
+gem 'aws-sdk-s3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
