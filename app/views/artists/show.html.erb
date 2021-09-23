@@ -1,4 +1,10 @@
 <h1>artist info</h1>
+<% if (@artist.artist_artwork.attachments.present?) %>
+    <% @artist.artist_artwork.each do |artwork| %>
+        <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('<%= rails_blob_url(artwork) %>');">
+        </div>
+    <% end %>
+<% end  %>
 <p><%= @artist.name %></p>
 <p><%= @artist.address %></p>
 <p><%= @artist.phone %></p>
