@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
         @reservation.artist = @artist
         authorize @reservation
         if @reservation.save
-            redirect_to artist_reservations_path(@reservation)
+            redirect_to artist_reservation_path(@artist, @reservation)
         else
             render :new
         end

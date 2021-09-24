@@ -1,4 +1,10 @@
 <h1>Tattoo appointment confirmed!</h1>
+<% if (@reservation.artwork.attachments.present?) %>
+    <% @reservation.artwork.each do |artwork| %>
+        <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('<%= rails_blob_url(artwork) %>');">
+        </div>
+    <% end %>
+<% end  %>
 <p><%= @reservation.appt_date %></p>
 <p><%= @reservation.tattoo_location %></p>
 <p><%= @reservation.cover_up %></p>
