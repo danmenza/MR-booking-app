@@ -6,8 +6,15 @@
     <% end %>
 <% end  %>
 <p><%= @reservation.appt_date %></p>
-<p><%= @reservation.tattoo_location %></p>
+<p><%= @reservation.tattoo_placement %></p>
 <p><%= @reservation.cover_up %></p>
-<p><%= @reservation.style %></p>
+<p><%= @reservation.color %></p>
+<p><%= @reservation.description %></p>
 <p><%= @reservation.artist.studio %></p>
 <p><%= @reservation.artist.name %></p>
+<% if (@reservation.body_area.attachments.present?) %>
+    <% @reservation.body_area.each do |image| %>
+        <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('<%= rails_blob_url(image) %>');">
+        </div>
+    <% end %>
+<% end  %>

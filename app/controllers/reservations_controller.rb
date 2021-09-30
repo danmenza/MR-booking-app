@@ -47,6 +47,6 @@ class ReservationsController < ApplicationController
     private
 
     def reservation_params
-        params.require(:reservation).permit(:appt_date, :tattoo_location, :cover_up, :style, artwork: [])
+        params.require(:reservation).permit(:appt_date, :tattoo_placement, :cover_up, :color, :description, artwork: [], body_area: [])
     end
 end

@@ -9,7 +9,9 @@
   <%= f.input :address %>
   <%= f.input :minimum %>
   <%= f.input :studio %>
+  <br>
   <%= f.input :artist_artwork, as: :file, input_html: { multiple: true } %>
+  <br>
   <%= f.submit "SUBMIT INFO", class: "btn btn-primary" %>
   <% end %>
 </div>

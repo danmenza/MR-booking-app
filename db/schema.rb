@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_031614) do
+ActiveRecord::Schema.define(version: 2021_09_30_172517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,13 +57,14 @@ ActiveRecord::Schema.define(version: 2021_09_11_031614) do
 
   create_table "reservations", force: :cascade do |t|
     t.datetime "appt_date"
-    t.string "tattoo_location"
+    t.string "tattoo_placement"
     t.boolean "cover_up"
-    t.string "style"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.bigint "artist_id", null: false
+    t.boolean "color"
     t.index ["artist_id"], name: "index_reservations_on_artist_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end

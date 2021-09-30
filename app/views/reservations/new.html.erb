@@ -1,11 +1,17 @@
 <div class="container">
   <h3 class="text-center">New Reservation</h3>
   <%= simple_form_for [@artist, @reservation] do |f| %>
-  <%= f.input :tattoo_location %>
+  <%= f.input :tattoo_placement %>
+  <br>
   <%= f.input :artwork, as: :file, input_html: { multiple: true } %>
+  <br>
+  <%= f.input :body_area, as: :file, input_html: { multiple: true } %>
+  <br>
   <%= f.input :cover_up %>
-  <%= f.input :style %>
+  <%= f.input :color %>
+  <%= f.input :description %>
   <%= f.input :appt_date %>
+  <br>
   <%= f.submit "BOOK APPOINTMENT", class: "btn btn-primary" %>
   <% end %>
 </div>
