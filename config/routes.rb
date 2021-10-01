@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'artists#explore'
+  root to: 'artists#index'
 
   resources :artists, only: [:index, :show, :new, :create] do
     resources :reservations, only: [:show, :new, :create]

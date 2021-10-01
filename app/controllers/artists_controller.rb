@@ -1,9 +1,5 @@
 class ArtistsController < ApplicationController
-    skip_before_action :authenticate_user!, only: [ :explore_artists ]
-    before_action :set_artist, only: [:show]
-
-    def explore_artists
-    end
+    skip_before_action :authenticate_user!
     
     def index
         @artists = Artist.all
