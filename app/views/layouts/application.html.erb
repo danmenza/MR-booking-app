@@ -9,6 +9,16 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <div class="navbar navbar-expand-sm fixed-top navbar-light navbar-lewagon">
+  <div>
+   <%= link_to "/", class: "navbar-brand", style: 'margin-left: 60px;' do %>
+          <span class=""><i class="fas fa-bars"></i><p style="display: inline; padding-left: 10px;">menu</p></span>
+        <% end %>
+  <%= link_to "/", class: "navbar-brand" do %>
+          <img style="transform: translateX(-50%); left: 50%; position: absolute;" src="<%= image_url('mr_logo_black.png') %>">
+        <% end %>
+    </div>
+    </div>
   </head>
 
   <body>
