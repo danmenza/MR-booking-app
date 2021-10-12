@@ -1,20 +1,26 @@
 <div class="container">
-<div class="row">
-<div class="col-lg-6">
-    <h1 style="padding-top: 50px;">Tattoo artists near you</h1>
-    <% @artists.each do |artist| %>
-        <% if (artist.artist_artwork.attachments.present?) %>
-            <div style="height: 150px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('<%= rails_blob_url(artist.artist_artwork.first) %>'); background-position: center center; background-size: 100%;">
-                <p style="color: white;"><%= artist.name %></p>
-                <p style="color: white;"><%= artist.address %></p>
-                <%# <p><%= artist.styles %></p>
-                <p><%= artist.studio %></p>
-                <%= link_to "explore artist", artist_path(artist) %>
-            </div>
-            <div style="height: 20px;">
-            </div>
-        <% end %>    
-    <% end %>
-</div>
-</div>
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <h1 style="padding-top: 50px;">Tattoo artists near you</h1>
+            <% @artists.each do |artist| %>
+                <% if (artist.artist_artwork.attachments.present?) %>
+                    <div style="height: 150px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('<%= rails_blob_url(artist.artist_artwork.first) %>'); background-position: center center; background-size: 100%;">
+                        <p style="color: white;">
+                            <%= artist.name %>
+                        </p>
+                        <p style="color: white;">
+                            <%= artist.address %>
+                        </p>
+                        <%# <p><%= artist.styles %></p>
+                            <p>
+                                <%= artist.studio %>
+                            </p>
+                            <%= link_to "explore artist", artist_path(artist) %>
+                    </div>
+                    <div style="height: 20px;">
+                    </div>
+                    <% end %>
+                        <% end %>
+        </div>
+    </div>
 </div>

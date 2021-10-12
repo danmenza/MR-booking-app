@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>TattooRez</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <div class="navbar navbar-expand-sm fixed-top navbar-light navbar-lewagon">
-  <div>
-   <%= link_to "/", class: "navbar-brand", style: 'margin-left: 60px;' do %>
-          <span class=""><i class="fas fa-bars"></i><p style="display: inline; padding-left: 10px;">menu</p></span>
-        <% end %>
-  <%= link_to "/", class: "navbar-brand" do %>
-          <img style="transform: translateX(-50%); left: 50%; position: absolute;" src="<%= image_url('mr_logo_black.png') %>">
-        <% end %>
-    </div>
-    </div>
-  </head>
+            <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+                <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-lg-6">
+                                <%= link_to "/", id: 'nav-bar-menu' do %>
+                                    <span class=""><i class="fas fa-bars"></i><p style="display: inline; padding-left: 10px;">menu</p></span>
+                                    <% end %>
+                                        <%= link_to "/" do %>
+                                            <img class="header-img" src="<%= image_url('mr_logo_black.png') %>">
+                                            <% end %>
+                            </div>
+                        </div>
+                    </div>
+</head>
 
-  <body>
+<body>
     <%= yield %>
-  </body>
+</body>
+
 </html>
