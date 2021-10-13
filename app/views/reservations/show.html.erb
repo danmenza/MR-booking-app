@@ -1,40 +1,30 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-lg-6">
-            <h1>Tattoo appointment confirmed!</h1>
+        <div class="col-12 col-lg-6 text-center">
+            <h3 class="confirmation-header">Tattoo appointment request confirmed!</h3>
+            <h3 class="confirmation-header">An email to connect you with your artist is on the way!</h3>
             <% if (@reservation.artwork.attachments.present?) %>
                 <% @reservation.artwork.each do |artwork| %>
                     <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('<%= rails_blob_url(artwork) %>'); background-position: center center; background-size: 100%;">
                     </div>
                     <% end %>
                         <% end  %>
-                            <p>
-                                <%= @reservation.appt_date %>
-                            </p>
-                            <p>
-                                <%= @reservation.tattoo_placement %>
-                            </p>
-                            <p>
-                                <%= @reservation.cover_up %>
-                            </p>
-                            <p>
-                                <%= @reservation.color %>
-                            </p>
-                            <p>
-                                <%= @reservation.description %>
-                            </p>
-                            <p>
-                                <%= @reservation.artist.studio %>
-                            </p>
-                            <p>
-                                <%= @reservation.artist.name %>
-                            </p>
                             <% if (@reservation.body_area.attachments.present?) %>
                                 <% @reservation.body_area.each do |image| %>
-                                    <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('<%= rails_blob_url(image) %>'); background-position: center center; background-size: 100%;">
+                                    <div class="mx-auto d-block" style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('<%= rails_blob_url(image) %>'); background-position: center center; background-size: 100%;">
                                     </div>
                                     <% end %>
                                         <% end  %>
+                                            <br>
+                                            <p>
+                                                <%= @reservation.artist.studio %>
+                                            </p>
+                                            <p>
+                                                <%= @reservation.artist.name %>
+                                            </p>
+                                            <p>
+                                                <%= @reservation.appt_date %>
+                                            </p>
         </div>
     </div>
 </div>
