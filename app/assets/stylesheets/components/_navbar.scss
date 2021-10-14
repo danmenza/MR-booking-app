@@ -3,13 +3,43 @@
     margin: auto;
 }
 
+a,
+a:visited {
+    text-decoration: none;
+}
+
 .header-img {
     width: 80px;
-    margin-left: calc(50% - 215px / 2);
+    margin-left: calc(50% - 245px / 2);
+}
+
+.header-icons {
+    width: 25px;
+    text-decoration: none;
+}
+
+.header-icons:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.header-text {
+    color: black;
+    text-decoration: none;
+}
+
+.header-text:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.header-icons-right {
+    float: right;
+    margin-top: 30px;
+    margin-right: 20px;
 }
 
 #nav-bar-menu {
-    color: black;
     display: inline;
-    text-decoration: none;
+    margin-left: 20px;
 }

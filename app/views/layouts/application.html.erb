@@ -13,12 +13,20 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-12 col-lg-6">
-                                <%= link_to "/", id: 'nav-bar-menu' do %>
-                                    <span class=""><i class="fas fa-bars"></i><p style="display: inline; padding-left: 10px;">menu</p></span>
+                                <%= link_to "/", class: 'header-text', id: 'nav-bar-cart' do %>
+                                    <span><img class="header-icons" src="<%= image_url('menu.svg') %>"><p style="display: inline; padding-left: 10px;">menu</p></span>
                                     <% end %>
                                         <%= link_to "/" do %>
                                             <img class="header-img" src="<%= image_url('mr_logo_black.png') %>">
                                             <% end %>
+                                                <div class="header-icons-right">
+                                                    <%= link_to "/" do %>
+                                                        <img class="header-icons" style="width: 30px; margin-right: 10px;" src="<%=image_url( 'cart.svg') %>">
+                                                        <% end %>
+                                                            <%= link_to "/" do %>
+                                                                <img class="header-icons" src="<%= image_url('profile.svg') %>">
+                                                                <% end %>
+                                                </div>
                             </div>
                         </div>
                     </div>

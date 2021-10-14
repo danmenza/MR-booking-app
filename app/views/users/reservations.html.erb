@@ -1,30 +1,48 @@
-<div class ="container">
-  <% if @reservations.length > 0 %>
-  <h1 class="my-5">Your Upcoming Reservations</h1>
-  <div>
-    <% @reservations.each do |reservation| %>
-    <div>
-      <div>
-        <% if (@reservation.artwork.attachments.present?) %>
-            <% @reservation.artwork.each do |artwork| %>
-                <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('<%= rails_blob_url(artwork) %>');">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6 text-center">
+            <% if @reservations.length > 0 %>
+                <h1 class="my-5">Your Upcoming Reservations</h1>
+                <div>
+                    <% @reservations.each do |reservation| %>
+                        <div>
+                            <div>
+                                <% if (@reservation.artwork.attachments.present?) %>
+                                    <% @reservation.artwork.each do |artwork| %>
+                                        <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('<%= rails_blob_url(artwork) %>');">
+                                        </div>
+                                        <% end %>
+                                            <% end  %>
+                                                <p>
+                                                    <%= @reservation.appt_date %>
+                                                </p>
+                                                <p>
+                                                    <%= @reservation.tattoo_location %>
+                                                </p>
+                                                <p>
+                                                    <%= @reservation.cover_up %>
+                                                </p>
+                                                <p>
+                                                    <%= @reservation.style %>
+                                                </p>
+                                                <p>
+                                                    <%= @reservation.artist.studio %>
+                                                </p>
+                                                <p>
+                                                    <%= @reservation.artist.name %>
+                                                </p>
+                            </div>
+                            <div>
+                                <%= link_to "View Reservation", artist_reservation_path(reservation.artist, reservation), class: 'btn btn-primary no-margin rounded-0' %>
+                            </div>
+                        </div>
+                        <% end %>
+                            <% else %>
+                                <p class="my-5"> You don't have any reservations yet. Why not
+                                    <%= link_to "explore artists to work with?", root_path %>
+                                </p>
+                                <% end %>
                 </div>
-            <% end %>
-        <% end  %>
-        <p><%= @reservation.appt_date %></p>
-        <p><%= @reservation.tattoo_location %></p>
-        <p><%= @reservation.cover_up %></p>
-        <p><%= @reservation.style %></p>
-        <p><%= @reservation.artist.studio %></p>
-        <p><%= @reservation.artist.name %></p>
-      </div>
-      <div>
-        <%= link_to "View Reservation", artist_reservation_path(reservation.artist, reservation), class: 'btn btn-primary no-margin rounded-0' %>
-      </div>
+        </div>
     </div>
-    <% end %>
-    <% else %>
-    <p class="my-5"> You don't have any reservations yet. Why not <%= link_to "explore artists to work with?", root_path %></p>
-    <% end %>
-  </div>
 </div>
