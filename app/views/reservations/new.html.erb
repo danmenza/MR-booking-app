@@ -9,20 +9,18 @@
                         <br>
                         <%= f.input :body_area, as: :file, input_html: { multiple: true } %>
                             <br>
-                            <%= f.input :cover_up %>
-                                <%= f.input :color %>
-                                    <%= f.input :description %>
-                                        <%= f.input :appt_date %>
-                                            <div class="text-center">
-                                                <br>
-                                                <p>
-                                                    <%= f.submit "REQUEST APPOINTMENT", class: "primary-button" %>
-                                                </p>
-                                                <% end %>
-                                                    <p>
-                                                        <%= link_to "Cancel", root_path, class: "secondary-button" %>
-                                                    </p>
-                                            </div>
+                            <%= f.input :description %>
+                                <%= f.input :appt_date %>
+                                    <div class="text-center">
+                                        <br>
+                                        <p>
+                                            <%= f.submit "REQUEST APPOINTMENT", class: "primary-button" %>
+                                        </p>
+                                        <% end %>
+                                            <p>
+                                                <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                            </p>
+                                    </div>
         </div>
     </div>
 </div>

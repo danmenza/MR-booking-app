@@ -1,15 +1,26 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6">
-            <h3 class="text-center">Update reservation</h3>
+            <h3 class="text-center">Edit Reservation</h3>
             <%= simple_form_for [@artist, @reservation] do |f| %>
-                <%= f.input :phone %>
-                    <%= f.input :tattoo_location %>
-                        <%= f.input :artwork %>
-                            <%= f.input :artist %>
+                <%= f.input :tattoo_placement %>
+                    <br>
+                    <%= f.input :artwork, as: :file, input_html: { multiple: true } %>
+                        <br>
+                        <%= f.input :body_area, as: :file, input_html: { multiple: true } %>
+                            <br>
+                            <%= f.input :description %>
                                 <%= f.input :appt_date %>
-                                    <%= f.submit "Book appointment", class: "btn btn-primary" %>
+                                    <div class="text-center">
+                                        <br>
+                                        <p>
+                                            <%= f.submit "UPDATE APPOINTMENT REQUEST", class: "primary-button" %>
+                                        </p>
                                         <% end %>
+                                            <p>
+                                                <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                            </p>
+                                    </div>
         </div>
     </div>
 </div>
