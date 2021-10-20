@@ -1,7 +1,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6">
-            <h1 class="text-center" style="padding-top: 50px;">Tattoo artists near you</h1>
+            <h1 style="padding-top: 30px;">Tattoo artists near you</h1>
+            <div class="input-group rounded" id="search-bar">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                  <i class="fas fa-search"></i>
+                </span>
+            </div>
             <% @artists.each do |artist| %>
                 <% if (artist.artist_artwork.attachments.present?) %>
                     <div class="mx-auto d-block" style="height: 150px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('<%= rails_blob_url(artist.artist_artwork.first) %>'); background-position: center center; background-size: 100%;">

@@ -33,7 +33,7 @@ gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'aws-sdk-s3'
-gem 'aws-ses'
+gem 'aws-sdk-ses'
 gem 'htmlbeautifier'
 
 # Reduces boot times through caching; required in config/boot.rb
