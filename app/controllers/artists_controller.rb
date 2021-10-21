@@ -2,11 +2,21 @@ class ArtistsController < ApplicationController
     skip_before_action :authenticate_user!
     
     def index
+        @styles = []
         @artists = Artist.all
+        for artist in @artists do
+            style = artist.styles.split(", ")
+            @styles.append(style)
+        end
     end
 
     def show
+        @styles = []
         @artist = Artist.find(params[:id])
+        for artist in @artists do
+            style = artist.styles.split(", ")
+            @styles.append(style)
+        end
     end
 
     def new

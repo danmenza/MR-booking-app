@@ -10,22 +10,28 @@
             </div>
             <% @artists.each do |artist| %>
                 <% if (artist.artist_artwork.attachments.present?) %>
-                    <div class="mx-auto d-block" style="height: 150px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('<%= rails_blob_url(artist.artist_artwork.first) %>'); background-position: center center; background-size: 100%;">
-                        <p class="card-text">
-                            <%= artist.name %>
-                        </p>
-                        <p class="card-text">
-                            <%= artist.address %>
-                        </p>
-                        <p class="card-text">
-                            <%= artist.studio %>
-                        </p>
-                        <%= link_to "explore artist", artist_path(artist), class: "card-text explore-artist" %>
-                    </div>
-                    <div style="height: 20px;">
-                    </div>
-                    <% end %>
+                    <%= link_to artist_path(artist), class: "card-text explore-artist" do %>
+                        <div class="mx-auto d-block" style="height: 150px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('<%= rails_blob_url(artist.artist_artwork.first) %>'); background-position: center center; background-size: 100%;">
+                            <p class="card-text">
+                                <%= artist.name %>
+                            </p>
+                            <p class="card-text">
+                                <%= artist.address %>
+                            </p>
+                            <p class="card-text">
+                                <%= artist.studio %>
+                            </p>
+                            <% if @styles.present? %>
+                                <% @styles.each do |style| %>
+                                    <p>
+                                        <% style %>
+                                    </p>
+                                    <% end %>
+                                        <% end %>
+                        </div>
                         <% end %>
+                            <% end %>
+                                <% end %>
         </div>
     </div>
 </div>
