@@ -54,6 +54,7 @@ class ReservationsController < ApplicationController
     def send_reservation_confirmation_email(reservation)
         subject = "Tattoo Appointment - Request Confirmation"
         sender = "booking@madrabbit.com"
-        user_mailer.reservation_confirmation_email(reservation, subject, sender).deliver_later
+        recipient = reservation.user.email
+        UserMailer.reservation_confirmation_email(reservation, subject, sender, recipient).deliver_now
     end
 end

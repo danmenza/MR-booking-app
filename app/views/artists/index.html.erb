@@ -12,22 +12,23 @@
                 <% if (artist.artist_artwork.attachments.present?) %>
                     <%= link_to artist_path(artist), class: "card-text explore-artist" do %>
                         <div class="mx-auto d-block" style="height: 150px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('<%= rails_blob_url(artist.artist_artwork.first) %>'); background-position: center center; background-size: 100%;">
-                            <p class="card-text">
-                                <%= artist.name %>
-                            </p>
-                            <p class="card-text">
-                                <%= artist.address %>
-                            </p>
-                            <p class="card-text">
-                                <%= artist.studio %>
-                            </p>
-                            <% if @styles.present? %>
-                                <% @styles.each do |style| %>
+                            <div class="card-text">
+                                <p style="padding-top: 10px;">
+                                    <%= artist.name %>
+                                </p>
+                                <div style="margin-top: 30px;">
                                     <p>
-                                        <% style %>
+                                        <%= artist.studio %>
                                     </p>
-                                    <% end %>
-                                        <% end %>
+                                    <div>
+                                        <% @styles.each do |style| %>
+                                            <div class="style-div">
+                                                <span><%= style %></span>
+                                            </div>
+                                            <% end %>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <% end %>
                             <% end %>

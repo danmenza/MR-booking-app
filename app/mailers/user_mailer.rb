@@ -2,15 +2,13 @@ require 'aws-sdk-ses'
 
 class UserMailer < ApplicationMailer
     
-    def reservation_confirmation_email(reservation, subject, sender)
-        # The HTML body of the email
-        receiver = reservation.user.email
-        htmlbody = render_to_string(:partial =>   'user_mailer/email_template.html.erb', :layout => false, :locals => {:reservation => reservation})
+    def reservation_confirmation_email(reservation, subject, sender, recipient)
+        html_body = render_to_string(:partial =>   'user_mailer/reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
     
-        # send email
-        send_email(receiver, sender, subject, htmlbody)
+        send_email(subject, html_body, sender, recipient)
     end
-    def send_email (receiver, sender, subject, htmlbody)
+
+    def send_email (subject, html_body, sender, recipient)
     region = "us-east-1"
 
     # Specify the text encoding scheme.
@@ -26,14 +24,14 @@ class UserMailer < ApplicationMailer
             ses.send_email({
                 destination: {
                     to_addresses: [
-                    receiver,
+                    recipient,
                     ],
                     },
                 message: {
                     body: {
                     html: {
                     charset: encoding,
-                    data: htmlbody,
+                    data: html_body,
                     }
                     },
                 subject: {

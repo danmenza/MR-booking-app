@@ -4,18 +4,18 @@ class ArtistsController < ApplicationController
     def index
         @styles = []
         @artists = Artist.all
-        for artist in @artists do
-            style = artist.styles.split(", ")
-            @styles.append(style)
+        @artists.each do |artist|
+            artist.styles.split(", ").each do |style|
+                @styles << style
+            end
         end
     end
 
     def show
         @styles = []
         @artist = Artist.find(params[:id])
-        for artist in @artists do
-            style = artist.styles.split(", ")
-            @styles.append(style)
+        @artist.styles.split(", ").each do |style|
+            @styles << style
         end
     end
 

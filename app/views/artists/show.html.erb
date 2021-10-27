@@ -20,23 +20,25 @@
                             <p>
                                 <%= @artist.email %>
                             </p>
-                            <p>
-                                <%= @artist.styles %>
-                            </p>
-                            <p>
-                                <%= @artist.studio %>
-                            </p>
-                            <p>
-                                <%= @artist.minimum %>
-                            </p>
-                            <div class="text-center">
+                            <% @styles.each do |style| %>
                                 <p>
-                                    <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "primary-button" %>
+                                    <%= style %>
                                 </p>
-                                <p>
-                                    <%= link_to "Back to artist explore", root_path, class: "secondary-button" %>
-                                </p>
-                            </div>
+                                <% end %>
+                                    <p>
+                                        <%= @artist.studio %>
+                                    </p>
+                                    <p>
+                                        <%= @artist.minimum %>
+                                    </p>
+                                    <div class="text-center">
+                                        <p>
+                                            <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "primary-button" %>
+                                        </p>
+                                        <p>
+                                            <%= link_to "Back to artist explore", root_path, class: "secondary-button" %>
+                                        </p>
+                                    </div>
         </div>
     </div>
 </div>
