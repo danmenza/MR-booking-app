@@ -1,0 +1,57 @@
+<!Doctype html>
+<html lang="en-US">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+</head>
+
+<body>
+    <table width="60%" border="0" cellspacing="0" cellpadding="0" style="margin-left:auto;margin-right:auto;">
+        <tr>
+            <td style="text-align: center; color: black;">
+                <h1 class="confirmation-header">Tattoo appointment request confirmed!</h1>
+                <p style="text-align: left;">Hi
+                    <%= reservation.user.first_name %>,
+                </p>
+                <p>Thank you for requesting your tattoo appointment through Mad Rabbit! Please see below for details of your request:</p>
+                <div style="text-align: left;">
+                    <p>
+                        Name:
+                        <%= reservation.user.first_name %>
+                    </p>
+                    <p>
+                        Appointment Date Requested:
+                        <%= reservation.appt_date %>
+                    </p>
+                    <p>
+                        Tattoo Artist:
+                        <%= reservation.artist.name %>
+                    </p>
+                    <p>
+                        Studio:
+                        <%= reservation.artist.studio %>
+                    </p>
+                    <p>
+                        Address:
+                        <%= reservation.artist.address %>
+                    </p>
+                    <p>
+                        Tattoo Location:
+                        <%= reservation.tattoo_placement %>
+                    </p>
+                    <p>
+                        Coverup:
+                        <%= reservation.cover_up %>
+                    </p>
+                </div>
+                <p>You should receive a follow up from the shop location within 5-7 business days. Please let us know if you have any difficulty by reaching out here:</p>
+                <a href="mailto:help@madrabbit.com" target="_blank" style="color: white; background: none; background-color: black; vertical-align: middle; padding: 10px 40px; text-decoration: none; border:  1px solid black; display: inline-block;">
+                                                    CONNECT WITH ARTIST             
+                                                </a>
+                <p>The Mad Rabbit Team</p>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

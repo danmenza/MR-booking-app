@@ -4,11 +4,6 @@ class ArtistsController < ApplicationController
     def index
         @styles = []
         @artists = Artist.all
-        @artists.each do |artist|
-            artist.styles.split(", ").each do |style|
-                @styles << style
-            end
-        end
     end
 
     def show

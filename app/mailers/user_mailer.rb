@@ -3,7 +3,7 @@ require 'aws-sdk-ses'
 class UserMailer < ApplicationMailer
     
     def reservation_confirmation_email(reservation, subject, sender, recipient)
-        html_body = render_to_string(:partial =>   'user_mailer/reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
+        html_body = render_to_string(:partial =>   'user_mailer/user_reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
     
         send_email(subject, html_body, sender, recipient)
     end

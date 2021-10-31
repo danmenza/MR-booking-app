@@ -21,7 +21,7 @@
                                         <%= artist.studio %>
                                     </p>
                                     <div>
-                                        <% @styles.each do |style| %>
+                                        <% artist.styles.split(", ").each do |style| %>
                                             <div class="style-div">
                                                 <span><%= style %></span>
                                             </div>
