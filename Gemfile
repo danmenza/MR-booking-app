@@ -35,6 +35,9 @@ gem 'simple_form'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-ses'
 gem 'htmlbeautifier'
+gem 'jquery-rails'
+gem 'momentjs-rails'
+gem 'bootstrap-daterangepicker-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

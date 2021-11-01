@@ -7,6 +7,9 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import "channels"
 import 'bootstrap'
+//= require jquery
+//= require moment
+//= require daterangepicker
 
 Rails.start()
 Turbolinks.start()
