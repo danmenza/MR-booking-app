@@ -2,8 +2,12 @@ class ArtistsController < ApplicationController
     skip_before_action :authenticate_user!
     
     def index
-        @styles = []
-        @artists = Artist.all
+        if params[:query].present?
+            artist_query = Artist.search_by_city_and_styles(params[:query])
+            @artists = artist_query.paginate(page: params[:page], per_page: 20)
+        else
+            @artists = Artist.paginate(page: params[:page], per_page: 20)
+        end
     end
 
     def show
@@ -30,7 +34,7 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :email, :phone, :address, :studio, :minimum, :styles, artist_artwork: [])
+        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio, :minimum, :styles, artist_artwork: [])
     end
 
     def set_artist
