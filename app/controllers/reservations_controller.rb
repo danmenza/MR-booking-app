@@ -14,7 +14,8 @@ class ReservationsController < ApplicationController
         @reservation.artist = @artist
         authorize @reservation
         if @reservation.save
-            send_reservation_confirmation_email(@reservation)
+            send_user_reservation_confirmation_email(@reservation)
+            send_artist_reservation_requested_email(@reservation)
             redirect_to artist_reservation_path(@artist, @reservation)
         else
             render :new
@@ -51,10 +52,17 @@ class ReservationsController < ApplicationController
         params.require(:reservation).permit(:appt_start, :appt_end, :tattoo_placement, :cover_up, :color, :description, artwork: [], body_area: [])
     end
 
-    def send_reservation_confirmation_email(reservation)
+    def send_user_reservation_confirmation_email(reservation)
         subject = "Tattoo Appointment - Request Confirmation"
         sender = "booking@madrabbit.com"
         recipient = reservation.user.email
         UserMailer.reservation_confirmation_email(reservation, subject, sender, recipient).deliver_now
+    end
+
+    def send_artist_reservation_requested_email(reservation)
+        subject = "New Tattoo Appointment Requested"
+        sender = "booking@madrabbit.com"
+        recipient = reservation.artist.email
+        UserMailer.reservation_requested_email(reservation, subject, sender, recipient).deliver_now
     end
 end

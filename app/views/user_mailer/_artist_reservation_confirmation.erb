@@ -1,0 +1,60 @@
+<!Doctype html>
+<html lang="en-US">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+</head>
+
+<body>
+    <table width="60%" border="0" cellspacing="0" cellpadding="0" style="margin-left:auto;margin-right:auto;">
+        <tr>
+            <td style="text-align: center; color: black;">
+                <img src="https://tattoo-rez-assets.s3.amazonaws.com/Primary+Mark.png" height="150">
+                <h1 class="confirmation-header" style="margin-top: 0px;">New tattoo appointment requested!</h1>
+                <img src="https://tattoo-rez-assets.s3.amazonaws.com/tattoo_inking2.png" height="400">
+                <p style="text-align: left;">Hi
+                    <%= reservation.artist.name %>,
+                </p>
+                <p>You have received another appointment request! Below is the information about your upcoming request:</p>
+                <div style="text-align: left; margin-top: 20px; margin-bottom: 20px;">
+                    <p>
+                        Name:
+                        <%= reservation.user.first_name %>
+                    </p>
+                    <p>
+                        Email:
+                        <%= reservation.user.email %>
+                    </p>
+                    <p>
+                        Phone:
+                        <%= reservation.user.phone %>
+                    </p>
+                    <p>
+                        Tattoo placement:
+                        <%= reservation.tattoo_placement %>
+                    </p>
+                    <p>
+                        additional tattoo information:
+                        <%= reservation.description %>
+                    </p>
+                     <p>
+                        Coverup:
+                        <%= reservation.cover_up %>
+                    </p>
+                    <p>
+                        Date availability requested:
+                        <%= reservation.appt_start %> to
+                            <%= reservation.appt_end %>
+                    </p>
+                </div>
+                <p>Please connect with your potential customer for additional questions and get something on the books! Reach out to us for any support questions regarding this request.</p>
+                <p>The Mad Rabbit Team</p>
+                <a href="mailto:booking@madrabbit.com" target="_blank" style="color: white; background: none; background-color: black; vertical-align: middle; padding: 10px 40px; text-decoration: none; border:  1px solid black; display: inline-block;">
+                    NEED HELP?             
+                </a>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
