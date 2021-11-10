@@ -1,0 +1,23 @@
+.artist-images {
+    -moz-box-shadow-bottom: 4px 4px 4px black;
+    -webkit-box-shadow-bottom: 4px 4px 4px black;
+    box-shadow: 4px 4px 4px lightgrey;
+}
+
+.image-card {
+    column-count: 2;
+    column-gap: 0px;
+}
+
+.image-item {
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.icon {
+    background: url('leaf.svg');
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+}

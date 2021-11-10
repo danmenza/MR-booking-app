@@ -6,14 +6,13 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import 'daterangepicker';
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+// artists
 @import "artists/index";
+@import "artists/show";
+// reservations
 @import "reservations/show";
 @import "reservations/new";
-
-/*
- *= require bootstrap
- *= require daterangepicker
- */

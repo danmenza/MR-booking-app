@@ -11,10 +11,9 @@
                             <%= f.label :body_area, "Upload body area images", class: "btn upload-button" %>
                                 <%= f.input :body_area, as: :file, label: false, input_html: { multiple: true, style: "display: none" } %>
                                     <br>
-                                    <%= f.input :description %>
+                                    <%= f.input :description, label: "Describe your ideal tattoo", placeholder: "mid-size, black and white on inside of left forearm" %>
                                         <div style="text-align: center; margin-top: 20px;">
-                                            <%= f.input :cover_up, label: 'Cover up?', wrapper_html: { style: "display: inline-block; margin-right: 40px;" } %>
-                                                <%= f.input :color, label: 'Color?', wrapper_html: { style: "display: inline-block; margin-left: 40px;" } %>
+                                            <%= f.input :cover_up, label: "Cover up?", wrapper_html: { style: "display: inline-block;" } %>
                                         </div>
                                         <p style="margin-bottom: 0px; margin-top: 10px;">Date availability</p>
                                         <div style="display: table; margin: 0 auto; width: 100%;">
