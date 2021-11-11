@@ -47,11 +47,12 @@
                             <%= reservation.appt_end %>
                     </p>
                 </div>
-                <p>Please connect with your potential customer for additional questions and get something on the books! Reach out to us for any support questions regarding this request.</p>
+                <p>Please connect with your potential customer for additional questions and get something on the books!</p>
                 <p>The Mad Rabbit Team</p>
-                <a href="mailto:booking@madrabbit.com" target="_blank" style="color: white; background: none; background-color: black; vertical-align: middle; padding: 10px 40px; text-decoration: none; border:  1px solid black; display: inline-block;">
-                    NEED HELP?             
+                <a href="mailto:<%= reservation.user.email %>" target="_blank" style="color: white; background: none; background-color: black; vertical-align: middle; padding: 10px 40px; text-decoration: none; border:  1px solid black; display: inline-block;">
+                    CONNECT WITH CUSTOMER             
                 </a>
+                <p>Support questions? Reach out to booking@madrabbit.com</p>
             </td>
         </tr>
     </table>

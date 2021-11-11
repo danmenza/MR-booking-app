@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <div style="margin-left: 40px; width: 80%;">
+                <h3>Your info</h3>
+                <p style="margin-top: 40px;">Name</p>
+                <p style="text-align: left; border-bottom: 2px solid black;">
+                    <%= @user.first_name %>
+                        <%= @user.last_name %>
+                </p>
+                <p>Phone</p>
+                <p style="text-align: left; border-bottom: 2px solid black;">
+                    <%= @user.phone %>
+                </p>
+                <p>Email</p>
+                <p style="text-align: left; border-bottom: 2px solid black;">
+                    <%= @user.email %>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

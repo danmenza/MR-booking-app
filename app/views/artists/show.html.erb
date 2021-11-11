@@ -7,16 +7,16 @@
             <h6>
                 <%= @artist.studio %>
             </h6>
-            <div style="margin-left: 50px;">
+            <div style="margin-left: 50px; margin-bottom: 20px;">
                 <span>Style</span>
                 <span class="icon"></span>
                 <span>
                         <%= @artist.styles %>
                     </span>
-                <p style="margin-top: 5px;">
+                <!-- <p style="margin-top: 5px;">
                     Price minimum
                     <%= number_to_currency(@artist.minimum) %>
-                </p>
+                </p> -->
             </div>
             <div class="image-card">
                 <% if (@artist.artist_artwork.attachments.present?) %>
@@ -25,7 +25,7 @@
                         <% end %>
                             <% end  %>
             </div>
-            <div class="text-center">
+            <div class="text-center" style="margin-top: 40px;">
                 <p>
                     <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "primary-button" %>
                 </p>

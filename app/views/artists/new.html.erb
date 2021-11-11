@@ -14,17 +14,18 @@
                                         <%= f.input :minimum %>
                                             <%= f.input :styles %>
                                                 <br>
-                                                <%= f.input :artist_artwork, as: :file, input_html: { multiple: true } %>
-                                                    <div class="text-center">
-                                                        <br>
-                                                        <p>
-                                                            <%= f.submit "SUBMIT INFO", class: "primary-button" %>
-                                                        </p>
-                                                        <% end %>
+                                                <%= f.label :artist_artwork, "Upload artist artwork", class: "btn upload-button" %>
+                                                    <%= f.input :artist_artwork, as: :file, label: false, input_html: { multiple: true, style: "display: none" } %>
+                                                        <div class="text-center">
+                                                            <br>
                                                             <p>
-                                                                <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                                                <%= f.submit "SUBMIT INFO", class: "primary-button" %>
                                                             </p>
-                                                    </div>
+                                                            <% end %>
+                                                                <p>
+                                                                    <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                                                </p>
+                                                        </div>
         </div>
     </div>
 </div>
