@@ -34,12 +34,16 @@
                         <%= reservation.tattoo_placement %>
                     </p>
                     <p>
-                        additional tattoo information:
+                        Description:
                         <%= reservation.description %>
                     </p>
                      <p>
                         Coverup:
-                        <%= reservation.cover_up %>
+                        <% if reservation.cover_up == true %>
+                            <%= "Yes" %>
+                        <% else %>
+                            <%= "No" %>
+                        <% end %>
                     </p>
                     <p>
                         Date availability requested:

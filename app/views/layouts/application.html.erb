@@ -10,26 +10,28 @@
 
             <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
                 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-lg-6">
-                                <%= link_to root_path, class: 'header-text', id: 'nav-bar-cart' do %>
-                                    <span><img class="header-icons" src="<%= image_url('menu.svg') %>"><p style="display: inline; padding-left: 10px;">menu</p></span>
-                                    <% end %>
-                                        <%= link_to root_path do %>
-                                            <img class="header-img" src="<%= image_url('mr_logo_black.png') %>">
-                                            <% end %>
-                                                <div class="header-icons-right">
-                                                    <!-- <%= link_to "/" do %>
+                    <% unless controller.controller_name == "pages" && controller.action_name == "navigation" %>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-lg-6">
+                                    <%= link_to pages_navigation_path, class: 'header-text', id: 'nav-bar-cart' do %>
+                                        <span><img class="header-icons" src="<%= image_url('menu.svg') %>"><p style="display: inline; padding-left: 10px;">menu</p></span>
+                                        <% end %>
+                                            <%= link_to root_path do %>
+                                                <img class="header-img" src="<%= image_url('mr_logo_black.png') %>">
+                                                <% end %>
+                                                    <div class="header-icons-right">
+                                                        <!-- <%= link_to "/" do %>
                                                         <img class="header-icons" style="width: 30px; margin-right: 10px;" src="<%=image_url( 'cart.svg') %>">
                                                         <% end %> -->
-                                                    <%= link_to user_path(current_user) do %>
-                                                        <img class="header-icons" src="<%= image_url('profile.svg') %>">
-                                                        <% end %>
-                                                </div>
+                                                        <%= link_to user_path(current_user) do %>
+                                                            <img class="header-icons" src="<%= image_url('profile.svg') %>">
+                                                            <% end %>
+                                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <% end %>
 </head>
 
 <body>

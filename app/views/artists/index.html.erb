@@ -3,8 +3,8 @@
         <div class="col-12 col-lg-6">
             <h1 style="padding-top: 30px;">Tattoo artists near you</h1>
             <%= form_tag(artists_path, method: "get") do %>
-                <%= text_field_tag(:query) %>
-                    <%= submit_tag("Search") %>
+                <%= text_field_tag(:query, nil, placeholder: "Search by city, tattoo style", style: "padding: 5px 20px 5px 20px; border: black 1px solid; width: 300px;") %>
+                    <%= submit_tag("Search", class: "primary-button", style: "padding: 5px 20px 5px 20px; border: black 1px solid;") %>
                         <% end %>
                             <!-- <div class="input-group rounded" id="search-bar">
                 <input type="search" name="query" id="query" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />

@@ -18,10 +18,6 @@
                 <p>Thank you for requesting your tattoo appointment through Mad Rabbit! Please see below for details of your request:</p>
                 <div style="text-align: left; margin-top: 20px; margin-bottom: 20px;">
                     <p>
-                        Name:
-                        <%= reservation.user.first_name %>
-                    </p>
-                    <p>
                         Date availability:
                         <%= reservation.appt_start %> to
                             <%= reservation.appt_end %>
@@ -44,7 +40,11 @@
                     </p>
                     <p>
                         Coverup:
-                        <%= reservation.cover_up %>
+                        <% if reservation.cover_up == true %>
+                            <%= "Yes" %>
+                                <% else %>
+                                    <%= "No" %>
+                                        <% end %>
                     </p>
                 </div>
                 <p>You should receive a follow up from the shop location within 5-7 business days. Please contact us for any support questions regarding your reservation request!</p>
