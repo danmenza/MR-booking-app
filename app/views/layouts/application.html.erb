@@ -24,9 +24,13 @@
                                                         <!-- <%= link_to "/" do %>
                                                         <img class="header-icons" style="width: 30px; margin-right: 10px;" src="<%=image_url( 'cart.svg') %>">
                                                         <% end %> -->
-                                                        <%= link_to user_path(current_user) do %>
-                                                            <img class="header-icons" src="<%= image_url('profile.svg') %>">
-                                                            <% end %>
+                                                        <% if user_signed_in? %>
+                                                            <%= link_to user_path(current_user) do %>
+                                                                <img class="header-icons" src="<%= image_url('profile.svg') %>">
+                                                                <% end %>
+                                                                    <% else %>
+                                                                        <%= link_to "SIGN UP", new_user_registration_path, class: "primary-button" %>
+                                                                            <% end %>
                                                     </div>
                                 </div>
                             </div>
