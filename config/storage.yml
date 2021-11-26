@@ -21,6 +21,13 @@ amazon_users:
   region: us-east-1
   bucket: tattoo-rez-users
 
+amazon:
+  service: S3
+  access_key_id: <%= ENV['ACCESS_KEY'] %>
+  secret_access_key: <%= ENV['SECRET_KEY'] %>
+  region: us-east-1
+  bucket: tattoo-rez-assets
+
 # Remember not to checkin your GCS keyfile to a repository
 # google:
 #   service: GCS
