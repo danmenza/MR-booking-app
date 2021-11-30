@@ -90,7 +90,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   # updated config to allow static assets to render successfully
-  config.assets.compile = false
+  config.assets.compile = true
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
