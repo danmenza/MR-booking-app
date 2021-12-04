@@ -31,6 +31,10 @@ class ArtistsController < ApplicationController
         end
     end
 
+    def get_artist_city
+        self.artist.city
+    end
+
     private
 
     def artist_params

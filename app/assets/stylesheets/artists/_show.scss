@@ -2,20 +2,21 @@
     -moz-box-shadow-bottom: 4px 4px 4px black;
     -webkit-box-shadow-bottom: 4px 4px 4px black;
     box-shadow: 4px 4px 4px lightgrey;
+    width: 100%;
+    border-radius: 4px;
 }
 
 .image-card {
     column-count: 2;
-    column-gap: 0px;
+    column-gap: 5px;
 }
 
 .image-item {
     display: inline-block;
-    margin-bottom: 20px;
-    width: 100%;
+    margin: 5px;
 }
 
-.icon {
+.leaf-icon {
     background: url('leaf.svg');
     height: 30px;
     width: 30px;

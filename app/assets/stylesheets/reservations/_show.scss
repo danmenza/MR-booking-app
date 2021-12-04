@@ -3,3 +3,24 @@
     text-align: center;
     margin: 40px auto;
 }
+
+.location-icon {
+    background: url('location.svg');
+    height: 30px;
+    width: 20px;
+    display: inline-block;
+}
+
+.leaf-icon {
+    background: url('leaf.svg');
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+}
+
+.calendar-icon {
+    background: url('calendar.svg');
+    height: 30px;
+    width: 28px;
+    display: inline-block;
+}

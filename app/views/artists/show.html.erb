@@ -4,12 +4,12 @@
             <h3 style="margin-top: 20px;">
                 <%= @artist.name %>
             </h3>
-            <h6>
+            <h6 style="margin-left: 10px; margin-top: 20px;">
                 <%= @artist.studio %>
             </h6>
-            <div style="margin-left: 50px; margin-bottom: 20px;">
+            <div style="margin-left: 10px; margin-bottom: 20px;">
                 <span>Style</span>
-                <span class="icon"></span>
+                <span class="leaf-icon"></span>
                 <span>
                         <%= @artist.styles %>
                     </span>
@@ -21,7 +21,7 @@
             <div class="image-card">
                 <% if (@artist.artist_artwork.attachments.present?) %>
                     <% @artist.artist_artwork.each do |artwork| %>
-                        <div class="image-item"><img class="artist-images" src="<%= rails_blob_url(artwork) %>" width="225px"></div>
+                        <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= rails_blob_url(artwork) %>"></div>
                         <% end %>
                             <% end  %>
             </div>
