@@ -8,6 +8,12 @@ class ArtistsController < ApplicationController
         else
             @artists = Artist.paginate(page: params[:page], per_page: 20)
         end
+        @cities = []
+        @artists.each do |artist|
+            if @cities.exclude?(artist.city)
+                @cities << artist.city
+            end
+        end
     end
 
     def show

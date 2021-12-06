@@ -20,14 +20,14 @@
                                             <%= f.input :appt_start, as: :date, label: false, html5: true, wrapper_html: { class: 'date-range' } %>
                                                 <%= f.input :appt_end, as: :date, label: false, html5: true, wrapper_html: { class: 'date-range' } %>
                                         </div>
-                                        <div class="text-center">
+                                        <div class="text-center" style="margin-bottom: 40px;">
                                             <br>
                                             <p>
                                                 <%= f.submit "REQUEST APPOINTMENT", class: "primary-button" %>
                                             </p>
                                             <% end %>
                                                 <p>
-                                                    <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                                    <%= link_to "Cancel", :back, class: "secondary-button" %>
                                                 </p>
                                         </div>
         </div>
