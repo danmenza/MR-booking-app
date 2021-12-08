@@ -1,13 +1,22 @@
 require 'aws-sdk-ses'
 
 class UserMailer < ApplicationMailer
+
+    # email to mad rabbit for new artist sign up
+    def new_artist_sign_up(artist, subject, sender, recipient)
+        html_body = render_to_string(:partial => 'user_mailer/new_artist_sign_up.html.erb', :layout => false, :locals => {:artist => artist})
     
+        send_email(subject, html_body, sender, recipient)
+    end
+    
+    # email to user for reservation confirmation
     def reservation_confirmation_email(reservation, subject, sender, recipient)
-        html_body = render_to_string(:partial =>   'user_mailer/user_reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
+        html_body = render_to_string(:partial => 'user_mailer/user_reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
     
         send_email(subject, html_body, sender, recipient)
     end
 
+    # email to artist for reservation request
     def reservation_requested_email(reservation, subject, sender, recipient)
         reservation.artwork.each do |artwork|
             attachments["artwork #{artwork.filename}"] = artwork.download
@@ -15,7 +24,7 @@ class UserMailer < ApplicationMailer
         reservation.body_area.each do |area|
             attachments["body area #{area.filename}"] = area.download
         end
-        html_body = render_to_string(:partial =>   'user_mailer/artist_reservation_confirmation.erb', :layout => false, :locals => {:reservation => reservation})
+        html_body = render_to_string(:partial => 'user_mailer/artist_reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
     
         send_email(subject, html_body, sender, recipient)
     end

@@ -37,13 +37,13 @@
                         Description:
                         <%= reservation.description %>
                     </p>
-                     <p>
+                    <p>
                         Coverup:
                         <% if reservation.cover_up == true %>
                             <%= "Yes" %>
-                        <% else %>
-                            <%= "No" %>
-                        <% end %>
+                                <% else %>
+                                    <%= "No" %>
+                                        <% end %>
                     </p>
                     <p>
                         Date availability requested:
@@ -53,7 +53,7 @@
                 </div>
                 <p>Please connect with your potential customer for additional questions and get something on the books!</p>
                 <p>The Mad Rabbit Team</p>
-                <a href="mailto:<%= reservation.user.email %>" target="_blank" style="color: white; background: none; background-color: black; vertical-align: middle; padding: 10px 40px; text-decoration: none; border:  1px solid black; display: inline-block;">
+                <a href="mailto:<%= reservation.user.email %>" target="_blank" style="color: white; background: none; background-color: black; vertical-align: middle; padding: 10px 40px; text-decoration: none; border:  1px solid black; border-radius: 4px; display: inline-block;">
                     CONNECT WITH CUSTOMER             
                 </a>
                 <p>Support questions? Reach out to booking@madrabbit.com</p>

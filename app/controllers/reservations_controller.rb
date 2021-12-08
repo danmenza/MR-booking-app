@@ -14,9 +14,9 @@ class ReservationsController < ApplicationController
         @reservation.artist = @artist
         authorize @reservation
         if @reservation.save
+            redirect_to artist_reservation_path(@artist, @reservation)
             send_user_reservation_confirmation_email(@reservation)
             send_artist_reservation_requested_email(@reservation)
-            redirect_to artist_reservation_path(@artist, @reservation)
         else
             render :new
         end

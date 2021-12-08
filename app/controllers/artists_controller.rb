@@ -3,10 +3,10 @@ class ArtistsController < ApplicationController
     
     def index
         if params[:query].present?
-            artist_query = Artist.search_by_city_and_styles(params[:query])
+            artist_query = Artist.search_by_city(params[:query]).where(verified: 1)
             @artists = artist_query.paginate(page: params[:page], per_page: 20)
         else
-            @artists = Artist.paginate(page: params[:page], per_page: 20)
+            @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
         end
         @cities = []
         @artists.each do |artist|
@@ -17,11 +17,7 @@ class ArtistsController < ApplicationController
     end
 
     def show
-        @styles = []
         @artist = Artist.find(params[:id])
-        @artist.styles.split(", ").each do |style|
-            @styles << style
-        end
     end
 
     def new
@@ -32,6 +28,7 @@ class ArtistsController < ApplicationController
         @artist = Artist.new(artist_params)
         if @artist.save
             redirect_to artist_path(@artist)
+            send_new_artist_sign_up_email(@artist)
         else
             render :new
         end
@@ -49,5 +46,12 @@ class ArtistsController < ApplicationController
 
     def set_artist
         @artist = Artist.find(params[:id])
+    end
+
+    def send_new_artist_sign_up_email(artist)
+        subject = "New Artist Sign Up"
+        sender = "booking@madrabbit.com"
+        recipient = "dan@madrabbit.com"
+        UserMailer.new_artist_sign_up(artist, subject, sender, recipient).deliver_now
     end
 end

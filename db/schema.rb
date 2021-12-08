@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_035441) do
+ActiveRecord::Schema.define(version: 2021_12_08_052203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_035441) do
     t.decimal "minimum", precision: 10, scale: 2
     t.string "studio"
     t.string "city"
+    t.boolean "verified", default: false
   end
 
   create_table "reservations", force: :cascade do |t|

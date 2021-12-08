@@ -1,0 +1,52 @@
+<!Doctype html>
+<html lang="en-US">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+</head>
+
+<body>
+    <table width="60%" border="0" cellspacing="0" cellpadding="0" style="margin-left:auto;margin-right:auto;">
+        <tr>
+            <td style="text-align: center; color: black;">
+                <img src="https://tattoo-rez-assets.s3.amazonaws.com/Primary+Mark.png" height="150">
+                <h1 class="confirmation-header" style="margin-top: 0px;">New Artist Signup!</h1>
+                <p>Another artist has signed up for Mad Rabbit Booking! Below is the information about the Artist:</p>
+                <div style="text-align: left; margin-top: 20px; margin-bottom: 20px;">
+                    <p>
+                        Name:
+                        <%= artist.name %>
+                    </p>
+                    <p>
+                        Email:
+                        <%= artist.email %>
+                    </p>
+                    <p>
+                        Phone:
+                        <%= artist.phone %>
+                    </p>
+                    <p>
+                        Studio:
+                        <%= artist.name %>
+                    </p>
+                    <p>
+                        Studio address:
+                        <%= artist.address %>,
+                            <%= artist.city %>
+                    </p>
+                    <p>
+                        Styles:
+                        <%= artist.styles %>
+                    </p>
+                </div>
+                <p>Please connect with this artist to get them onboarded and set up with Mad Rabbit Booking!</p>
+                <p>The Mad Rabbit Team</p>
+                <a href="mailto:<%= artist.email %>" target="_blank" style="color: white; background: none; background-color: black; vertical-align: middle; padding: 10px 40px; text-decoration: none; border:  1px solid black; border-radius: 4px; display: inline-block;">
+                    CONNECT WITH ARTIST             
+                </a>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
