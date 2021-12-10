@@ -51,7 +51,7 @@ class ArtistsController < ApplicationController
     def send_new_artist_sign_up_email(artist)
         subject = "New Artist Sign Up"
         sender = "booking@madrabbit.com"
-        recipient = "dan@madrabbit.com"
+        recipient = "sales@madrabbit.com"
         UserMailer.new_artist_sign_up(artist, subject, sender, recipient).deliver_now
     end
 end
