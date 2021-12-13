@@ -5,11 +5,13 @@ class ArtistsController < ApplicationController
         if params[:query].present?
             artist_query = Artist.search_by_city(params[:query]).where(verified: 1)
             @artists = artist_query.paginate(page: params[:page], per_page: 20)
+            @selected_city = @artists[0].city
         else
             @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
         end
         @cities = []
-        @artists.each do |artist|
+        artists_for_cities_query = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
+        artists_for_cities_query.each do |artist|
             if @cities.exclude?(artist.city)
                 @cities << artist.city
             end
