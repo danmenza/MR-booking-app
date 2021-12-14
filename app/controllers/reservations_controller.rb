@@ -49,7 +49,7 @@ class ReservationsController < ApplicationController
     private
 
     def reservation_params
-        params.require(:reservation).permit(:appt_start, :appt_end, :tattoo_placement, :cover_up, :color, :description, artwork: [], body_area: [])
+        params.require(:reservation).permit(:appt_start, :appt_end, :tattoo_placement, :cover_up, :description, artwork: [], body_area: [])
     end
 
     def send_user_reservation_confirmation_email(reservation)

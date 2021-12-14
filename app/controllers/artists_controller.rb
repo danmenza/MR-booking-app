@@ -43,7 +43,7 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio, :minimum, :styles, artist_artwork: [])
+        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio, :instagram_handle, :styles, artist_artwork: [])
     end
 
     def set_artist
