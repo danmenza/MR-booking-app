@@ -39,5 +39,36 @@
 <body>
     <%= yield %>
 </body>
+<footer>
+    <% unless controller.controller_name == "pages" && controller.action_name == "navigation" %>
+        <div id='main-footer'>
+            <%= link_to root_path do %>
+                <img class="footer-img" src="<%= image_url('mr_logo_white.png') %>">
+                <% end %>
+                    <div style="text-align: center; background-color: black;">
+                        <a href="https://www.facebook.com/shopmadrabbit"><i class="fab fa-facebook-square footer-icons"></i></a>
+                        <a href="https://www.instagram.com/madrabbit/"><i class="fab fa-instagram footer-icons"></i></a>
+                        <a href="https://www.pinterest.com/Madrabbittattoo/_created/"><i class="fab fa-pinterest-square footer-icons"></i></a>
+                        <a href="https://www.youtube.com/c/MadRabbitTattoo"><i class="fab fa-youtube footer-icons"></i></a>
+                    </div>
+                    <div style="text-align: center; background-color: black; padding-top: 20px;">
+                        <p>
+                            <a class="footer-text" href="mailto:booking@madrabbit.com">booking@madrabbit.com</a>
+                        </p>
+                        <p style="margin-bottom: 0px;">
+                            <a class="footer-text" href="tel:323-457-8763">(323) 457-8763</a>
+                        </p>
+                    </div>
+                    <div id="footer-closing" style="background-color: black;">
+                        <span class="closing-text">© 2021, </span>
+                        <a class="closing-text" href="https://www.madrabbit.com/">Mad Rabbit Tattoo</a>
+                        <span class="closing-break">|</span>
+                        <a class="closing-text" href="https://www.madrabbit.com/policies/terms-of-service">Terms of service</a>
+                        <span class="closing-break">|</span>
+                        <a class="closing-text" href="https://www.madrabbit.com/policies/privacy-policy">Privacy policy</a>
+                    </div>
+        </div>
+        <% end %>
+</footer>
 
 </html>
