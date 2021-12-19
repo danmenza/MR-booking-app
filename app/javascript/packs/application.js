@@ -5,11 +5,16 @@
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
-import "channels"
-import 'bootstrap'
-//= require jquery
-//= require moment
-//= require daterangepicker
+
+// External imports
+import "channels";
+import "bootstrap";
+import "select2";
 
 Rails.start()
 Turbolinks.start()
+
+document.addEventListener('turbolinks:load', () => {
+
+    $('#share_select').select2();
+});

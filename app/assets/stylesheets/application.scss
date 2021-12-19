@@ -7,12 +7,14 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'daterangepicker';
+@import "select2/dist/css/select2";
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
 // artists
 @import "artists/index";
 @import "artists/show";
+@import "artists/new";
 // reservations
 @import "reservations/show";
 @import "reservations/new";

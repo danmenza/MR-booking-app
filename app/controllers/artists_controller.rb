@@ -24,10 +24,14 @@ class ArtistsController < ApplicationController
 
     def new
         @artist = Artist.new
+        @styles = ["American traditional", "Japanese traditional", "Neo traditional", "Tribal", \
+                    "Fine line", "Continuous line", "Script lettering", "Watercolor", "Realism", \
+                    "Black work", "Abstract", "Geometric", "New school", "Sticker", "Portrait"]
     end
 
     def create
         @artist = Artist.new(artist_params)
+        @artist.styles.reject!(&:empty?)
         if @artist.save
             redirect_to artist_path(@artist)
             send_new_artist_sign_up_email(@artist)
@@ -43,7 +47,7 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio, :instagram_handle, :styles, artist_artwork: [])
+        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio, :instagram_handle, styles: [], artist_artwork: [])
     end
 
     def set_artist

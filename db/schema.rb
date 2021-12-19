@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_10_040641) do
+ActiveRecord::Schema.define(version: 2021_12_19_000028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_12_10_040641) do
     t.string "address"
     t.string "phone"
     t.string "email"
-    t.text "styles"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "minimum", precision: 10, scale: 2
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_12_10_040641) do
     t.string "city"
     t.boolean "verified", default: false
     t.string "instagram_handle"
+    t.text "styles", default: [], array: true
   end
 
   create_table "reservations", force: :cascade do |t|
