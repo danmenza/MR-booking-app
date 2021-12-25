@@ -36,14 +36,18 @@
 </head>
 
 <body>
-    <%= yield %>
-</body>
-<footer>
-    <% unless controller.controller_name == "pages" && controller.action_name == "navigation" %>
-        <div id='main-footer'>
-            <%= link_to root_path do %>
-                <img class="footer-img" src="<%= image_url('mr_logo_white.png') %>">
-                <% end %>
+    <div id="page-container">
+        <div id="content-wrap">
+            <%= yield %>
+        </div>
+        <footer>
+            <% unless controller.controller_name == "pages" && controller.action_name == "navigation" %>
+                <div id='main-footer'>
+                    <div style="text-align: center; background-color: black;">
+                        <%= link_to root_path do %>
+                            <img class="footer-img" src="<%= image_url('mr_logo_white.png') %>">
+                            <% end %>
+                    </div>
                     <div style="text-align: center; background-color: black;">
                         <a href="https://www.madrabbit.com/pages/our-story" class="footer-text">#MADRABBIT</a>
                         <br>
@@ -73,8 +77,10 @@
                         <span class="closing-break">|</span>
                         <a class="closing-text" href="https://www.madrabbit.com/policies/privacy-policy">Privacy policy</a>
                     </div>
-        </div>
-        <% end %>
-</footer>
+                </div>
+                <% end %>
+        </footer>
+    </div>
+</body>
 
 </html>

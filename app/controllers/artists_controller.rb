@@ -33,8 +33,9 @@ class ArtistsController < ApplicationController
         @artist = Artist.new(artist_params)
         @artist.styles.reject!(&:empty?)
         if @artist.save
-            redirect_to artist_path(@artist)
-            send_new_artist_sign_up_email(@artist)
+            redirect_to artists_sign_up_confirmation_path
+            send_new_artist_sign_up_email_artist(@artist)
+            send_new_artist_sign_up_email_internal(@artist)
         else
             render :new
         end
@@ -42,6 +43,9 @@ class ArtistsController < ApplicationController
 
     def get_artist_city
         self.artist.city
+    end
+
+    def confirmation
     end
 
     private
@@ -54,10 +58,17 @@ class ArtistsController < ApplicationController
         @artist = Artist.find(params[:id])
     end
 
-    def send_new_artist_sign_up_email(artist)
+    def send_new_artist_sign_up_email_internal(artist)
         subject = "New Artist Sign Up"
         sender = "booking@madrabbit.com"
         recipient = "sales@madrabbit.com"
-        UserMailer.new_artist_sign_up(artist, subject, sender, recipient).deliver_now
+        UserMailer.new_artist_sign_up_internal_confirmation(artist, subject, sender, recipient).deliver_now
+    end
+
+    def send_new_artist_sign_up_email_artist(artist)
+        subject = "Mad Rabbit Booking Platform Application Received!"
+        sender = "booking@madrabbit.com"
+        recipient = artist.email
+        UserMailer.new_artist_sign_up_artist_confirmation(artist, subject, sender, recipient).deliver_now
     end
 end

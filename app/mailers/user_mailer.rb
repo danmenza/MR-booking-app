@@ -3,8 +3,14 @@ require 'aws-sdk-ses'
 class UserMailer < ApplicationMailer
 
     # email to mad rabbit for new artist sign up
-    def new_artist_sign_up(artist, subject, sender, recipient)
-        html_body = render_to_string(:partial => 'user_mailer/new_artist_sign_up.html.erb', :layout => false, :locals => {:artist => artist})
+    def new_artist_sign_up_internal_confirmation(artist, subject, sender, recipient)
+        html_body = render_to_string(:partial => 'user_mailer/new_artist_sign_up_internal_confirmation.html.erb', :layout => false, :locals => {:artist => artist})
+    
+        send_email(subject, html_body, sender, recipient)
+    end
+
+    def new_artist_sign_up_artist_confirmation(artist, subject, sender, recipient)
+        html_body = render_to_string(:partial => 'user_mailer/new_artist_sign_up_artist_confirmation.html.erb', :layout => false, :locals => {:artist => artist})
     
         send_email(subject, html_body, sender, recipient)
     end

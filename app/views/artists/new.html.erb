@@ -4,28 +4,28 @@
             <h3 class="text-center">Artist Info</h3>
             <p class="text-center">Wanting an easier way to help manage tattoo appointments?</p>
             <p class="text-center">Mad Rabbit can help! We would love to partner with you!</p>
-                    <%= simple_form_for(@artist) do |f| %>
-                        <%= f.input :name %>
-                            <%= f.input :email %>
-                                <%= f.input :phone %>
-                                    <%= f.input :address %>
-                                        <%= f.input :city %>
-                                            <%= f.input :studio %>
-                                                <%= f.input :instagram_handle %>
-                                                    <%= f.input :styles, collection: @styles, input_html: { id: "share_select", multiple: true } %>
-                                                        <br>
-                                                        <%= f.label :artist_artwork, "Upload artist artwork", class: "btn upload-button" %>
-                                                            <%= f.input :artist_artwork, as: :file, label: false, input_html: { multiple: true, style: "display: none;" } %>
-                                                                <div class="text-center" style="margin-bottom: 40px;">
-                                                                    <br>
-                                                                    <p>
-                                                                        <%= f.submit "SUBMIT INFO", class: "primary-button" %>
-                                                                    </p>
-                                                                    <% end %>
-                                                                        <p>
-                                                                            <%= link_to "Cancel", root_path, class: "secondary-button" %>
-                                                                        </p>
-                                                                </div>
+            <%= simple_form_for(@artist) do |f| %>
+                <%= f.input :name %>
+                    <%= f.input :email %>
+                        <%= f.input :phone %>
+                            <%= f.input :address %>
+                                <%= f.input :city %>
+                                    <%= f.input :studio %>
+                                        <%= f.input :instagram_handle %>
+                                            <%= f.input :styles, collection: @styles, input_html: { id: "share_select", multiple: true } %>
+                                                <br>
+                                                <%= f.label :artist_artwork, "Upload artist artwork", class: "btn upload-button" %>
+                                                    <%= f.input :artist_artwork, as: :file, label: false, input_html: { multiple: true, style: "display: none;" } %>
+                                                        <div class="text-center" style="margin-bottom: 40px;">
+                                                            <br>
+                                                            <p>
+                                                                <%= f.submit "SUBMIT INFO", class: "primary-button" %>
+                                                            </p>
+                                                            <% end %>
+                                                                <p>
+                                                                    <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                                                </p>
+                                                        </div>
         </div>
     </div>
 </div>
