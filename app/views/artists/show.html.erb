@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12" style="width: 95%;">
             <h3 style="margin-top: 20px;">
                 <%= @artist.name %>
             </h3>
@@ -27,7 +27,7 @@
             </div>
             <div class="text-center" style="margin-top: 40px; margin-bottom: 40px;">
                 <p>
-                    <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "primary-button" %>
+                    <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "primary-button", style: "display: block;" %>
                 </p>
                 <p>
                     <%= link_to "Back to artist explore", root_path, class: "secondary-button" %>

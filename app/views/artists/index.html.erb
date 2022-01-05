@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12" style="width: 95%;">
             <h1 style="padding-top: 30px;">Tattoo artists near you</h1>
             <%= form_tag(artists_path, method: "get", class: "d-flex align-items-center flex-nowrap") do %>
                 <%= select_tag(:query, options_for_select(@cities, @selected_city), class: "city-filter") %>
-                    <%= submit_tag("Search", class: "primary-button", style: "margin-left: 5px; padding: 5px 20px 5px 20px; border: black 1px solid; border-radius: 4px; flex-shrink: 0;") %>
+                    <%= submit_tag("Search", id: "search-button", style: "margin-left: 5px; padding: 5px 20px 5px 20px; border: black 1px solid; border-radius: 4px; flex-shrink: 0;") %>
                         <% end %>
                             <!-- <%= form_tag(artists_path, method: "get", class: "d-flex align-items-center flex-nowrap") do %>
                                 <%= text_field_tag(:query, nil, placeholder: "Search by city, tattoo style", style: "padding: 5px 20px 5px 20px; border: black 1px solid; flex-grow: 1;") %>

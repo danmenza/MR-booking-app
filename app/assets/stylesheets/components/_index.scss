@@ -4,6 +4,7 @@
 @import "navbar";
 .primary-button {
     color: white;
+    width: 100%;
     background: none;
     background-color: black;
     padding: 10px 50px 10px 50px;
@@ -32,4 +33,20 @@
     border: 2px solid black;
     border-radius: 4px;
     width: 100%;
+}
+
+#search-button {
+    color: white;
+    background: none;
+    background-color: black;
+    padding: 10px 50px 10px 50px;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-weight: normal;
+}
+
+#search-button:hover {
+    color: white;
+    text-decoration: none;
 }

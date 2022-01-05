@@ -12,7 +12,7 @@
                     <% unless controller.controller_name == "pages" && controller.action_name == "navigation" %>
                         <div class="container">
                             <div class="row justify-content-center">
-                                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
+                                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12" style="width: 95%;">
                                     <%= link_to pages_navigation_path, class: 'header-text', id: 'nav-bar-cart' do %>
                                         <span><img class="header-icons" src="<%= image_url('menu.svg') %>"><p style="display: inline; padding-left: 10px;">menu</p></span>
                                         <% end %>
