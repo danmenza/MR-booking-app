@@ -26,7 +26,8 @@ class ArtistsController < ApplicationController
         @artist = Artist.new
         @styles = ["American traditional", "Japanese traditional", "Neo traditional", "Tribal", \
                     "Fine line", "Continuous line", "Script lettering", "Watercolor", "Realism", \
-                    "Black work", "Abstract", "Geometric", "New school", "Sticker", "Portrait"]
+                    "Black work", "Abstract", "Geometric", "New school", "Sticker", "Portrait", \
+                    "Cover up", "Scars"]
     end
 
     def create
