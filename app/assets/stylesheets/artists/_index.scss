@@ -43,3 +43,14 @@
     margin-bottom: 20px;
     margin-right: 5px;
 }
+
+.scroll-tags {
+    overflow: auto;
+    white-space: nowrap;
+    margin-right: 20px;
+}
+
+.scroll-tags span {
+    display: inline-block;
+    text-decoration: none;
+}
