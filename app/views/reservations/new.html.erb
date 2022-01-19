@@ -6,16 +6,16 @@
                 <%= f.input :tattoo_placement %>
                     <br>
                     <%= f.label :artwork, "Upload artwork references", class: "btn upload-button" %>
-                        <%= f.input :artwork, as: :file, label: false, input_html: { multiple: true, style: "display: none" } %>
+                        <%= f.input :artwork, as: :file, label: false, input_html: { multiple: true, style: "display: none;" } %>
                             <br>
                             <%= f.label :body_area, "Upload body area images", class: "btn upload-button" %>
-                                <%= f.input :body_area, as: :file, label: false, input_html: { multiple: true, style: "display: none" } %>
+                                <%= f.input :body_area, as: :file, label: false, input_html: { multiple: true, style: "display: none;" } %>
                                     <br>
-                                    <%= f.input :description, label: "Describe your ideal tattoo", placeholder: "mid-size, black and white on inside of left forearm" %>
+                                    <%= f.input :description, label: "Describe your ideal tattoo", placeholder: 'single-needle, black and gray snake tattoo on right forearm, 5" long' %>
                                         <div style="text-align: center; margin-top: 20px;">
                                             <%= f.input :cover_up, label: "Cover up?", wrapper_html: { style: "display: inline-block;" } %>
                                         </div>
-                                        <p style="margin-bottom: 0px; margin-top: 10px;">Date availability</p>
+                                        <p style="margin-bottom: 0px; margin-top: 10px;">Preferred date range</p>
                                         <div style="display: table; margin: 0 auto; width: 100%;">
                                             <%= f.input :appt_start, as: :date, label: false, html5: true, wrapper_html: { class: 'date-range' } %>
                                                 <%= f.input :appt_end, as: :date, label: false, html5: true, wrapper_html: { class: 'date-range' } %>

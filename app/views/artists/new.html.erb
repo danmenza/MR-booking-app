@@ -12,7 +12,7 @@
                                 <%= f.input :city %>
                                     <%= f.input :studio %>
                                         <%= f.input :instagram_handle %>
-                                            <%= f.input :styles, label: "Styles/Types", collection: @styles, input_html: { id: "share_select", multiple: true } %>
+                                            <%= f.input :styles, label: "Styles/Types", collection: @styles, input_html: { id: "share-select", multiple: true } %>
                                                 <br>
                                                 <%= f.label :artist_artwork, "Upload artist artwork", class: "btn upload-button" %>
                                                     <%= f.input :artist_artwork, as: :file, label: false, input_html: { multiple: true, style: "display: none;" } %>

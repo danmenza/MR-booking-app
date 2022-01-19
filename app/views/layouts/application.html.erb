@@ -27,7 +27,11 @@
                                                             <%= link_to user_path(current_user) do %>
                                                                 <img class="header-icons" src="<%= image_url('profile.svg') %>">
                                                                 <% end %>
-                                                                    <% end %>
+                                                                    <% else %>
+                                                                        <%= link_to user_session_path do %>
+                                                                            <img class="header-icons" src="<%= image_url('profile.svg') %>">
+                                                                            <% end %>
+                                                                                <% end %>
                                                     </div>
                                 </div>
                             </div>

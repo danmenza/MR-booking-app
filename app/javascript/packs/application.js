@@ -16,7 +16,18 @@ Turbolinks.start()
 
 document.addEventListener('turbolinks:load', () => {
 
-    $('#share_select').select2();
+    $('#share-select').select2();
+
+    $('.image-file-button').each(function() {
+        $(this).off('click').on('click', function() {
+            $(this).siblings('.image-file').trigger('click');
+        });
+    });
+    $('.image-file').each(function() {
+        $(this).change(function() {
+            $(this).siblings('.image-file-chosen').val(this.files[0].name);
+        });
+    });
 });
 
 function phoneNumberFormatter() {
