@@ -1,4 +1,5 @@
 class Artist < ApplicationRecord
+    # belongs_to :studio
     has_many :reservations
     has_many_attached :artist_artwork, service: :amazon_artists
     validates :artist_artwork, presence: true, file_content_type: { allow: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'], message: 'must be file type gif, png, jpg, or jpeg' }, file_size: { less_than: 10.megabytes , message: 'must be less than 10MB in size' } 
