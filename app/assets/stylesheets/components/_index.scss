@@ -50,3 +50,33 @@
     color: white;
     text-decoration: none;
 }
+
+.toggle-button-on {
+    color: white;
+    background: none;
+    background-color: black;
+    padding: 5px 25px 5px 25px;
+    text-decoration: none;
+    border: black 2px solid;
+    font-weight: normal;
+}
+
+.toggle-button-on:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.toggle-button-off {
+    color: black;
+    background: none;
+    background-color: white;
+    padding: 5px 25px 5px 25px;
+    text-decoration: none;
+    border: black 2px solid;
+    font-weight: normal;
+}
+
+.toggle-button-off:hover {
+    color: black;
+    text-decoration: none;
+}

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'pages/navigation', to: 'pages#navigation'
   get 'artists/sign-up-confirmation', to: 'artists#confirmation'
 
+  resources :studios, only: [:index, :show, :new, :create]
   resources :artists, only: [:index, :show, :new, :create] do
     resources :reservations, only: [:show, :new, :create]
   end

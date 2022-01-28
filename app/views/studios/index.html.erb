@@ -2,11 +2,11 @@
     <div class="row justify-content-center">
         <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12" style="width: 95%; margin-bottom: 50px;">
             <div style="display: flex; justify-content: center; margin-top: 40px;">
-                <%= link_to "ARTISTS", root_path, class: "toggle-button-on", style: "border-radius: 4px 0px 0px 4px;" %>
-                    <%= link_to "STUDIOS", studios_path, class: "toggle-button-off", style: "border-radius: 0px 4px 4px 0px;" %>
+                <%= link_to "ARTISTS", root_path, class: "toggle-button-off", style: "border-radius: 4px 0px 0px 4px;" %>
+                    <%= link_to "STUDIOS", studios_path, class: "toggle-button-on", style: "border-radius: 0px 4px 4px 0px;" %>
             </div>
-            <h1 style="padding-top: 30px;">Tattoo artists near you</h1>
-            <%= form_tag(artists_path, method: "get", class: "d-flex align-items-center flex-nowrap") do %>
+            <h1 style="padding-top: 30px;">Tattoo studios near you</h1>
+            <%= form_tag(studios_path, method: "get", class: "d-flex align-items-center flex-nowrap") do %>
                 <%= select_tag(:query, options_for_select(@cities, @selected_city), class: "city-filter") %>
                     <%= submit_tag("Search", id: "search-button", style: "margin-left: 5px; padding: 5px 20px 5px 20px; border: black 1px solid; border-radius: 4px; flex-shrink: 0;") %>
                         <% end %>
@@ -14,22 +14,22 @@
                                 <%= text_field_tag(:query, nil, placeholder: "Search by city, tattoo style", style: "padding: 5px 20px 5px 20px; border: black 1px solid; flex-grow: 1;") %>
                                     <%= submit_tag("Search", class: "primary-button", style: "margin-left: 5px; padding: 5px 20px 5px 20px; border: black 1px solid; flex-shrink: 0;") %>
                                         <% end %> -->
-                            <% @artists.each do |artist| %>
-                                <% if (artist.artist_artwork.attachments.present?) %>
-                                    <%= link_to artist_path(artist), class: "explore-artist" do %>
+                            <% @studios.each do |studio| %>
+                                <% if (studio.studio_image.attachments.present?) %>
+                                    <%= link_to studio_path(studio), class: "explore-artist" do %>
                                         <div class="mx-auto d-block" style="width: 100%; height: 150px; margin-top: 10px; border-radius: 4px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('<%= rails_blob_url(artist.artist_artwork.first) %>'); background-position: center center; background-size: 100%;">
                                             <div class="card-text">
                                                 <p style="padding-top: 10px;">
-                                                    <%= artist.name %>
+                                                    <%= studio.name %>
                                                 </p>
                                                 <div style="margin-top: 30px;">
                                                     <p>
-                                                        <%= artist.studio %>
+                                                        <%= studio.address %>
                                                     </p>
                                                     <div class="scroll-tags">
-                                                        <% artist.styles.each do |style| %>
+                                                        <% studio.artists.each do |artist| %>
                                                             <div class="style-div">
-                                                                <span><%= style %></span>
+                                                                <span><%= artist.name %></span>
                                                             </div>
                                                             <% end %>
                                                     </div>
