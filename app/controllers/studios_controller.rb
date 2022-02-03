@@ -3,9 +3,14 @@ class StudiosController < ApplicationController
     
     def index
         if params[:query].present?
-            studio_query = Studio.search_by_city(params[:query])
-            @studios = studio_query.paginate(page: params[:page], per_page: 20)
-            @selected_city = @studios[0].city
+            if params[:query] != "Search all studios"
+                studio_query = Studio.search_by_city(params[:query])
+                @studios = studio_query.paginate(page: params[:page], per_page: 20)
+                @selected_city = @studios[0].city
+            else
+                @studios = Studio.paginate(page: params[:page], per_page: 20)
+                @selected_city = "Search all studios"
+            end
         else
             @studios = Studio.paginate(page: params[:page], per_page: 20)
         end
@@ -16,6 +21,7 @@ class StudiosController < ApplicationController
                 @cities << studio.city
             end
         end
+        @cities << "Search all studios"
     end
 
     def show
@@ -29,7 +35,7 @@ class StudiosController < ApplicationController
     def create
         @studio = Studio.new(studio_params)
         if @studio.save
-
+            redirect_to artists_sign_up_confirmation_path
         else
             render :new
         end
@@ -42,6 +48,6 @@ class StudiosController < ApplicationController
     private
 
     def studio_params
-        params.require(:studio).permit(:name, :address, :city, :phone)
+        params.require(:studio).permit(:name, :address, :city, :phone, :studio_image)
     end
 end

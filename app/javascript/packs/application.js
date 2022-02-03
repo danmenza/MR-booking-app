@@ -32,7 +32,7 @@ document.addEventListener('turbolinks:load', () => {
 
 function phoneNumberFormatter() {
     // grab the value of what the user is typing into the input
-    const inputField = document.querySelectorAll("artist_phone", "user_phone");
+    const inputField = document.querySelectorAll("artist_phone", "user_phone", "studio_phone");
 
     // next, we're going to format this input with the `formattPhoneNumber` function, which we'll write next.
     const formattedInputValue = formatPhoneNumber(inputField.value);

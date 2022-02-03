@@ -3,9 +3,14 @@ class ArtistsController < ApplicationController
     
     def index
         if params[:query].present?
-            artist_query = Artist.search_by_city(params[:query]).where(verified: 1)
-            @artists = artist_query.paginate(page: params[:page], per_page: 20)
-            @selected_city = @artists[0].city
+            if params[:query] != "Search all artists"
+                artist_query = Artist.search_by_city(params[:query]).where(verified: 1)
+                @artists = artist_query.paginate(page: params[:page], per_page: 20)
+                @selected_city = @artists[0].city
+            else
+                @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
+                @selected_city = "Search all artists"
+            end
         else
             @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
         end
@@ -16,6 +21,7 @@ class ArtistsController < ApplicationController
                 @cities << artist.city
             end
         end
+        @cities << "Search all artists"
     end
 
     def show
@@ -52,7 +58,7 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio, :instagram_handle, styles: [], artist_artwork: [])
+        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio, :instagram_handle, :artist_profile, styles: [], artist_artwork: [])
     end
 
     def set_artist
