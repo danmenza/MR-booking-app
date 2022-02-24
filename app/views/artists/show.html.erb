@@ -1,43 +1,77 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12" style="width: 95%;">
-            <h3 style="margin-top: 20px;">
-                <%= @artist.name %>
-            </h3>
-            <div style="margin-left: 10px; margin-bottom: 20px;">
-                <h6 style="margin-top: 20px;">
-                    <%= @artist.studio %>
-                </h6>
-                <% if @artist.instagram_handle %>
-                    <h6 style="margin-top: 20px;">
-                        <!-- need to see if this url structure works for hitting instagram artist page -->
-                        <a href="https://www.instagram.com/<%= @artist.instagram_handle %>" style="text-decoration: none; color: black;">@<%= @artist.instagram_handle %></a>
-                    </h6>
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
+            <div style="position: -webkit-sticky; position: sticky; top: 0; background-color: #F4F4F4; padding-bottom: 10px;">
+                <%= link_to pages_navigation_path, class: 'header-text', id: 'nav-bar-cart' do %>
+                    <span><img class="header-icons" src="<%= image_url('menu.svg') %>"><p style="display: inline; padding-left: 10px;">menu</p></span>
                     <% end %>
-                        <span>Style</span>
-                        <span class="leaf-icon"></span>
-                        <span>
-                        <%= @artist.styles.join(", ") %>
-                    </span>
-                        <!-- <p style="margin-top: 5px;">
-                    Price minimum
-                    <%= number_to_currency(@artist.minimum) %>
-                </p> -->
+                        <%= link_to root_path do %>
+                            <img class="header-img" src="<%= image_url('mr_logo_black.png') %>">
+                            <% end %>
+                                <div class="header-icons-right">
+                                    <!-- <%= link_to "/" do %>
+                            <img class="header-icons" style="width: 30px; margin-right: 10px;" src="<%=image_url( 'cart.svg') %>">
+                            <% end %> -->
+                                    <% if user_signed_in? %>
+                                        <%= link_to user_path(current_user) do %>
+                                            <img class="header-icons" src="<%= image_url('profile.svg') %>">
+                                            <% end %>
+                                                <% else %>
+                                                    <%= link_to user_session_path do %>
+                                                        <img class="header-icons" src="<%= image_url('profile.svg') %>">
+                                                        <% end %>
+                                                            <% end %>
+                                </div>
+                                <div style="display: flex; margin-left: 10px;">
+                                    <% if (@artist.artist_profile.attachments.present?) %>
+                                        <div id="artist-profile" style="display: inline-block; background-image: url('<%= rails_blob_url(@artist.artist_profile) %>'); background-position: center center; background-size: 100%;">
+                                        </div>
+                                        <% end %>
+                                            <div>
+                                                <h3 style="display: inline; margin-left: 10px;">
+                                                    <%= @artist.name %>
+                                                </h3>
+                                                <br>
+                                                <div style="margin-left: 15px;">
+                                                    <% if @artist.facebook %>
+                                                        <a href="https://www.facebook.com/<%= @artist.facebook %>"><img src="<%= image_url('facebook.svg') %>" class="profile-social-icons" style="filter: invert(1);"></a>
+                                                        <% end %>
+                                                            <% if @artist.instagram %>
+                                                                <a href="https://www.instagram.com/<%= @artist.instagram %>"><img src="<%= image_url('instagram.svg') %>" class="profile-social-icons" style="filter: invert(1);"></a>
+                                                                <% end %>
+                                                                    <% if @artist.tiktok %>
+                                                                        <a href="https://www.tiktok.com/<%= @artist.tiktok %>"><img src="<%= image_url('tiktok.svg') %>" class="profile-social-icons" style="filter: invert(1);"></a>
+                                                                        <% end %>
+                                                </div>
+                                                <h6 style="display: inline; margin-left: 10px;">
+                                                    <%= @artist.studio_name %>
+                                                </h6>
+                                            </div>
+                                </div>
+                                <div style="margin-bottom: 20px; margin-top: 20px;">
+                                    <div class="artist-styles" style="margin-top: 10px;">
+                                        <% @artist.styles.each do |style| %>
+                                            <div class="artist-styles-div" style="margin-bottom: 10px;">
+                                                <span><%= style %></span>
+                                            </div>
+                                            <% end %>
+                                    </div>
+                                </div>
+                                <div class="text-center" style="margin-top: 10px; display: flex; justify-content: center;">
+                                    <p>
+                                        <%= link_to "Back to artist explore", root_path, class: "primary-bordered-button", style: "border: 2px solid black; margin-right: 5px;" %>
+                                    </p>
+                                    <p>
+                                        <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "primary-button", style: "margin-left: 5px;" %>
+                                    </p>
+                                </div>
             </div>
-            <div class="image-card">
+            <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">
                 <% if (@artist.artist_artwork.attachments.present?) %>
                     <% @artist.artist_artwork.each do |artwork| %>
                         <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= rails_blob_url(artwork) %>"></div>
                         <% end %>
                             <% end  %>
-            </div>
-            <div class="text-center" style="margin-top: 40px; margin-bottom: 40px;">
-                <p>
-                    <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "primary-button", style: "display: block;" %>
-                </p>
-                <p>
-                    <%= link_to "Back to artist explore", root_path, class: "secondary-button" %>
-                </p>
             </div>
         </div>
     </div>

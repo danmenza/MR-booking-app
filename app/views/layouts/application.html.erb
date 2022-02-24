@@ -5,14 +5,16 @@
     <title>TattooRez</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
     <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
             <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
                 <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-                    <% unless controller.controller_name == "pages" && controller.action_name == "navigation" %>
+                    <% unless controller.controller_name == "pages" && controller.action_name == "navigation" || controller.controller_name == "artists" && controller.action_name == "show"  %>
                         <div class="container">
                             <div class="row justify-content-center">
-                                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12" style="width: 95%;">
+                                <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
                                     <%= link_to pages_navigation_path, class: 'header-text', id: 'nav-bar-cart' do %>
                                         <span><img class="header-icons" src="<%= image_url('menu.svg') %>"><p style="display: inline; padding-left: 10px;">menu</p></span>
                                         <% end %>
@@ -59,11 +61,11 @@
                         <a href="https://www.madrabbit.com/collections/all-products" class="footer-text">SHOP</a>
                     </div>
                     <div style="text-align: center; background-color: black; padding-top: 20px;">
-                        <a href="https://www.facebook.com/shopmadrabbit"><img src="<%= image_url('facebook.png') %>" class="footer-icons"></a>
-                        <a href="https://www.instagram.com/madrabbit/"><img src="<%= image_url('instagram.png') %>" class="footer-icons"></a>
-                        <a href="https://vm.tiktok.com/ZMJaAtGDB/"><img src="<%= image_url('tiktok.png') %>" class="footer-icons"></a>
-                        <a href="https://www.pinterest.com/Madrabbittattoo/_created/"><img src="<%= image_url('pinterest.png') %>" class="footer-icons"></a>
-                        <a href="https://www.youtube.com/c/MadRabbitTattoo"><img src="<%= image_url('youtube.png') %>" class="footer-icons"></a>
+                        <a href="https://www.facebook.com/shopmadrabbit"><img src="<%= image_url('facebook.svg') %>" class="footer-icons"></a>
+                        <a href="https://www.instagram.com/madrabbit/"><img src="<%= image_url('instagram.svg') %>" class="footer-icons"></a>
+                        <a href="https://vm.tiktok.com/ZMJaAtGDB/"><img src="<%= image_url('tiktok.svg') %>" class="footer-icons"></a>
+                        <a href="https://www.pinterest.com/Madrabbittattoo/_created/"><img src="<%= image_url('pinterest.svg') %>" class="footer-icons"></a>
+                        <a href="https://www.youtube.com/c/MadRabbitTattoo"><img src="<%= image_url('youtube.svg') %>" class="footer-icons"></a>
                     </div>
                     <div style="text-align: center; background-color: black; padding-top: 20px;">
                         <p>

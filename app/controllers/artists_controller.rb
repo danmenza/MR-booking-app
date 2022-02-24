@@ -58,7 +58,7 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio, :instagram_handle, :artist_profile, styles: [], artist_artwork: [])
+        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio_name, :facebook, :instagram, :tiktok, :artist_profile, styles: [], artist_artwork: [])
     end
 
     def set_artist

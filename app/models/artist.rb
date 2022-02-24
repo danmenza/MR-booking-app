@@ -1,5 +1,5 @@
 class Artist < ApplicationRecord
-    # belongs_to :studio
+    belongs_to :studio, optional: true
     has_many :reservations
     has_many_attached :artist_artwork, service: :amazon_artists
     has_one_attached :artist_profile, service: :amazon_artists

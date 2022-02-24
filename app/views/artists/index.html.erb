@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12" style="width: 95%; margin-bottom: 50px;">
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12" style="margin-bottom: 50px;">
             <div style="display: flex; justify-content: center; margin-top: 40px;">
                 <%= link_to "ARTISTS", root_path, class: "toggle-button-on", style: "border-radius: 4px 0px 0px 4px;" %>
                     <%= link_to "STUDIOS", studios_path, class: "toggle-button-off", style: "border-radius: 0px 4px 4px 0px;" %>
@@ -24,7 +24,7 @@
                                                 </p>
                                                 <div style="margin-top: 30px;">
                                                     <p>
-                                                        <%= artist.studio %>
+                                                        <%= artist.studio_name %>
                                                     </p>
                                                     <div class="scroll-tags">
                                                         <% artist.styles.each do |style| %>

@@ -42,6 +42,7 @@ gem 'pg_search'
 gem "will_paginate"
 gem "file_validators"
 gem 'newrelic_rpm'
+gem "geocoder"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

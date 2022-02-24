@@ -125,6 +125,7 @@ GEM
       mime-types (>= 1.0)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
+    geocoder (1.7.3)
     globalid (1.0.0)
       activesupport (>= 5.0)
     htmlbeautifier (1.4.1)
@@ -291,6 +292,7 @@ DEPENDENCIES
   dotenv-rails
   file_validators
   font-awesome-sass
+  geocoder
   htmlbeautifier
   jbuilder (~> 2.7)
   jquery-rails
