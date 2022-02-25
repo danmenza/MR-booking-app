@@ -12,7 +12,6 @@ import "bootstrap";
 import "select2";
 import { initMapbox } from "../plugins/init_mapbox";
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { initAutocomplete } from '../plugins/init_autocomplete';
 
 Rails.start()
 Turbolinks.start()
@@ -20,7 +19,6 @@ Turbolinks.start()
 document.addEventListener('turbolinks:load', () => {
 
     initMapbox();
-    initAutocomplete();
 
     $('#share-select').select2();
 
