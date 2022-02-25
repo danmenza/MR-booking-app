@@ -34,14 +34,18 @@
                         <%= artist.address %>,
                             <%= artist.city %>
                     </p>
-                    <p>
-                        Instagram handle:
-                        <%= artist.instagram_handle %>
-                    </p>
-                    <p>
-                        Styles:
-                        <%= artist.styles.join(", ") %>
-                    </p>
+                    <% if artist.instagram %>
+                        <p>
+                            Instagram handle:
+                            <%= artist.instagram %>
+                        </p>
+                        <% end %>
+                            <% if artist.styles %>
+                                <p>
+                                    Styles:
+                                    <%= artist.styles.join(", ") %>
+                                </p>
+                                <% end %>
                 </div>
                 <p>Please connect with this artist to get them onboarded and set up with Mad Rabbit Booking!</p>
                 <p>The Mad Rabbit Team</p>
