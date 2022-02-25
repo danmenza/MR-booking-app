@@ -9,7 +9,9 @@ const initMapbox = () => {
     const addMarkersToMap = (map, markers) => {
         markers.forEach((marker) => {
             const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
-            new mapboxgl.Marker()
+            new mapboxgl.Marker({
+                    color: '#c9cac7'
+                })
                 .setLngLat([marker.lng, marker.lat])
                 .setPopup(popup) // add this
                 .addTo(map);
@@ -19,7 +21,7 @@ const initMapbox = () => {
         mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11'
+            style: 'mapbox://styles/dan-menza/cl02p7qpj00k016kdmpr2lgg4'
         });
         const markers = JSON.parse(mapElement.dataset.markers);
         markers.forEach((marker) => {
