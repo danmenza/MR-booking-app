@@ -26,10 +26,7 @@ class StudiosController < ApplicationController
 
     def show
         @studio = Studio.find(params[:id])
-        @markers =  {
-            lat: @studio.latitude,
-            lng: @studio.longitude
-          }
+        @markers = [{ lat: @studio.latitude, lng: @studio.longitude }]
     end
 
     def new
