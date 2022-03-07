@@ -24,7 +24,7 @@
                                 </div>
                                 <div style="display: flex; margin-left: 10px;">
                                     <% if (@artist.artist_profile.attachments.present?) %>
-                                        <div id="artist-profile" style="display: inline-block; background-image: url('<%= rails_blob_url(@artist.artist_profile) %>'); background-position: center center; background-size: 100%;">
+                                        <div id="artist-profile" style="display: inline-block; background-image: url('<%= cdn_for_artist(@artist.artist_profile) %>'); background-position: center center; background-size: 100%;">
                                         </div>
                                         <% end %>
                                             <div>
@@ -69,7 +69,7 @@
             <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">
                 <% if (@artist.artist_artwork.attachments.present?) %>
                     <% @artist.artist_artwork.each do |artwork| %>
-                        <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= rails_blob_url(artwork) %>"></div>
+                        <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= cdn_for_artist(artwork) %>"></div>
                         <% end %>
                             <% end  %>
             </div>

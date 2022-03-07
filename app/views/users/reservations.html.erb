@@ -9,7 +9,7 @@
                             <div>
                                 <% if (@reservation.artwork.attachments.present?) %>
                                     <% @reservation.artwork.each do |artwork| %>
-                                        <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('<%= rails_blob_url(artwork) %>');">
+                                        <div style="height: 400px; width: 400px; background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.6)), url('<%= cdn_for_user(artwork) %>');">
                                         </div>
                                         <% end %>
                                             <% end  %>
