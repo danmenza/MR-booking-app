@@ -10,6 +10,24 @@ class UsersController < ApplicationController
         @user = current_user
     end
 
+    def edit
+        authorize current_user
+        @user = current_user
+    end
+
+    def update
+        authorize current_user
+        current_user.update(reservation_params)
+        redirect_to user_path(current_user)
+    end
+
+    def destroy
+        authorize current_user
+        @user = current_user
+        @user.destroy
+        redirect_to root_path
+    end
+
     private
 
     def set_user

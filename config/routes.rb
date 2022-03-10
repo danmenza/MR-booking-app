@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: "users/sessions" }
-  resources :users, only: [:show]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users
   root to: 'artists#index'
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, only: [:show, :edit, :update, :destroy]
   get 'pages/navigation', to: 'pages#navigation'
   get 'artists/sign-up-confirmation', to: 'artists#confirmation'
   get 'studios/sign-up-confirmation', to: 'studios#confirmation'

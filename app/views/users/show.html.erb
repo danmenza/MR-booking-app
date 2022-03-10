@@ -16,9 +16,14 @@
                 <p style="text-align: left; border-bottom: 2px solid black;">
                     <%= @user.email %>
                 </p>
-                <p style="margin-top: 100px;">
-                    <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "btn upload-button" %>
-                </p>
+                <div class="text-center" style="margin-top: 50px;">
+                    <p>
+                        <%= link_to "EDIT PROFILE INFORMATION", edit_user_path, class: "btn upload-button", style: "background: black; color: white;" %>
+                    </p>
+                    <p>
+                        <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "btn upload-button" %>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

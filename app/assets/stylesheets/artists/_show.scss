@@ -78,3 +78,48 @@
     color: white;
     text-decoration: none;
 }
+
+.flexbox-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    text-align: center;
+    color: black;
+    background: none;
+    background-color: white;
+    padding: 1em 0.8em 0.8em 0.8em;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 0.85em;
+}
+
+.item:hover {
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+}
+
+.grow-item {
+    flex-grow: 1;
+    text-align: center;
+    color: white;
+    background: none;
+    background-color: black;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.grow-item:hover {
+    color: white;
+    text-decoration: none;
+    border: 2px solid black;
+}

@@ -57,13 +57,9 @@
                                             <% end %>
                                     </div>
                                 </div>
-                                <div class="text-center" style="margin-top: 10px; display: flex; flex-direction: row; justify-content: center;">
-                                    <p>
-                                        <%= link_to "EXPLORE ARTISTS", root_path, class: "primary-bordered-button", style: "border: 2px solid black; margin-right: 5px; font-size: 0.8em;" %>
-                                    </p>
-                                    <p>
-                                        <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "primary-button", style: "margin-left: 5px; font-size: 0.8em;" %>
-                                    </p>
+                                <div class="flexbox-container">
+                                    <%= link_to "EXPLORE ARTISTS", root_path, class: "item" %>
+                                        <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "grow-item" %>
                                 </div>
             </div>
             <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">

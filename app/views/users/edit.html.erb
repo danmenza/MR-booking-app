@@ -1,46 +1,37 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
-            <h2 class="text-center">Create Account</h2>
+            <h2 class="text-center">Update Account</h2>
 
-            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                <%= f.error_notification %>
-
-                    <div class="form-inputs">
-                        <%= f.input :first_name,
+            <%= simple_form_for(current_user, html: { method: :put }) do |f| %>
+                <div class="form-inputs">
+                    <%= f.input :first_name,
               required: true,
               autofocus: true,
               input_html: { autocomplete: "First name" }%>
-                            <%= f.input :last_name,
+                        <%= f.input :last_name,
               required: true,
               autofocus: true,
               input_html: { autocomplete: "Last name" }%>
-                                <%= f.input :email,
+                            <%= f.input :email,
               required: true,
               autofocus: true,
               input_html: { autocomplete: "email" }%>
-                                    <%= f.input :phone,
+                                <%= f.input :phone,
               required: true,
               autofocus: true,
               input_html: { autocomplete: "phone", onkeydown: "phoneNumberFormatter()" }%>
-                                        <%= f.input :password,
-              required: true,
-              hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-              input_html: { autocomplete: "new-password" } %>
-                                            <%= f.input :password_confirmation,
-              required: true,
-              input_html: { autocomplete: "new-password" } %>
-                    </div>
-                    <br>
-                    <div class="form-actions text-center">
+                </div>
+                <br>
+                <div class="form-actions text-center" style="margin-top: 50px;">
+                    <p>
+                        <%= f.button :submit, "UPDATE ACCOUNT", class: "primary-button" %>
+                    </p>
+                    <% end %>
                         <p>
-                            <%= f.submit "CREATE ACCOUNT", class: "primary-button" %>
+                            <%= link_to "Delete account", current_user, method: :delete, data: { confirm: "Are you sure you would like to delete your Mad Rabbit account?" }, method: :delete,  class: "secondary-button" %>
                         </p>
-                        <% end %>
-                            <p>
-                                <%= link_to "Cancel", root_path, class: "secondary-button" %>
-                            </p>
-                    </div>
+                </div>
 
         </div>
     </div>
