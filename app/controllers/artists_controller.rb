@@ -43,9 +43,11 @@ class ArtistsController < ApplicationController
         @artist = Artist.find(params[:id])
 
         # query instagram basic display API for artist instagram feed
-        client = InstagramBasicDisplay::Client.new(auth_token: @artist.instagram_auth_token)
-        response = client.media_feed
-        @media = response.payload.data
+        if @artist.instagram_auth_token?
+            client = InstagramBasicDisplay::Client.new(auth_token: @artist.instagram_auth_token)
+            response = client.media_feed
+            @media = response.payload.data
+        end
     end
 
     def new
