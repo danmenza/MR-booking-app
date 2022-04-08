@@ -62,7 +62,9 @@ class ArtistsController < ApplicationController
 
     def update
         @artist = Artist.find(params[:id])
-        @artist.update(artist_params)
+        if @artist.changed?
+            @artist.update(artist_params)
+        end
         redirect_to artists_sign_up_confirmation_path
     end
 
@@ -95,9 +97,13 @@ class ArtistsController < ApplicationController
         long_token_request = client.long_lived_token(access_code: access_code)
         if long_token_request.success?
             token = long_token_request.payload.access_token
-            @artist = Artist.last(1)
-            @artist.update(instagram_auth_token: token)
-            redirect_to add_artwork_path(@artist)
+            @artist = Artist.last
+            if @artist.update(instagram_auth_token: token)
+                redirect_to add_artwork_path(@artist)
+                flash[:success] = "You have successfully connected your instagram account!"
+            else
+                render json: "An error occurred while connecting your instagram account", status: 500
+            end
         else
           render json: long_token_request.error, status: 400
         end
