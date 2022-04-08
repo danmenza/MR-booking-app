@@ -131,6 +131,7 @@ GEM
     htmlbeautifier (1.4.1)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    instagram_basic_display (0.2.0)
     jbuilder (2.11.4)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
@@ -294,6 +295,7 @@ DEPENDENCIES
   font-awesome-sass
   geocoder
   htmlbeautifier
+  instagram_basic_display
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.3)

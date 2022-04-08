@@ -26,26 +26,28 @@
                         Tattoo Artist:
                         <%= reservation.artist.name %>
                     </p>
-                    <p>
-                        Studio:
-                        <%= reservation.artist.studio_name %>
-                    </p>
-                    <p>
-                        Address:
-                        <%= reservation.artist.address %>
-                    </p>
-                    <p>
-                        Tattoo Location:
-                        <%= reservation.tattoo_placement %>
-                    </p>
-                    <p>
-                        Coverup:
-                        <% if reservation.cover_up == true %>
-                            <%= "Yes" %>
-                                <% else %>
-                                    <%= "No" %>
-                                        <% end %>
-                    </p>
+                    <% if reservation.artist.studio_id? %>
+                        <p>
+                            Studio:
+                            <%= reservation.artist.studio.name %>
+                        </p>
+                        <% end %>
+                            <p>
+                                Address:
+                                <%= reservation.artist.address %>
+                            </p>
+                            <p>
+                                Tattoo Location:
+                                <%= reservation.tattoo_placement %>
+                            </p>
+                            <p>
+                                Coverup:
+                                <% if reservation.cover_up == true %>
+                                    <%= "Yes" %>
+                                        <% else %>
+                                            <%= "No" %>
+                                                <% end %>
+                            </p>
                 </div>
                 <p>You should receive a follow up from the shop location within 5-7 business days. Please contact us for any support questions regarding your reservation request!</p>
                 <p>The Mad Rabbit Team</p>

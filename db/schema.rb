@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_022029) do
+ActiveRecord::Schema.define(version: 2022_04_07_055025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2022_02_16_022029) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "minimum", precision: 10, scale: 2
-    t.string "studio_name"
     t.string "city"
     t.boolean "verified", default: false
     t.string "instagram"
@@ -59,7 +58,17 @@ ActiveRecord::Schema.define(version: 2022_02_16_022029) do
     t.string "facebook"
     t.string "tiktok"
     t.bigint "studio_id"
+    t.string "instagram_auth_token"
     t.index ["studio_id"], name: "index_artists_on_studio_id"
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.bigint "searchable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
   end
 
   create_table "reservations", force: :cascade do |t|

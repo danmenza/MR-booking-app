@@ -1,11 +1,11 @@
 class ArtistsController < ApplicationController
-    skip_before_action :authenticate_user!, only: [:index, :new, :create]
+    skip_before_action :authenticate_user!, only: [:index, :new, :create, :show, :add_artwork, :auth, :update, :confirmation]
     
     def index
-        if params[:query].present?
-            if params[:query] != "Search all artists"
-                artist_query = Artist.search_by_city(params[:query]).where(verified: 1)
-                @artists = artist_query.paginate(page: params[:page], per_page: 20)
+        if params[:city_query].present?
+            if params[:city_query] != "Search all artists"
+                city_query = Artist.search_by_city(params[:city_query]).where(verified: 1)
+                @artists = city_query.paginate(page: params[:page], per_page: 20)
                 @selected_city = @artists[0].city
             else
                 @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
@@ -14,6 +14,8 @@ class ArtistsController < ApplicationController
         else
             @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
         end
+
+        # include all cities for filtering
         @cities = []
         artists_for_cities_query = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
         artists_for_cities_query.each do |artist|
@@ -22,10 +24,28 @@ class ArtistsController < ApplicationController
             end
         end
         @cities << "Search all artists"
+        
+        # include all styles for filtering
+        @styles = ["Neo traditional", "Tribal", "Fine line", "Script lettering",\
+            "Japanese traditional", "Continuous line", "Realism", "Black work",\
+            "Watercolor", "Abstract", "Geometric", "Scars",\
+            "New school", "Sticker", "Portrait", "Cover up", "American traditional"]
+        if params[:style_query].present?
+            @filtered_styles = @styles.delete(params[:style_query])
+            styles_query = Artist.search_by_styles(@filtered_styles).where(verified: 1)
+            @artists = styles_query.paginate(page: params[:page], per_page: 20)
+        else
+            @filtered_styles = @styles
+        end
     end
 
     def show
         @artist = Artist.find(params[:id])
+
+        # query instagram basic display API for artist instagram feed
+        client = InstagramBasicDisplay::Client.new(auth_token: @artist.instagram_auth_token)
+        response = client.media_feed
+        @media = response.payload.data
     end
 
     def new
@@ -36,11 +56,21 @@ class ArtistsController < ApplicationController
                     "Cover up", "Scars"]
     end
 
+    def add_artwork
+        @artist = Artist.find(params[:id])
+    end
+
+    def update
+        @artist = Artist.find(params[:id])
+        @artist.update(artist_params)
+        redirect_to artists_sign_up_confirmation_path
+    end
+
     def create
         @artist = Artist.new(artist_params)
         @artist.styles.reject!(&:empty?)
         if @artist.save
-            redirect_to artists_sign_up_confirmation_path
+            redirect_to add_artwork_path(@artist)
             send_new_artist_sign_up_email_artist(@artist)
             send_new_artist_sign_up_email_internal(@artist)
         else
@@ -55,10 +85,28 @@ class ArtistsController < ApplicationController
     def confirmation
     end
 
+    def auth
+        access_code = params[:code]
+        return head :bad_request unless access_code
+
+        client = InstagramBasicDisplay::Client.new
+
+        # exchange authorization code for long-lived token (valid for 60 days)
+        long_token_request = client.long_lived_token(access_code: access_code)
+        if long_token_request.success?
+            token = long_token_request.payload.access_token
+            @artist = Artist.last(1)
+            @artist.update(instagram_auth_token: token)
+            redirect_to add_artwork_path(@artist)
+        else
+          render json: long_token_request.error, status: 400
+        end
+    end
+
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :email, :phone, :address, :city, :studio_name, :facebook, :instagram, :tiktok, :artist_profile, styles: [], artist_artwork: [])
+        params.require(:artist).permit(:name, :email, :phone, :address, :city, :facebook, :instagram, :instagram_auth_token, :tiktok, :artist_profile, styles: [], artist_artwork: [])
     end
 
     def set_artist

@@ -44,6 +44,17 @@
     margin-right: 5px;
 }
 
+.style-filter {
+    display: inline-block;
+    border-radius: 50px;
+    border: none;
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+    margin-bottom: 20px;
+    margin-right: 5px;
+}
+
 .scroll-tags {
     overflow: auto;
     white-space: nowrap;
@@ -51,6 +62,16 @@
 }
 
 .scroll-tags span {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.filter-tags {
+    text-align: center;
+    margin-right: 20px;
+}
+
+.filter-tags form {
     display: inline-block;
     text-decoration: none;
 }

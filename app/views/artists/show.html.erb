@@ -43,9 +43,11 @@
                                                                         <a href="https://www.tiktok.com/<%= @artist.tiktok %>"><img src="<%= image_url('tiktok.svg') %>" class="profile-social-icons" style="filter: invert(1);"></a>
                                                                         <% end %>
                                                 </div>
-                                                <h6 style="display: inline; margin-left: 10px;">
-                                                    <%= @artist.studio_name %>
-                                                </h6>
+                                                <% if @artist.studio_id? %>
+                                                    <h6 style="display: inline; margin-left: 10px;">
+                                                        <%= link_to @artist.studio.name, studio_path(@artist.studio), style: "color: black; text-decoration: none;" %>
+                                                    </h6>
+                                                    <% end %>
                                             </div>
                                 </div>
                                 <div style="margin-bottom: 20px; margin-top: 20px;">
@@ -59,16 +61,25 @@
                                 </div>
                                 <div class="flexbox-container">
                                     <%= link_to "EXPLORE ARTISTS", root_path, class: "item" %>
-                                        <%= link_to "REQUEST APPOINTMENT", new_artist_reservation_path(@artist), class: "grow-item" %>
+                                        <%= link_to "REQUEST AVAILABILITY", new_artist_reservation_path(@artist), class: "grow-item" %>
                                 </div>
             </div>
             <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">
-                <% if (@artist.artist_artwork.attachments.present?) %>
+                <% if @artist.artist_artwork.attachments.present? %>
                     <% @artist.artist_artwork.each do |artwork| %>
                         <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= cdn_for_artist(artwork) %>"></div>
                         <% end %>
                             <% end  %>
             </div>
+
+            <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">
+                <% if @media.present? %>
+                    <% @media.each do |media| %>
+                        <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= image_url(media['media_url']) %>"></div>
+                        <% end %>
+                            <% end  %>
+            </div>
+
         </div>
     </div>
 </div>

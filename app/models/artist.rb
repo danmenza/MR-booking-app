@@ -10,8 +10,10 @@ class Artist < ApplicationRecord
     validates :city, format: { with: /\A[a-zA-Z ]+\z/, message:  "must only contain letters" } 
     include PgSearch::Model
     pg_search_scope :search_by_city,
-    against: [ :city, :styles ],
+    against: :city
+    pg_search_scope :search_by_styles,
+    against: :styles,
     using: {
-      tsearch: { prefix: true }
+      tsearch: { any_word: true }
     }
 end

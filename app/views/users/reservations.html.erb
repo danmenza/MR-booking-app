@@ -25,12 +25,14 @@
                                                 <p>
                                                     <%= @reservation.style %>
                                                 </p>
-                                                <p>
-                                                    <%= @reservation.artist.studio_name %>
-                                                </p>
-                                                <p>
-                                                    <%= @reservation.artist.name %>
-                                                </p>
+                                                <% if @reservation.artist.studio_id? %>
+                                                    <p>
+                                                        <%= @reservation.artist.studio.name %>
+                                                    </p>
+                                                    <% end %>
+                                                        <p>
+                                                            <%= @reservation.artist.name %>
+                                                        </p>
                             </div>
                             <div>
                                 <%= link_to "View Reservation", artist_reservation_path(reservation.artist, reservation), class: 'btn btn-primary no-margin rounded-0' %>

@@ -7,7 +7,7 @@
             <%= simple_form_for(@studio) do |f| %>
                 <%= f.input :name %>
                     <%= f.input :address %>
-                        <%= f.input :city, input_html: { value: "Villain Arts Tattoo Convention" } %>
+                        <%= f.input :city %>
                             <%= f.input :phone, input_html: { onkeydown: "phoneNumberFormatter()" } %>
                                 <br>
                                 <%= f.label :studio_image, "Upload studio profile image", class: "btn upload-button" %>

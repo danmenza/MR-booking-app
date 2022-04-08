@@ -1,5 +1,5 @@
 class StudiosController < ApplicationController
-    skip_before_action :authenticate_user!, only: [:index, :new, :create]
+    skip_before_action :authenticate_user!, only: [:index, :new, :create, :show, :confirmation]
     
     def index
         if params[:query].present?

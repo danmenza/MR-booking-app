@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
+            <h3 class="text-center">Add Artwork To Your Account</h3>
+            <p class="text-center">Showcase your mad style!</p>
+            <p class="text-center">Connect your Instagram account, upload artwork you would like to showcase, or both!</p>
+            <h3>Connect your Instagram</h3>
+            <%= simple_form_for(@artist) do |f| %>
+                <div class="btn upload-button" , style="display: flex; align-items: center; justify-content: center; margin-top: 20px; margin-bottom: 15px;">
+                    <span><%= link_to "CONNECT INSTAGRAM", "https://api.instagram.com/oauth/authorize?client_id=#{ENV['INSTAGRAM_CLIENT_ID']}&redirect_uri=https://booking.madrabbit.com/instagram/auth/&scope=user_profile,user_media&response_type=code", style: "text-decoration: none; color: black;" %></span>
+                    <span class="instagram-icon" style="margin-left: 20px;"></span>
+                </div>
+                <p style="margin-top: 20px; margin-bottom: 20px;">And/Or</p>
+                <h3>Upload artwork</h3>
+                <br>
+                <%= f.label :artist_artwork, "Upload artwork examples", class: "btn upload-button" %>
+                    <%= f.input :artist_artwork, as: :file, label: false, input_html: { multiple: true, style: "display: none;" } %>
+                        <div class="text-center" style="margin-top: 40px; margin-bottom: 40px;">
+                            <br>
+                            <p>
+                                <%= f.submit "SUBMIT INFO", class: "primary-button" %>
+                            </p>
+                            <% end %>
+                                <p>
+                                    <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                </p>
+                        </div>
+        </div>
+    </div>
+</div>

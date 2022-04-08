@@ -9,28 +9,25 @@
                     <%= f.input :email %>
                         <%= f.input :phone, input_html: { onkeydown: "phoneNumberFormatter()" } %>
                             <%= f.input :address %>
-                                <%= f.input :city, input_html: { value: "Villain Arts Tattoo Convention" } %>
-                                    <%= f.input :studio %>
+                                <%= f.input :city %>
+                                    <%= f.association :studio %>
                                         <%= f.input :facebook %>
                                             <%= f.input :instagram %>
                                                 <%= f.input :tiktok %>
                                                     <%= f.input :styles, label: "Styles/Types", collection: @styles, input_html: { id: "share-select", multiple: true } %>
                                                         <br>
-                                                        <%= f.label :artist_artwork, "Upload artwork examples", class: "btn upload-button" %>
-                                                            <%= f.input :artist_artwork, as: :file, label: false, input_html: { multiple: true, style: "display: none;" } %>
-                                                                <br>
-                                                                <%= f.label :artist_profile, "Upload profile picture", class: "btn upload-button" %>
-                                                                    <%= f.input :artist_profile, as: :file, label: false, input_html: { style: "display: none;" } %>
-                                                                        <div class="text-center" style="margin-bottom: 40px;">
-                                                                            <br>
-                                                                            <p>
-                                                                                <%= f.submit "SUBMIT INFO", class: "primary-button" %>
-                                                                            </p>
-                                                                            <% end %>
-                                                                                <p>
-                                                                                    <%= link_to "Cancel", root_path, class: "secondary-button" %>
-                                                                                </p>
-                                                                        </div>
+                                                        <%= f.label :artist_profile, "Upload profile picture", class: "btn upload-button" %>
+                                                            <%= f.input :artist_profile, as: :file, label: false, input_html: { style: "display: none;" } %>
+                                                                <div class="text-center" style="margin-bottom: 40px;">
+                                                                    <br>
+                                                                    <p>
+                                                                        <%= f.submit "SUBMIT INFO", class: "primary-button" %>
+                                                                    </p>
+                                                                    <% end %>
+                                                                        <p>
+                                                                            <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                                                        </p>
+                                                                </div>
         </div>
     </div>
 </div>
