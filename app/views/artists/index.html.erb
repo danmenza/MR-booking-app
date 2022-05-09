@@ -15,9 +15,10 @@
                             <div class="filter-tags">
                                 <% @filtered_styles.each do |style| %>
                                     <%= form_tag(artists_path, method: "get") do %>
-                                        <%= submit_tag(style, class: "style-filter" ) %>
-                                            <% end %>
+                                        <%= hidden_field_tag(:style_query, style) %>
+                                            <%= submit_tag(style, class: "style-filter" ) %>
                                                 <% end %>
+                                                    <% end %>
                             </div>
 
                             <% @artists.each do |artist| %>

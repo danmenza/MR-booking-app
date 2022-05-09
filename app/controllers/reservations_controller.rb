@@ -62,7 +62,7 @@ class ReservationsController < ApplicationController
     def send_artist_reservation_requested_email(reservation)
         subject = "New Tattoo Appointment Requested"
         sender = "booking@madrabbit.com"
-        recipient = reservation.artist.email
+        recipient = "dan@madrabbit.com"
         UserMailer.reservation_requested_email(reservation, subject, sender, recipient).deliver_now
     end
 end

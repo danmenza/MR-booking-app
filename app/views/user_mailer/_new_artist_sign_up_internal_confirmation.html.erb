@@ -21,31 +21,41 @@
                         Email:
                         <%= artist.email %>
                     </p>
-                    <p>
-                        Phone:
-                        <%= artist.phone %>
-                    </p>
-                    <p>
-                        Studio:
-                        <%= artist.name %>
-                    </p>
-                    <p>
-                        Studio address:
-                        <%= artist.address %>,
-                            <%= artist.city %>
-                    </p>
-                    <% if artist.instagram %>
+                    <% if artist.Studio.name?  %>
                         <p>
-                            Instagram handle:
-                            <%= artist.instagram %>
+                            Studio:
+                            <%= artist.Studio.name %>
                         </p>
                         <% end %>
-                            <% if artist.styles %>
+                            <p>
+                                Studio address:
+                                <%= artist.address %>,
+                                    <%= artist.city %>
+                            </p>
+                            <% if artist.instagram %>
                                 <p>
-                                    Styles:
-                                    <%= artist.styles.join(", ") %>
+                                    Instagram:
+                                    <%= artist.instagram %>
                                 </p>
                                 <% end %>
+                                    <% if artist.facebook %>
+                                        <p>
+                                            Facebook:
+                                            <%= artist.facebook %>
+                                        </p>
+                                        <% end %>
+                                            <% if artist.tiktok %>
+                                                <p>
+                                                    TikTok:
+                                                    <%= artist.tiktok %>
+                                                </p>
+                                                <% end %>
+                                                    <% if artist.styles %>
+                                                        <p>
+                                                            Styles:
+                                                            <%= artist.styles.join(", ") %>
+                                                        </p>
+                                                        <% end %>
                 </div>
                 <p>Please connect with this artist to get them onboarded and set up with Mad Rabbit Booking!</p>
                 <p>The Mad Rabbit Team</p>

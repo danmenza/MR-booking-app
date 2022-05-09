@@ -67,6 +67,8 @@
 }
 
 .filter-tags {
+    overflow: auto;
+    white-space: nowrap;
     text-align: center;
     margin-right: 20px;
 }

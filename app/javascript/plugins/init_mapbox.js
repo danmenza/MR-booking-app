@@ -8,12 +8,12 @@ const initMapbox = () => {
     };
     const addMarkersToMap = (map, markers) => {
         markers.forEach((marker) => {
-            const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
+            const popup = new mapboxgl.Popup().setText(marker.name);
             new mapboxgl.Marker({
                     color: '#c9cac7'
                 })
                 .setLngLat([marker.lng, marker.lat])
-                .setPopup(popup) // add this
+                .setPopup(popup)
                 .addTo(map);
         });
     };

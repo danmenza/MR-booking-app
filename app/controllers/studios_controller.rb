@@ -26,7 +26,8 @@ class StudiosController < ApplicationController
 
     def show
         @studio = Studio.find(params[:id])
-        @markers = [{ lat: @studio.latitude, lng: @studio.longitude }]
+        studio_popup = "#{@studio.name}" + " - " + "#{@studio.address}"
+        @markers = [{ lat: @studio.latitude, lng: @studio.longitude, name: studio_popup }]
     end
 
     def new
@@ -49,6 +50,6 @@ class StudiosController < ApplicationController
     private
 
     def studio_params
-        params.require(:studio).permit(:name, :address, :city, :phone, :studio_image)
+        params.require(:studio).permit(:name, :address, :city, :phone, :facebook, :instagram, :tiktok, :studio_image)
     end
 end

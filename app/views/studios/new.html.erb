@@ -9,19 +9,22 @@
                     <%= f.input :address %>
                         <%= f.input :city %>
                             <%= f.input :phone, input_html: { onkeydown: "phoneNumberFormatter()" } %>
-                                <br>
-                                <%= f.label :studio_image, "Upload studio profile image", class: "btn upload-button" %>
-                                    <%= f.input :studio_image, as: :file, label: false, input_html: { style: "display: none;" } %>
-                                        <div class="text-center" style="margin-bottom: 40px;">
+                                <%= f.input :facebook %>
+                                    <%= f.input :instagram %>
+                                        <%= f.input :tiktok %>
                                             <br>
-                                            <p>
-                                                <%= f.submit "SUBMIT INFO", class: "primary-button" %>
-                                            </p>
-                                            <% end %>
-                                                <p>
-                                                    <%= link_to "Cancel", root_path, class: "secondary-button" %>
-                                                </p>
-                                        </div>
+                                            <%= f.label :studio_image, "Upload studio profile image", class: "btn upload-button" %>
+                                                <%= f.input :studio_image, as: :file, label: false, input_html: { style: "display: none;" } %>
+                                                    <div class="text-center" style="margin-bottom: 40px;">
+                                                        <br>
+                                                        <p>
+                                                            <%= f.submit "SUBMIT INFO", class: "primary-button" %>
+                                                        </p>
+                                                        <% end %>
+                                                            <p>
+                                                                <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                                            </p>
+                                                    </div>
         </div>
     </div>
 </div>

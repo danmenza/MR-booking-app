@@ -31,9 +31,10 @@ class ArtistsController < ApplicationController
             "Watercolor", "Abstract", "Geometric", "Scars",\
             "New school", "Sticker", "Portrait", "Cover up", "American traditional"]
         if params[:style_query].present?
-            @filtered_styles = @styles.delete(params[:style_query])
-            styles_query = Artist.search_by_styles(@filtered_styles).where(verified: 1)
+            @styles.delete(params[:style_query])
+            styles_query = Artist.search_by_styles(@styles.join(" ")).where(verified: 1)
             @artists = styles_query.paginate(page: params[:page], per_page: 20)
+            @filtered_styles = @styles
         else
             @filtered_styles = @styles
         end

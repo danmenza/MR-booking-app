@@ -1,3 +1,11 @@
+.studio-card-text {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    bottom: 30px;
+    left: 10px;
+}
+
 #studio-image {
     -moz-box-shadow-bottom: 4px 4px 4px black;
     -webkit-box-shadow-bottom: 4px 4px 4px black;
@@ -9,6 +17,11 @@
 }
 
 #map {
-    width: 100%;
+    position: relative;
+    left: -12px;
+    right: -12px;
+    width: calc(100% + 24px);
     height: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
