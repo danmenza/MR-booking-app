@@ -21,15 +21,15 @@
                         Email:
                         <%= artist.email %>
                     </p>
-                    <% if artist.studio.name?  %>
+                    <% if artist.studio_id?  %>
                         <p>
                             Studio:
-                            <%= artist.studio.name %>
+                            <%= artist.Studio.name %>
                         </p>
                         <p>
                             Studio address:
-                            <%= artist.studio.address %>,
-                                <%= artist.studio.city %>
+                            <%= artist.Studio.address %>,
+                                <%= artist.Studio.city %>
                         </p>
                         <% end %>
                             <% if artist.instagram %>
