@@ -50,6 +50,6 @@ class StudiosController < ApplicationController
     private
 
     def studio_params
-        params.require(:studio).permit(:name, :address, :city, :phone, :facebook, :instagram, :tiktok, :studio_image)
+        params.require(:studio).permit(:name, :address, :city, :phone, :email, :facebook, :instagram, :tiktok, :studio_image)
     end
 end

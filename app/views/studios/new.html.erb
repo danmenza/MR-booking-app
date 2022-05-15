@@ -7,9 +7,9 @@
             <%= simple_form_for(@studio) do |f| %>
                 <%= f.input :name %>
                     <%= f.input :address %>
-                        <%= f.input :email%>
-                            <%= f.input :city %>
-                                <%= f.input :phone, input_html: { onkeydown: "phoneNumberFormatter()" } %>
+                        <%= f.input :city %>
+                            <%= f.input :phone, input_html: { onkeydown: "phoneNumberFormatter()" } %>
+                                <%= f.input :email%>
                                     <%= f.input :facebook %>
                                         <%= f.input :instagram %>
                                             <%= f.input :tiktok %>
