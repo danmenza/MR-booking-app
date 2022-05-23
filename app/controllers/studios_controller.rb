@@ -26,6 +26,7 @@ class StudiosController < ApplicationController
 
     def show
         @studio = Studio.find(params[:id])
+        @studio.phone = view_phone_formatter(@studio.phone)
         studio_popup = "#{@studio.name}" + " - " + "#{@studio.address}"
         @markers = [{ lat: @studio.latitude, lng: @studio.longitude, name: studio_popup }]
     end
@@ -36,6 +37,7 @@ class StudiosController < ApplicationController
 
     def create
         @studio = Studio.new(studio_params)
+        @studio.phone = db_phone_formatter(@studio.phone)
         if @studio.save
             redirect_to artists_sign_up_confirmation_path
         else
@@ -51,5 +53,15 @@ class StudiosController < ApplicationController
 
     def studio_params
         params.require(:studio).permit(:name, :address, :city, :phone, :email, :facebook, :instagram, :tiktok, :studio_image)
+    end
+
+    def db_phone_formatter(phone)
+        formatted_phone = "+1#{ phone.gsub(/[^0-9]/, "") }"
+        return formatted_phone
+    end
+
+    def view_phone_formatter(phone)
+        formatted_phone = "+1 (#{phone[2..4]}) #{phone[5..7]} - #{phone[8..-1]}"
+        return formatted_phone
     end
 end

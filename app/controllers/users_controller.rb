@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     def show
         authorize current_user
         @user = current_user
+        @user.phone = view_phone_formatter(@user.phone)
     end
 
     def edit
@@ -32,6 +33,11 @@ class UsersController < ApplicationController
 
     def set_user
         @user = current_user
+    end
+
+    def view_phone_formatter(phone)
+        formatted_phone = "+1 (#{phone[2..4]}) #{phone[5..7]} - #{phone[8..-1]}"
+        return formatted_phone
     end
 
     def reservation_params

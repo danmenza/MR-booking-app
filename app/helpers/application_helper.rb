@@ -1,13 +1,13 @@
 module ApplicationHelper
   def cdn_for_artist(file)
-      "#{ENV['ARTIST_CDN_URL']}/#{file.key}"
+      "#{ENV['CDN_URL']}/#{ENV["RAILS_ENV"]}/artists/#{file.key}"
     end
 
   def cdn_for_studio(file)
-    "#{ENV['STUDIO_CDN_URL']}/#{file.key}"
+    "#{ENV['CDN_URL']}/#{ENV["RAILS_ENV"]}/studios/#{file.key}"
   end
 
   def cdn_for_user(file)
-    "#{ENV['USER_CDN_URL']}/#{file.key}"
+    "#{ENV['CDN_URL']}/#{ENV["RAILS_ENV"]}/users/#{file.key}"
   end
 end

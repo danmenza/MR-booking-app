@@ -24,6 +24,8 @@ class ReservationsController < ApplicationController
 
     def show
         @reservation = Reservation.find(params[:id])
+        @reservation.studio.phone = view_phone_formatter(@reservation.studio.phone)
+        @reservation.artist.phone = view_phone_formatter(@reservation.artist.phone)
         authorize @reservation
     end
 
@@ -50,6 +52,11 @@ class ReservationsController < ApplicationController
 
     def reservation_params
         params.require(:reservation).permit(:appt_start, :appt_end, :tattoo_placement, :cover_up, :description, artwork: [], body_area: [])
+    end
+
+    def view_phone_formatter(phone)
+        formatted_phone = "+1 (#{phone[2..4]}) #{phone[5..7]} - #{phone[8..-1]}"
+        return formatted_phone
     end
 
     def send_user_reservation_confirmation_email(reservation)

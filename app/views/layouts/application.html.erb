@@ -10,6 +10,19 @@
             <%= csp_meta_tag %>
                 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
                     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+                        <script id="search-js" defer src="https://api.mapbox.com/search-js/v1.0.0-beta.9/web.js">
+                        </script>
+                        <script>
+                            const script = document.getElementById('search-js');
+                            script.onload = function() {
+                                mapboxsearch.autofill({
+                                    accessToken: ENV['MAPBOX_API_KEY'],
+                                    options: {
+                                        country: 'us'
+                                    }
+                                });
+                            };
+                        </script>
                         <% unless controller.controller_name == "pages" && controller.action_name == "navigation" || controller.controller_name == "artists" && controller.action_name == "show"  %>
                             <div class="container">
                                 <div class="row justify-content-center">

@@ -42,6 +42,7 @@ class ArtistsController < ApplicationController
 
     def show
         @artist = Artist.find(params[:id])
+        @artist.phone = view_phone_formatter(@artist.phone)
 
         # query instagram basic display API for artist instagram feed
         if @artist.instagram_auth_token?
@@ -74,6 +75,7 @@ class ArtistsController < ApplicationController
     def create
         @artist = Artist.new(artist_params)
         @artist.styles.reject!(&:empty?)
+        @artist.phone = db_phone_formatter(@artist.phone)
         if @artist.save
             redirect_to add_artwork_path(@artist)
             send_new_artist_sign_up_email_artist(@artist)
@@ -120,6 +122,16 @@ class ArtistsController < ApplicationController
 
     def set_artist
         @artist = Artist.find(params[:id])
+    end
+
+    def db_phone_formatter(phone)
+        formatted_phone = "+1#{ phone.gsub(/[^0-9]/, "") }"
+        return formatted_phone
+    end
+
+    def view_phone_formatter(phone)
+        formatted_phone = "+1 (#{phone[2..4]}) #{phone[5..7]} - #{phone[8..-1]}"
+        return formatted_phone
     end
 
     def send_new_artist_sign_up_email_internal(artist)
