@@ -12,28 +12,28 @@ amazon_artists:
   access_key_id: <%= ENV['ACCESS_KEY'] %>
   secret_access_key: <%= ENV['SECRET_KEY'] %>
   region: us-east-1
-  bucket: tattoo-rez-artists
+  bucket: tattoo-rez-<%= ENV["RAILS_ENV"] %>-artists
 
 amazon_users:
   service: S3
   access_key_id: <%= ENV['ACCESS_KEY'] %>
   secret_access_key: <%= ENV['SECRET_KEY'] %>
   region: us-east-1
-  bucket: tattoo-rez-users
+  bucket: tattoo-rez-<%= ENV["RAILS_ENV"] %>-users
 
 amazon_studios:
   service: S3
   access_key_id: <%= ENV['ACCESS_KEY'] %>
   secret_access_key: <%= ENV['SECRET_KEY'] %>
   region: us-east-1
-  bucket: tattoo-rez-studios
+  bucket: tattoo-rez-<%= ENV["RAILS_ENV"] %>-studios
 
 amazon:
   service: S3
   access_key_id: <%= ENV['ACCESS_KEY'] %>
   secret_access_key: <%= ENV['SECRET_KEY'] %>
   region: us-east-1
-  bucket: tattoo-rez-assets
+  bucket: tattoo-rez-<%= ENV["RAILS_ENV"] %>-assets
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
