@@ -1,13 +1,33 @@
 module ApplicationHelper
-  def cdn_for_artist(file)
-      "#{ENV['CDN_URL']}/#{ENV["RAILS_ENV"]}/artists/#{file.key}"
+  def cdn_for_artists(file)
+      if "production" == ENV["RAILS_ENV"]
+        "#{ENV['ARTISTS_CDN_URL']}/#{file.key}"
+      else
+        "#{ENV['ARTISTS_DEV_URL']}/#{file.key}"
+      end
     end
 
-  def cdn_for_studio(file)
-    "#{ENV['CDN_URL']}/#{ENV["RAILS_ENV"]}/studios/#{file.key}"
+  def cdn_for_studios(file)
+    if "production" == ENV["RAILS_ENV"]
+      "#{ENV['STUDIOS_CDN_URL']}/#{file.key}"
+    else
+      "#{ENV['STUDIOS_DEV_URL']}/#{file.key}"
+    end
   end
 
-  def cdn_for_user(file)
-    "#{ENV['CDN_URL']}/#{ENV["RAILS_ENV"]}/users/#{file.key}"
+  def cdn_for_users(file)
+    if "production" == ENV["RAILS_ENV"]
+      "#{ENV['USERS_CDN_URL']}/#{file.key}"
+    else
+      "#{ENV['USERS_DEV_URL']}/#{file.key}"
+    end
+  end
+
+  def cdn_for_assets(file)
+    if "production" == ENV["RAILS_ENV"]
+      "#{ENV['ASSETS_CDN_URL']}/#{file.key}"
+    else
+      "#{ENV['ASSETS_DEV_URL']}/#{file.key}"
+    end
   end
 end

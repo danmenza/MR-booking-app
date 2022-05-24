@@ -4,7 +4,7 @@
 
             <div style="display: flex; margin-left: 10px;">
                 <% if (@studio.studio_image.attachments.present?) %>
-                    <div id="artist-profile" style="display: inline-block; background-image: url('<%= cdn_for_studio(@studio.studio_image) %>'); background-position: center center; background-size: 100%;">
+                    <div id="artist-profile" style="display: inline-block; background-image: url('<%= cdn_for_studios(@studio.studio_image) %>'); background-position: center center; background-size: 100%;">
                     </div>
                     <% end %>
                         <div>
@@ -38,7 +38,7 @@
                         <% if artist.artist_profile.attachments.present? %>
                             <%= link_to artist_path(artist) do %>
                                 <div class="image-item">
-                                    <img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= cdn_for_artist(artist.artist_profile) %>">
+                                    <img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= cdn_for_artists(artist.artist_profile) %>">
                                     <div class="studio-card-text">
                                         <%= artist.name %>
                                     </div>
