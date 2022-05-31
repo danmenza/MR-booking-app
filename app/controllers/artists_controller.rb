@@ -66,10 +66,9 @@ class ArtistsController < ApplicationController
 
     def update
         @artist = Artist.find(params[:id])
-        if @artist.changed?
-            @artist.update(artist_params)
+        if @artist.update(artist_params)
+            redirect_to artists_sign_up_confirmation_path
         end
-        redirect_to artists_sign_up_confirmation_path
     end
 
     def create
