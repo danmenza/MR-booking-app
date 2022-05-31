@@ -8,6 +8,6 @@ class User < ApplicationRecord
   validates :last_name, on: [:create, :update], format: { with: /\A[a-zA-Z ]+\z/, message:  "must only contain letters" }
   validates :email, on: [:create, :update], uniqueness: true
   def phone=(value)
-    super((value.blank?) ? nil : (12 == value.length) ? "+1#{ value.gsub(/[^0-9]/, "") }" : "+1 (#{phone[2..4]}) #{phone[5..7]} - #{phone[8..-1]}") 
+    super((value.blank?) ? nil : (14 == value.length) ? "+1#{ value.gsub(/[^0-9]/, "") }" : "+1 #{value[2..4]}#{value[5..7]}#{value[8..-1]}") 
   end
 end
