@@ -66,7 +66,11 @@ class ArtistsController < ApplicationController
 
     def update
         @artist = Artist.find(params[:id])
-        if @artist.update(artist_params)
+        if @artist.instagram_auth_token.blank?
+            if @artist.update(artist_params)
+                redirect_to artists_sign_up_confirmation_path
+            end
+        else
             redirect_to artists_sign_up_confirmation_path
         end
     end
