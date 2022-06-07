@@ -12,6 +12,7 @@ class ArtistsController < ApplicationController
                 @selected_city = "Search all artists"
             end
         else
+            # if there is no city filtering, display all verified artists
             @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
         end
 
@@ -23,6 +24,8 @@ class ArtistsController < ApplicationController
                 @cities << artist.city
             end
         end
+        
+        # include the ability to search for all artists
         @cities << "Search all artists"
         
         # include all styles for filtering
@@ -30,6 +33,8 @@ class ArtistsController < ApplicationController
             "Japanese traditional", "Continuous line", "Realism", "Black work",\
             "Watercolor", "Abstract", "Geometric", "Scars",\
             "New school", "Sticker", "Portrait", "Cover up", "American traditional"]
+        
+        # ACTION: need to fix filter by style code below
         if params[:style_query].present?
             @styles.delete(params[:style_query])
             styles_query = Artist.search_by_styles(@styles.join(" ")).where(verified: 1)
@@ -41,7 +46,7 @@ class ArtistsController < ApplicationController
     end
 
     def show
-        @artist = Artist.find(params[:id])
+        @artist = Artist.find(params[:id]).where(verified: 1)
         @artist.phone = view_phone_formatter(@artist.phone)
 
         # query instagram basic display API for artist instagram feed
@@ -66,6 +71,8 @@ class ArtistsController < ApplicationController
 
     def update
         @artist = Artist.find(params[:id])
+        # ACTION: need to update code to allow for instagram auth token + s3 uploaded images
+        # if there is no instagram auth token connected, update the artist with active storage s3 uploaded images
         if @artist.instagram_auth_token.blank?
             if @artist.update(artist_params)
                 redirect_to artists_sign_up_confirmation_path
@@ -81,6 +88,7 @@ class ArtistsController < ApplicationController
         @artist.phone = db_phone_formatter(@artist.phone)
         if @artist.save
             redirect_to add_artwork_path(@artist)
+            # ACTION: move emails to be asynchronous
             send_new_artist_sign_up_email_artist(@artist)
             send_new_artist_sign_up_email_internal(@artist)
         else
