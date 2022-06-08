@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :first_name, on: [:create, :update], format: { with: /\A[a-zA-Z ]+\z/, message:  "must only contain letters" }
   validates :last_name, on: [:create, :update], format: { with: /\A[a-zA-Z ]+\z/, message:  "must only contain letters" }
   validates :email, on: [:create, :update], uniqueness: true
+
+  # phone number formatter for saving to and reading from database due to devise user management
   def phone=(value)
     super((value.blank?) ? nil : (14 == value.length) ? "+1#{ value.gsub(/[^0-9]/, "") }" : "+1 #{value[2..4]}#{value[5..7]}#{value[8..-1]}") 
   end

@@ -12,8 +12,12 @@ class StudiosController < ApplicationController
                 @selected_city = "Search all studios"
             end
         else
+            # ACTION: add DB column "verified" and only allow access to verified studios
+            # if there is no city filtering, display all studios
             @studios = Studio.paginate(page: params[:page], per_page: 20)
         end
+
+        # include all cities for filtering
         @cities = []
         studios_for_cities_query = Studio.paginate(page: params[:page], per_page: 20)
         studios_for_cities_query.each do |studio|
@@ -21,6 +25,8 @@ class StudiosController < ApplicationController
                 @cities << studio.city
             end
         end
+
+        # include the ability to search for all studios
         @cities << "Search all studios"
     end
 
@@ -28,6 +34,7 @@ class StudiosController < ApplicationController
         @studio = Studio.find(params[:id])
         @studio.phone = view_phone_formatter(@studio.phone)
         studio_popup = "#{@studio.name}" + " - " + "#{@studio.address}"
+        # pin coordinates for Mapbox
         @markers = [{ lat: @studio.latitude, lng: @studio.longitude, name: studio_popup }]
     end
 
