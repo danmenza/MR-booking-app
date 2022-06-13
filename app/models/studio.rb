@@ -4,6 +4,7 @@ class Studio < ApplicationRecord
     validates :studio_image, file_content_type: { allow: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'], message: 'must be file type gif, png, jpg, or jpeg' }, file_size: { less_than: 10.megabytes , message: 'must be less than 10MB in size' } 
     validates :address, format: { with: /\A[a-zA-z0-9. \s]+\z/, message:  "must contain valid format" }
     validates :city, format: { with: /\A[a-zA-Z ]+\z/, message:  "must only contain letters" }
+    validates :phone, length: { minimum: 12, maximum: 12 }
 
     # multisearch ability by city + styles
     include PgSearch::Model
