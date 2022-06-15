@@ -83,9 +83,16 @@ class ArtistsController < ApplicationController
     end
 
     def create
+        # need to include in case form validation fails, simple_form still needs to be able to render @styles list
+        @styles = ["American traditional", "Japanese traditional", "Neo traditional", "Tribal", \
+            "Fine line", "Continuous line", "Script lettering", "Watercolor", "Realism", \
+            "Black work", "Abstract", "Geometric", "New school", "Sticker", "Portrait", \
+            "Cover up", "Scars"]
+
         @artist = Artist.new(artist_params)
         @artist.styles.reject!(&:empty?)
         @artist.phone = db_phone_formatter(@artist.phone)
+
         if @artist.save
             redirect_to add_artwork_path(@artist)
             # ACTION: move emails to be asynchronous
