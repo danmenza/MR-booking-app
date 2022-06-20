@@ -7,13 +7,40 @@ class ArtistsController < ApplicationController
                 city_query = Artist.search_by_city(params[:city_query]).where(verified: 1)
                 @artists = city_query.paginate(page: params[:page], per_page: 20)
                 @selected_city = @artists[0].city
+
+                # query instagram basic display API for artist instagram feed
+                @artists.each do |artist|
+                    if artist.instagram_auth_token?
+                        client = InstagramBasicDisplay::Client.new(auth_token: artist.instagram_auth_token)
+                        response = client.media_feed
+                        artist.instagram_media = response.payload.data
+                    end
+                end
             else
                 @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
                 @selected_city = "Search all artists"
+                
+                 # query instagram basic display API for artist instagram feed
+                 @artists.each do |artist|
+                    if artist.instagram_auth_token?
+                        client = InstagramBasicDisplay::Client.new(auth_token: artist.instagram_auth_token)
+                        response = client.media_feed
+                        artist.instagram_media = response.payload.data
+                    end
+                end
             end
         else
             # if there is no city filtering, display all verified artists
             @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
+
+            # query instagram basic display API for artist instagram feed
+            @artists.each do |artist|
+                if artist.instagram_auth_token?
+                    client = InstagramBasicDisplay::Client.new(auth_token: artist.instagram_auth_token)
+                    response = client.media_feed
+                    artist.instagram_media = response.payload.data
+                end
+            end
         end
 
         # include all cities for filtering
@@ -46,14 +73,17 @@ class ArtistsController < ApplicationController
     end
 
     def show
-        @artist = Artist.find(params[:id]).where(verified: 1)
-        @artist.phone = view_phone_formatter(@artist.phone)
+        artist = Artist.find(params[:id])
+        if artist.verified?
+            @artist = artist
+            @artist.phone = view_phone_formatter(@artist.phone)
 
-        # query instagram basic display API for artist instagram feed
-        if @artist.instagram_auth_token?
-            client = InstagramBasicDisplay::Client.new(auth_token: @artist.instagram_auth_token)
-            response = client.media_feed
-            @media = response.payload.data
+            # query instagram basic display API for artist instagram feed
+            if @artist.instagram_auth_token?
+                client = InstagramBasicDisplay::Client.new(auth_token: @artist.instagram_auth_token)
+                response = client.media_feed
+                @artist.instagram_media = response.payload.data
+            end
         end
     end
 

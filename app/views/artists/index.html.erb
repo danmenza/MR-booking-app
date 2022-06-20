@@ -46,8 +46,33 @@
                                             </div>
                                         </div>
                                         <% end %>
-                                            <% end %>
-                                                <% end %>
+                                            <% elsif artist.instagram_media.present? %>
+                                                <% media = eval(artist.instagram_media.first)['media_url'] %>
+                                                    <%= link_to artist_path(artist), class: "explore-artist" do %>
+                                                        <div class="mx-auto d-block" style="width: 100%; height: 150px; margin-top: 10px; border-radius: 4px; background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('<%= media %>'); background-position: center center; background-size: 100%;">
+                                                            <div class="card-text">
+                                                                <p style="padding-top: 10px;">
+                                                                    <%= artist.name %>
+                                                                </p>
+                                                                <div style="margin-top: 30px;">
+                                                                    <% if artist.studio_id? %>
+                                                                        <p>
+                                                                            <%= artist.studio.name %>
+                                                                        </p>
+                                                                        <% end %>
+                                                                            <div class="scroll-tags">
+                                                                                <% artist.styles.each do |style| %>
+                                                                                    <div class="style-div">
+                                                                                        <span><%= style %></span>
+                                                                                    </div>
+                                                                                    <% end %>
+                                                                            </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <% end %>
+                                                            <% end %>
+                                                                <% end %>
         </div>
     </div>
 </div>

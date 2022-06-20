@@ -2,6 +2,7 @@ class StudiosController < ApplicationController
     skip_before_action :authenticate_user!, only: [:index, :new, :create, :show, :confirmation]
     
     def index
+        # ACTION: need to filter to only show studios that are verified
         if params[:query].present?
             if params[:query] != "Search all studios"
                 studio_query = Studio.search_by_city(params[:query])
@@ -31,6 +32,7 @@ class StudiosController < ApplicationController
     end
 
     def show
+        # ACTION: need to filter to only show studios that are verified
         @studio = Studio.find(params[:id])
         @studio.phone = view_phone_formatter(@studio.phone)
         studio_popup = "#{@studio.name}" + " - " + "#{@studio.address}"
