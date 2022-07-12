@@ -74,19 +74,17 @@ class ArtistsController < ApplicationController
 
     def show
         artist = Artist.find(params[:id])
-        # ACTION: uncomment after instagram API approval
-        # if artist.verified?
-        @artist = artist
-        @artist.phone = view_phone_formatter(@artist.phone)
+        if artist.verified?
+            @artist = artist
+            @artist.phone = view_phone_formatter(@artist.phone)
 
-        # query instagram basic display API for artist instagram feed
-        if @artist.instagram_auth_token?
-            client = InstagramBasicDisplay::Client.new(auth_token: @artist.instagram_auth_token)
-            response = client.media_feed
-            @artist.instagram_media = response.payload.data
+            # query instagram basic display API for artist instagram feed
+            if @artist.instagram_auth_token?
+                client = InstagramBasicDisplay::Client.new(auth_token: @artist.instagram_auth_token)
+                response = client.media_feed
+                @artist.instagram_media = response.payload.data
+            end
         end
-        # ACTION: uncomment after instagram API approval
-        # end
     end
 
     def new
@@ -107,14 +105,10 @@ class ArtistsController < ApplicationController
         # if there is no instagram auth token connected, update the artist with active storage s3 uploaded images
         if @artist.instagram_auth_token.blank?
             if @artist.update(artist_params)
-                # ACTION: uncomment after instagram API approval
-                # redirect_to artists_sign_up_confirmation_path
-                redirect_to artist_path(@artist)
+                redirect_to artists_sign_up_confirmation_path
             end
         else
-            # ACTION: uncomment after instagram API approval
-            # redirect_to artists_sign_up_confirmation_path
-            redirect_to artist_path(@artist)
+            redirect_to artists_sign_up_confirmation_path
         end
     end
 
