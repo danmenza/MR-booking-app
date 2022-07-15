@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_19_013917) do
+ActiveRecord::Schema.define(version: 2022_07_15_181648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2022_06_19_013917) do
     t.bigint "studio_id"
     t.string "instagram_auth_token"
     t.text "instagram_media", default: [], array: true
+    t.text "bio"
     t.index ["studio_id"], name: "index_artists_on_studio_id"
   end
 
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 2022_06_19_013917) do
     t.string "facebook"
     t.string "tiktok"
     t.string "email"
+    t.text "bio"
   end
 
   create_table "users", force: :cascade do |t|

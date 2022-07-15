@@ -51,19 +51,24 @@
                                                         <% end %>
                                                 </div>
                                 </div>
-                                <div style="margin-bottom: 20px; margin-top: 20px;">
-                                    <div class="artist-styles" style="margin-top: 10px;">
-                                        <% @artist.styles.each do |style| %>
-                                            <div class="artist-styles-div" style="margin-bottom: 10px;">
-                                                <span><%= style %></span>
-                                            </div>
-                                            <% end %>
+                                <% if @artist.bio %>
+                                    <div style="margin-top: 10px; margin-left: 20px;">
+                                        <%= @artist.bio %>
                                     </div>
-                                </div>
-                                <div class="flexbox-container">
-                                    <!-- <%= link_to "EXPLORE ARTISTS", root_path, class: "item" %> -->
-                                    <%= link_to "REQUEST AVAILABILITY", new_artist_reservation_path(@artist), class: "grow-item" %>
-                                </div>
+                                    <% end %>
+                                        <div style="margin-bottom: 20px; margin-top: 20px;">
+                                            <div class="artist-styles" style="margin-top: 10px;">
+                                                <% @artist.styles.each do |style| %>
+                                                    <div class="artist-styles-div" style="margin-bottom: 10px;">
+                                                        <span><%= style %></span>
+                                                    </div>
+                                                    <% end %>
+                                            </div>
+                                        </div>
+                                        <div class="flexbox-container">
+                                            <!-- <%= link_to "EXPLORE ARTISTS", root_path, class: "item" %> -->
+                                            <%= link_to "REQUEST AVAILABILITY", new_artist_reservation_path(@artist), class: "grow-item" %>
+                                        </div>
             </div>
             <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">
                 <% if @artist.artist_artwork.attachments.present? %>

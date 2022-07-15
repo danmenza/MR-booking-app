@@ -61,7 +61,7 @@ class StudiosController < ApplicationController
     private
 
     def studio_params
-        params.require(:studio).permit(:name, :address, :city, :phone, :email, :facebook, :instagram, :tiktok, :studio_image)
+        params.require(:studio).permit(:name, :address, :city, :phone, :email, :facebook, :instagram, :tiktok, :bio, :studio_image)
     end
 
     def db_phone_formatter(phone)
