@@ -17,6 +17,9 @@ class ReservationsController < ApplicationController
             redirect_to artist_reservation_path(@artist, @reservation)
             send_user_reservation_confirmation_email(@reservation)
             send_artist_reservation_requested_email(@reservation)
+            if @reservation.artist.studio_id?
+                send_studio_reservation_requested_email(@reservation)
+            end
         else
             render :new
         end
@@ -24,7 +27,7 @@ class ReservationsController < ApplicationController
 
     def show
         @reservation = Reservation.find(params[:id])
-        @reservation.studio.phone = view_phone_formatter(@reservation.studio.phone)
+        @reservation.artist.studio.phone = view_phone_formatter(@reservation.artist.studio.phone)
         @reservation.artist.phone = view_phone_formatter(@reservation.artist.phone)
         authorize @reservation
     end
@@ -51,7 +54,7 @@ class ReservationsController < ApplicationController
     private
 
     def reservation_params
-        params.require(:reservation).permit(:appt_start, :appt_end, :tattoo_placement, :cover_up, :description, artwork: [], body_area: [])
+        params.require(:reservation).permit(:appt_start, :appt_end, :tattoo_placement, :cover_up, :legal_age, :description, artwork: [], body_area: [])
     end
 
     def view_phone_formatter(phone)
@@ -69,6 +72,15 @@ class ReservationsController < ApplicationController
     def send_artist_reservation_requested_email(reservation)
         subject = "New Tattoo Appointment Requested"
         sender = "booking@madrabbit.com"
+        # ACTION: need to update this to go to studio email address reservation.studio.email
+        recipient = "dan@madrabbit.com"
+        UserMailer.reservation_requested_email(reservation, subject, sender, recipient).deliver_now
+    end
+
+    def send_studio_reservation_requested_email(reservation)
+        subject = "New Tattoo Appointment Requested for #{reservation.artist.name}"
+        sender = "booking@madrabbit.com"
+        # ACTION: need to update this to go to studio email address reservation.studio.email
         recipient = "dan@madrabbit.com"
         UserMailer.reservation_requested_email(reservation, subject, sender, recipient).deliver_now
     end

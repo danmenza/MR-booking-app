@@ -56,10 +56,11 @@ class ArtistsController < ApplicationController
         @cities << "Search all artists"
         
         # include all styles for filtering
-        @styles = ["Neo traditional", "Tribal", "Fine line", "Script lettering",\
-            "Japanese traditional", "Continuous line", "Realism", "Black work",\
-            "Watercolor", "Abstract", "Geometric", "Scars",\
-            "New school", "Sticker", "Portrait", "Cover up", "American traditional"]
+        unsorted_styles = ["Anime", "Neo traditional", "Tribal", "Fine line", "Script lettering",\
+            "Japanese traditional", "Continuous line", "Realism", "Surrealism", "Black work",\
+            "Trash polka", "Hyper realism", "Watercolor", "Abstract", "Geometric", "Scars",\
+            "Dark art", "New school", "Sticker", "Portrait", "Cover up", "American traditional"]
+        @styles = unsorted_styles.sort
         
         # ACTION: need to fix filter by style code below
         if params[:style_query].present?
@@ -89,10 +90,11 @@ class ArtistsController < ApplicationController
 
     def new
         @artist = Artist.new
-        @styles = ["American traditional", "Japanese traditional", "Neo traditional", "Tribal", \
-                    "Fine line", "Continuous line", "Script lettering", "Watercolor", "Realism", \
-                    "Black work", "Abstract", "Geometric", "New school", "Sticker", "Portrait", \
-                    "Cover up", "Scars"]
+        unsorted_styles = ["Anime", "Neo traditional", "Tribal", "Fine line", "Script lettering",\
+            "Japanese traditional", "Continuous line", "Realism", "Surrealism", "Black work",\
+            "Trash polka", "Hyper realism", "Watercolor", "Abstract", "Geometric", "Scars",\
+            "Dark art", "New school", "Sticker", "Portrait", "Cover up", "American traditional"]
+        @styles = unsorted_styles.sort
     end
 
     def add_artwork
@@ -101,23 +103,25 @@ class ArtistsController < ApplicationController
 
     def update
         @artist = Artist.find(params[:id])
-        # ACTION: need to update code to allow for instagram auth token + s3 uploaded images
-        # if there is no instagram auth token connected, update the artist with active storage s3 uploaded images
         if @artist.instagram_auth_token.blank?
-            if @artist.update(artist_params)
-                redirect_to artists_sign_up_confirmation_path
+            begin
+                if @artist.update(artist_params)
+                        redirect_to artists_sign_up_confirmation_path
+                else
+                    redirect_to artists_sign_up_confirmation_path
+                end
+            rescue => exception
+                render json: "Your profile is incomplete. Please connect your instagram account or upload artist artwork to complete your profile.", status: 500
             end
-        else
-            redirect_to artists_sign_up_confirmation_path
         end
     end
 
     def create
-        # need to include in case form validation fails, simple_form still needs to be able to render @styles list
-        @styles = ["American traditional", "Japanese traditional", "Neo traditional", "Tribal", \
-            "Fine line", "Continuous line", "Script lettering", "Watercolor", "Realism", \
-            "Black work", "Abstract", "Geometric", "New school", "Sticker", "Portrait", \
-            "Cover up", "Scars"]
+        unsorted_styles = ["Anime", "Neo traditional", "Tribal", "Fine line", "Script lettering",\
+            "Japanese traditional", "Continuous line", "Realism", "Surrealism", "Black work",\
+            "Trash polka", "Hyper realism", "Watercolor", "Abstract", "Geometric", "Scars",\
+            "Dark art", "New school", "Sticker", "Portrait", "Cover up", "American traditional"]
+        @styles = unsorted_styles.sort
 
         @artist = Artist.new(artist_params)
         @artist.styles.reject!(&:empty?)
@@ -165,7 +169,7 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :phone, :email, :city, :facebook, :instagram, :instagram_auth_token, :tiktok, :artist_profile, :bio, styles: [], artist_artwork: [])
+        params.require(:artist).permit(:name, :phone, :email, :city, :facebook, :instagram, :instagram_auth_token, :tiktok, :artist_profile, :bio, :studio_id, styles: [], artist_artwork: [])
     end
 
     def set_artist
@@ -173,13 +177,19 @@ class ArtistsController < ApplicationController
     end
 
     def db_phone_formatter(phone)
-        formatted_phone = "+1#{ phone.gsub(/[^0-9]/, "") }"
-        return formatted_phone
+        if 14 == phone.length
+            formatted_phone = "+1#{ phone.gsub(/[^0-9]/, "") }"
+            return formatted_phone
+        else
+            return phone
+        end
     end
 
     def view_phone_formatter(phone)
-        formatted_phone = "+1 (#{phone[2..4]}) #{phone[5..7]} - #{phone[8..-1]}"
-        return formatted_phone
+        if phone
+            formatted_phone = "+1 (#{phone[2..4]}) #{phone[5..7]} - #{phone[8..-1]}"
+            return formatted_phone
+        end
     end
 
     def send_new_artist_sign_up_email_internal(artist)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_15_181648) do
+ActiveRecord::Schema.define(version: 2022_07_24_230335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,19 +47,19 @@ ActiveRecord::Schema.define(version: 2022_07_15_181648) do
     t.string "name"
     t.string "phone"
     t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.decimal "minimum", precision: 10, scale: 2
+    t.text "bio"
     t.string "city"
     t.boolean "verified", default: false
-    t.string "instagram"
     t.text "styles", default: [], array: true
+    t.string "instagram"
+    t.string "instagram_auth_token"
     t.string "facebook"
     t.string "tiktok"
     t.bigint "studio_id"
-    t.string "instagram_auth_token"
     t.text "instagram_media", default: [], array: true
-    t.text "bio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "minimum", precision: 10, scale: 2
     t.index ["studio_id"], name: "index_artists_on_studio_id"
   end
 
@@ -74,33 +74,34 @@ ActiveRecord::Schema.define(version: 2022_07_15_181648) do
 
   create_table "reservations", force: :cascade do |t|
     t.string "tattoo_placement"
-    t.boolean "cover_up"
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.bigint "artist_id", null: false
+    t.boolean "cover_up"
+    t.boolean "legal_age"
     t.boolean "color"
     t.date "appt_start"
     t.date "appt_end"
+    t.bigint "user_id", null: false
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["artist_id"], name: "index_reservations_on_artist_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "studios", force: :cascade do |t|
     t.string "name"
+    t.string "phone"
+    t.string "email"
+    t.text "bio"
     t.string "address"
     t.string "city"
-    t.string "phone"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
     t.string "instagram"
     t.string "facebook"
     t.string "tiktok"
-    t.string "email"
-    t.text "bio"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

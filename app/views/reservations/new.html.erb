@@ -13,7 +13,8 @@
                                     <br>
                                     <%= f.input :description, label: "Describe your ideal tattoo", placeholder: 'single-needle, black and gray snake tattoo on right forearm, 5" long' %>
                                         <div style="text-align: center; margin-top: 20px;">
-                                            <%= f.input :cover_up, label: "Cover up?", wrapper_html: { style: "display: inline-block;" } %>
+                                            <%= f.input :legal_age, label: "Are you over 18 years old?", wrapper_html: { style: "display: inline-block; margin-right: 10px;" } %>
+                                                <%= f.input :cover_up, label: "Cover up?", wrapper_html: { style: "display: inline-block; margin-left: 10px;" } %>
                                         </div>
                                         <p style="margin-bottom: 0px; margin-top: 10px;">Preferred date range</p>
                                         <div style="display: table; margin: 0 auto; width: 100%;">

@@ -24,7 +24,7 @@
                                                     <% end %>
                             </div>
                             <p style="display: inline; margin-left: 10px;">
-                                <%= @studio.address %>
+                                <%= link_to @studio.address, "https://www.google.com/maps/search/?api=1&query=#{@studio.name.gsub(/\W/,'+')}", style: "color: black" %>
                             </p>
                         </div>
                         <% if @studio.bio %>

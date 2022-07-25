@@ -11,7 +11,7 @@ import "channels";
 import "bootstrap";
 import "select2";
 import { initMapbox } from "../plugins/init_mapbox";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 
 Rails.start()
 Turbolinks.start()
@@ -37,12 +37,14 @@ document.addEventListener('turbolinks:load', () => {
 function phoneNumberFormatter() {
     // grab the value of what the user is typing into the input
     const inputField = document.querySelectorAll("artist_phone", "user_phone", "studio_phone");
+    if (inputField) {
 
-    // next, we're going to format this input with the `formattPhoneNumber` function, which we'll write next.
-    const formattedInputValue = formatPhoneNumber(inputField.value);
+        // next, we're going to format this input with the `formattPhoneNumber` function, which we'll write next.
+        const formattedInputValue = formatPhoneNumber(inputField.value);
 
-    // Then we'll set the value of the inputField to the formattedValue we generated with the formattPhoneNumber
-    inputField.value = formattedInputValue;
+        // Then we'll set the value of the inputField to the formattedValue we generated with the formattPhoneNumber
+        inputField.value = formattedInputValue;
+    }
 }
 
 function formatPhoneNumber(value) {

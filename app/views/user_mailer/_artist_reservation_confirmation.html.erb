@@ -46,6 +46,14 @@
                                         <% end %>
                     </p>
                     <p>
+                        Over 18 years old selection:
+                        <% if reservation.legal_age == true %>
+                            <%= "Yes" %>
+                                <% else %>
+                                    <%= "No" %>
+                                        <% end %>
+                    </p>
+                    <p>
                         Date availability requested:
                         <%= reservation.appt_start %> to
                             <%= reservation.appt_end %>

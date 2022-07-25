@@ -2,9 +2,10 @@ class Studio < ApplicationRecord
     has_many :artists
     has_one_attached :studio_image, service: :amazon_studios
     validates :studio_image, file_content_type: { allow: ['image/gif', 'image/png', 'image/jpg', 'image/jpeg'], message: 'must be file type gif, png, jpg, or jpeg' }, file_size: { less_than: 10.megabytes , message: 'must be less than 10MB in size' } 
-    # validates :address, format: { with: /\A[a-zA-z0-9. \s]+\z/, message:  "must contain valid format" }
-    # validates :city, format: { with: /\A[a-zA-Z ]+\z/, message:  "must only contain letters" }
-    validates :phone, length: { minimum: 12, maximum: 12, message: "number must be 10 digits long" }
+    validates :address, format: { with: /\A[a-zA-z0-9. \s]+\z/, message:  "must contain valid format" }
+    validates :city, format: { with: /\A[a-zA-Z ]+\z/, message:  "must only contain letters" }
+    validates :email, uniqueness: true, on: :create, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/, message:  "must contain valid format" }
+    validates :phone, uniqueness: true, length: { minimum: 12, maximum: 12, message: "number must be 10 digits long" }
 
     # multisearch ability by city + styles
     include PgSearch::Model
