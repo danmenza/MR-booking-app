@@ -30,6 +30,11 @@
                         <%= reservation.user.phone %>
                     </p>
                     <p>
+                        Date availability requested:
+                        <%= reservation.appt_start %> to
+                            <%= reservation.appt_end %>
+                    </p>
+                    <p>
                         Tattoo placement:
                         <%= reservation.tattoo_placement %>
                     </p>
@@ -52,11 +57,6 @@
                                 <% else %>
                                     <%= "No" %>
                                         <% end %>
-                    </p>
-                    <p>
-                        Date availability requested:
-                        <%= reservation.appt_start %> to
-                            <%= reservation.appt_end %>
                     </p>
                 </div>
                 <p>Please connect with your potential customer for additional questions and get something on the books!</p>
