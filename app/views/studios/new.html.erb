@@ -4,33 +4,59 @@
             <h3 class="text-center">Studio Info</h3>
             <p class="text-center">Wanting an easier way to help manage tattoo appointments?</p>
             <p class="text-center">Mad Rabbit can help! We would love to partner with you!</p>
-            <%= simple_form_for(@studio) do |f| %>
-                <%= f.input :name %>
+            <!-- <form for="studio" name="studio" action="/studios" method="post"> -->
+            <%= form_for(@studio) do |f| %>
+                <label for="studio_name">Name</label><br>
+                <%= f.text_field :name, class: "studio-form" %>
+                    <!-- <%= hidden_field_tag :authenticity_token, form_authenticity_token =%>
+
+                    <input type="text" class="studio-form" id="studio_name" name="studio_name"><br> -->
                     <mapbox-address-autofill access-token="<%= ENV['MAPBOX_API_KEY'] %>">
-                        <!-- <%= f.input :address, as: :autocomplete, source: "shipping street-address" %> -->
-                        <input name="address" autocomplete="shipping address-line1">
+                        <label for="studio_address">Address</label><br>
+                        <%= f.text_field :address, class: "studio-form", id: "studio_address", autocomplete: "shipping street-address" %>
+                            <!-- <input type="text" class="studio-form" id="studio_address" name="studio_address" autocomplete="shipping street-address"><br> -->
                     </mapbox-address-autofill>
-                    <input name="city" autocomplete="shipping address-level2">
-                    <!-- <%= f.input :city, as: :autocomplete, source: "shipping address-level2" %> -->
-                    <%= f.input :phone, input_html: { onkeydown: "phoneNumberFormatter()" } %>
-                        <%= f.input :email%>
-                            <%= f.input :bio, placeholder: "Inked NYC is a Manhattan-based tattoo studio and gallery established by Inked Magazine" %>
-                                <%= f.input :facebook %>
-                                    <%= f.input :instagram %>
-                                        <%= f.input :tiktok %>
-                                            <br>
-                                            <%= f.label :studio_image, "Upload studio profile image", class: "btn upload-button" %>
-                                                <%= f.input :studio_image, as: :file, label: false, input_html: { style: "display: none;" } %>
-                                                    <div class="text-center" style="margin-bottom: 40px;">
+
+                    <label for="studio_city">City</label><br>
+                    <%= f.text_field :city, class: "studio-form", id: "studio_city", autocomplete: "shipping address-level2" %>
+                        <!-- <input type="text" class="studio-form" id="studio_city" name="studio_city" autocomplete="shipping address-level2"><br> -->
+                        <label for="studio_phone">Phone</label><br>
+                        <%= f.text_field :phone, class: "studio-form", onkeydown: "phoneNumberFormatter()" %>
+                            <!-- <input type="text" class="studio-form" id="studio_phone" name="studio_phone" onkeydown="phoneNumberFormatter()"><br> -->
+                            <label for="studio_email">Email</label><br>
+                            <%= f.text_field :email, class: "studio-form" %>
+                                <!-- <input type="text" class="studio-form" id="studio_email" name="studio_email"><br> -->
+                                <label for="studio_bio">Bio</label><br>
+                                <%= f.text_area :bio, rows: "2", class: "studio-form", placeholder: "Inked NYC is a Manhattan-based tattoo studio and gallery established by Inked Magazine" %>
+                                    <!-- <textarea type="text" rows="2" class="studio-form" id="studio_bio" name="studio_bio" placeholder="Inked NYC is a Manhattan-based tattoo studio and gallery established by Inked Magazine"></textarea><br> -->
+                                    <label for="studio_facebook">Facebook</label><br>
+                                    <%= f.text_field :facebook, class: "studio-form" %>
+                                        <!-- <input type="text" class="studio-form" id="studio_facebook" name="studio_facebook"><br> -->
+                                        <label for="studio_instagram">Instagram</label><br>
+                                        <%= f.text_field :instagram, class: "studio-form" %>
+                                            <!-- <input type="text" class="studio-form" id="studio_instagram" name="studio_instagram"><br> -->
+                                            <label for="studio_tiktok">Tiktok</label><br>
+                                            <%= f.text_field :tiktok, class: "studio-form" %>
+                                                <!-- <input type="text" class="studio-form" id="studio_tiktok" name="studio_tiktok"><br> -->
+                                                <br>
+                                                <!-- <label for="studio_image" class="btn upload-button">Upload studio profile image</label><br> -->
+                                                <br>
+                                                <%= f.label :studio_image, "Upload studio profile image", class: "btn upload-button" %>
+                                                    <%= f.file_field :studio_image, style: "display: none;" %>
                                                         <br>
-                                                        <p>
-                                                            <%= f.submit "SUBMIT INFO", class: "primary-button" %>
-                                                        </p>
-                                                        <% end %>
+                                                        <br>
+                                                        <!-- <input type="file" id="studio_image" name="studio_image" style="display: none;"><br> -->
+
+                                                        <div class="text-center" style="margin-bottom: 40px;">
                                                             <p>
-                                                                <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                                                <%= f.submit "SUBMIT INFO", class: "primary-button" %>
+                                                                    <!-- <input type="submit" name="commit" class="primary-button" value="SUBMIT INFO" /> -->
                                                             </p>
-                                                    </div>
+                                                            <% end %>
+                                                                <p>
+                                                                    <%= link_to "Cancel", root_path, class: "secondary-button" %>
+                                                                </p>
+                                                        </div>
         </div>
     </div>
 </div>

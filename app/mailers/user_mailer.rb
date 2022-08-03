@@ -23,7 +23,7 @@ class UserMailer < ApplicationMailer
     end
 
     # email to artist for reservation request
-    def reservation_requested_email(reservation, subject, sender, recipient)
+    def artist_reservation_requested_email(reservation, subject, sender, recipient)
         reservation.artwork.each do |artwork|
             attachments["artwork #{artwork.filename.to_s}"] = artwork.download
         end
@@ -31,6 +31,19 @@ class UserMailer < ApplicationMailer
             attachments["body area #{body_area.filename.to_s}"] = body_area.download
         end
         html_body = render_to_string(:partial => 'user_mailer/artist_reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
+    
+        send_email(subject, html_body, sender, recipient)
+    end
+
+    # email to studio for reservation request
+    def studio_reservation_requested_email(reservation, subject, sender, recipient)
+        reservation.artwork.each do |artwork|
+            attachments["artwork #{artwork.filename.to_s}"] = artwork.download
+        end
+        reservation.body_area.each do |body_area|
+            attachments["body area #{body_area.filename.to_s}"] = body_area.download
+        end
+        html_body = render_to_string(:partial => 'user_mailer/studio_reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
     
         send_email(subject, html_body, sender, recipient)
     end

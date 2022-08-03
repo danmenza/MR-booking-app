@@ -74,7 +74,7 @@ class ReservationsController < ApplicationController
         sender = "booking@madrabbit.com"
         # ACTION: need to update this to go to studio email address reservation.studio.email
         recipient = "dan@madrabbit.com"
-        UserMailer.reservation_requested_email(reservation, subject, sender, recipient).deliver_now
+        UserMailer.artist_reservation_requested_email(reservation, subject, sender, recipient).deliver_now
     end
 
     def send_studio_reservation_requested_email(reservation)
@@ -82,6 +82,6 @@ class ReservationsController < ApplicationController
         sender = "booking@madrabbit.com"
         # ACTION: need to update this to go to studio email address reservation.studio.email
         recipient = "dan@madrabbit.com"
-        UserMailer.reservation_requested_email(reservation, subject, sender, recipient).deliver_now
+        UserMailer.studio_reservation_requested_email(reservation, subject, sender, recipient).deliver_now
     end
 end

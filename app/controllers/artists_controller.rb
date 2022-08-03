@@ -111,7 +111,8 @@ class ArtistsController < ApplicationController
                     redirect_to artists_sign_up_confirmation_path
                 end
             rescue => exception
-                render json: "Your profile is incomplete. Please connect your instagram account or upload artist artwork to complete your profile.", status: 500
+                flash[:alert] = "Your profile is incomplete. Please connect your instagram account or upload artist artwork to complete your profile."
+                redirect_back(fallback_location: root_path)
             end
         end
     end

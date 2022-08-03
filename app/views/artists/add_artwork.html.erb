@@ -25,6 +25,18 @@
                                     <%= link_to "Cancel", root_path, class: "secondary-button" %>
                                 </p>
                         </div>
+                        <% if flash[:alert] %>
+                            <p class="alert alert-danger" id="add-artwork-alert" role="alert" style="width: 300px;">
+                                <%= flash[:alert] %>
+                            </p>
+                            <% end %>
         </div>
     </div>
 </div>
+
+<script>
+    setTimeout(() => {
+        const alert = document.getElementById('add-artwork-alert');
+        alert.style.display = 'none';
+    }, 5000);
+</script>

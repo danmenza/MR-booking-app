@@ -13,9 +13,9 @@
                 <h1 class="confirmation-header" style="margin-top: 0px;">New tattoo appointment requested!</h1>
                 <img src="https://d1kgepbrti30bz.cloudfront.net/tattoo_inking2.png" height="400">
                 <p style="text-align: left;">Hi
-                    <%= reservation.artist.name %>,
+                    <%= reservation.artist.studio.name %>,
                 </p>
-                <p>You have received another appointment request! Below is the information about your upcoming request:</p>
+                <p>Your studio has received another appointment request! Below is the information about the upcoming request:</p>
                 <div style="text-align: left; margin-top: 20px; margin-bottom: 20px;">
                     <p>
                         Client:
@@ -33,6 +33,10 @@
                         Date availability requested:
                         <%= reservation.appt_start %> to
                             <%= reservation.appt_end %>
+                    </p>
+                    <p>
+                        Artist requested:
+                        <%= reservation.artist.name %>
                     </p>
                     <p>
                         Tattoo placement:
