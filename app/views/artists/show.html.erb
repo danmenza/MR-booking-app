@@ -25,7 +25,7 @@
                                 <div style="display: flex; margin-left: 10px;">
                                     <% if @artist.present? %>
                                         <% if @artist.artist_profile.attachments.present? %>
-                                            <div id="artist-profile" style="display: inline-block; background-image: url('<%= cdn_for_artists(@artist.artist_profile) %>'); background-position: center center; background-size: 100%;">
+                                            <div id="artist-profile" style="display: inline-block; background-image: url('<%= cdn_for_artists(@artist.artist_profile) %>'); background-position: center center; background-size: cover;">
                                             </div>
                                             <% end %>
                                                 <div>
@@ -34,13 +34,13 @@
                                                     </h3>
                                                     <br>
                                                     <div style="margin-left: 15px;">
-                                                        <% if @artist.facebook %>
+                                                        <% if @artist.facebook.present? %>
                                                             <a href="https://www.facebook.com/<%= @artist.facebook %>"><img src="<%= image_url('facebook.svg') %>" class="profile-social-icons" style="filter: invert(1);"></a>
                                                             <% end %>
-                                                                <% if @artist.instagram %>
+                                                                <% if @artist.instagram.present? %>
                                                                     <a href="https://www.instagram.com/<%= @artist.instagram %>"><img src="<%= image_url('instagram.svg') %>" class="profile-social-icons" style="filter: invert(1);"></a>
                                                                     <% end %>
-                                                                        <% if @artist.tiktok %>
+                                                                        <% if @artist.tiktok.present? %>
                                                                             <a href="https://www.tiktok.com/<%= @artist.tiktok %>"><img src="<%= image_url('tiktok.svg') %>" class="profile-social-icons" style="filter: invert(1);"></a>
                                                                             <% end %>
                                                     </div>
@@ -51,7 +51,7 @@
                                                         <% end %>
                                                 </div>
                                 </div>
-                                <% if @artist.bio %>
+                                <% if @artist.bio.present? %>
                                     <div style="margin-top: 10px; margin-left: 20px;">
                                         <%= @artist.bio %>
                                     </div>
