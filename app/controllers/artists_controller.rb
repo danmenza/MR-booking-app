@@ -53,7 +53,7 @@ class ArtistsController < ApplicationController
         end
         
         # include the ability to search for all artists
-        @cities << "Search all artists"
+        @cities << "All locations"
         
         # include all styles for filtering
         unsorted_styles = ["Anime", "Neo traditional", "Tribal", "Fine line", "Script lettering",\
