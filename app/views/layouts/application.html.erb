@@ -10,14 +10,14 @@
             <%= csp_meta_tag %>
                 <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
                     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-                        <link href=’https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css ' rel=’stylesheet’ />
+                        <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css" rel="stylesheet" />
                         <script id="search-js" defer src="https://api.mapbox.com/search-js/v1.0.0-beta.13/web.js">
                         </script>
                         <script>
-                            const script = document.getElementById('search-js ');
+                            const script = document.getElementById('search-js');
                             script.onload = function() {
                                 mapboxsearch.autofill({
-                                    accessToken: ENV['MAPBOX_API_KEY '],
+                                    accessToken: ENV['MAPBOX_API_KEY'],
                                     options: {
                                         country: 'us '
                                     }
@@ -29,22 +29,22 @@
                                 <div class="row justify-content-center">
                                     <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
                                         <%= link_to pages_navigation_path, class: 'header-text ', id: 'nav-bar-cart ' do %>
-                                            <span><img class="header-icons" src="<%= image_url('menu.svg ') %>"><p style="display: inline; padding-left: 5px; font-size: 12px; font-weight: 500;">MENU</p></span>
+                                            <span><img class="header-icons" src="<%= image_url('menu.svg') %>"><p style="display: inline; padding-left: 5px; font-size: 12px; font-weight: 500;">MENU</p></span>
                                             <% end %>
                                                 <%= link_to root_path do %>
-                                                    <img class="header-img" src="<%= image_url('mr_logo_black.png ') %>">
+                                                    <img class="header-img" src="<%= image_url('mr_logo_black.png') %>">
                                                     <% end %>
                                                         <div class="header-icons-right">
                                                             <!-- <%= link_to "/" do %>
-                                                        <img class="header-icons" style="width: 30px; margin-right: 10px;" src="<%=image_url( 'cart.svg ') %>">
+                                                        <img class="header-icons" style="width: 30px; margin-right: 10px;" src="<%=image_url( 'cart.svg') %>">
                                                         <% end %> -->
                                                             <% if user_signed_in? %>
                                                                 <%= link_to user_path(current_user) do %>
-                                                                    <img class="header-icons" src="<%= image_url('profile.svg ') %>">
+                                                                    <img class="header-icons" src="<%= image_url('profile.svg') %>">
                                                                     <% end %>
                                                                         <% else %>
                                                                             <%= link_to user_session_path do %>
-                                                                                <img class="header-icons" src="<%= image_url('profile.svg ') %>">
+                                                                                <img class="header-icons" src="<%= image_url('profile.svg') %>">
                                                                                 <% end %>
                                                                                     <% end %>
                                                         </div>
@@ -64,7 +64,7 @@
                 <div id='main-footer '>
                     <div style="text-align: center; background-color: black;">
                         <%= link_to root_path do %>
-                            <img class="footer-img" src="<%= image_url('mr_logo_white.png ') %>">
+                            <img class="footer-img" src="<%= image_url('mr_logo_white.png') %>">
                             <% end %>
                     </div>
                     <div style="text-align: center; background-color: black;">
@@ -74,11 +74,11 @@
                         <a href="https://www.madrabbit.com/collections/all-products" class="footer-text">SHOP</a>
                     </div>
                     <div style="text-align: center; background-color: black; padding-top: 20px;">
-                        <a href="https://www.facebook.com/shopmadrabbit"><img src="<%= image_url('facebook.svg ') %>" class="footer-icons"></a>
-                        <a href="https://www.instagram.com/madrabbit/"><img src="<%= image_url('instagram.svg ') %>" class="footer-icons"></a>
-                        <a href="https://vm.tiktok.com/ZMJaAtGDB/"><img src="<%= image_url('tiktok.svg ') %>" class="footer-icons"></a>
-                        <a href="https://www.pinterest.com/Madrabbittattoo/_created/"><img src="<%= image_url('pinterest.svg ') %>" class="footer-icons"></a>
-                        <a href="https://www.youtube.com/c/MadRabbitTattoo"><img src="<%= image_url('youtube.svg ') %>" class="footer-icons"></a>
+                        <a href="https://www.facebook.com/shopmadrabbit"><img src="<%= image_url('facebook.svg') %>" class="footer-icons"></a>
+                        <a href="https://www.instagram.com/madrabbit/"><img src="<%= image_url('instagram.svg') %>" class="footer-icons"></a>
+                        <a href="https://vm.tiktok.com/ZMJaAtGDB/"><img src="<%= image_url('tiktok.svg') %>" class="footer-icons"></a>
+                        <a href="https://www.pinterest.com/Madrabbittattoo/_created/"><img src="<%= image_url('pinterest.svg') %>" class="footer-icons"></a>
+                        <a href="https://www.youtube.com/c/MadRabbitTattoo"><img src="<%= image_url('youtube.svg') %>" class="footer-icons"></a>
                     </div>
                     <div style="text-align: center; background-color: black; padding-top: 20px;">
                         <p>
