@@ -4,13 +4,13 @@ class StudiosController < ApplicationController
     def index
         # ACTION: need to filter to only show studios that are verified
         if params[:query].present?
-            if params[:query] != "Search all studios"
+            if params[:query] != "All locations"
                 studio_query = Studio.search_by_city(params[:query])
                 @studios = studio_query.paginate(page: params[:page], per_page: 20)
                 @selected_city = @studios[0].city
             else
                 @studios = Studio.paginate(page: params[:page], per_page: 20)
-                @selected_city = "Search all studios"
+                @selected_city = "All locations"
             end
         else
             # ACTION: add DB column "verified" and only allow access to verified studios
@@ -28,7 +28,20 @@ class StudiosController < ApplicationController
         end
 
         # include the ability to search for all studios
-        @cities << "Search all studios"
+        @cities << "All locations"
+
+        # create list of studio styles based on artists associated with that studio
+        @studios.each do |studio|
+            if studio.artists
+                studio.studio_styles = []
+                studio.artists.each do |artist|
+                    artist.styles.each do |style|
+                        studio.studio_styles << style unless studio.studio_styles.include?(style)
+                    end
+                end
+                studio.studio_styles = studio.studio_styles.sort
+            end
+        end
     end
 
     def show

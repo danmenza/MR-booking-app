@@ -3,7 +3,7 @@ class ArtistsController < ApplicationController
     
     def index
         if params[:city_query].present?
-            if params[:city_query] != "Search all artists"
+            if params[:city_query] != "All locations"
                 city_query = Artist.search_by_city(params[:city_query]).where(verified: 1)
                 @artists = city_query.paginate(page: params[:page], per_page: 20)
                 @selected_city = @artists[0].city
@@ -18,7 +18,7 @@ class ArtistsController < ApplicationController
                 end
             else
                 @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
-                @selected_city = "Search all artists"
+                @selected_city = "All locations"
                 
                  # query instagram basic display API for artist instagram feed
                  @artists.each do |artist|

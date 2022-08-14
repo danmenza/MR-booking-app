@@ -17,6 +17,9 @@ class UserMailer < ApplicationMailer
     
     # email to user for reservation confirmation
     def reservation_confirmation_email(reservation, subject, sender, recipient)
+        # update phone format for readability
+        reservation.artist.studio.phone = view_phone_formatter(reservation.artist.studio.phone)  
+
         html_body = render_to_string(:partial => 'user_mailer/user_reservation_confirmation.html.erb', :layout => false, :locals => {:reservation => reservation})
     
         send_email(subject, html_body, sender, recipient)
@@ -24,6 +27,9 @@ class UserMailer < ApplicationMailer
 
     # email to artist for reservation request
     def artist_reservation_requested_email(reservation, subject, sender, recipient)
+        # update phone format for readability
+        reservation.user.phone = view_phone_formatter(reservation.user.phone)  
+
         reservation.artwork.each do |artwork|
             attachments["artwork #{artwork.filename.to_s}"] = artwork.download
         end
@@ -85,5 +91,10 @@ class UserMailer < ApplicationMailer
         rescue Aws::SES::Errors::ServiceError => error
             puts "Email not sent. Error message: #{error}"
         end
+    end
+
+    def view_phone_formatter(phone)
+        formatted_phone = "+1 (#{phone[2..4]}) #{phone[5..7]} - #{phone[8..-1]}"
+        return formatted_phone
     end
 end
