@@ -45,6 +45,8 @@ class StudiosController < ApplicationController
     end
 
     def show
+        # ACTION: eventually find a better caching solution than refreshing show method every time it's called
+        expires_now
         # ACTION: need to filter to only show studios that are verified
         @studio = Studio.find(params[:id])
         @studio.phone = view_phone_formatter(@studio.phone)
