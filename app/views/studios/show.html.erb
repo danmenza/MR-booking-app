@@ -1,4 +1,3 @@
-<meta name="turbolinks-cache-control" content="no-cache">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xl-6 col-lg-6 col-md-8 col-sm-12">
@@ -33,8 +32,9 @@
                     <%= @studio.bio %>
                 </div>
                 <% end %>
-
-                    <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+                    <div id="div_using_JS_functions" data-turbolinks='false'>
+                        <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+                        </div>
                     </div>
                     <% if @studio.artists.present? %>
                         <h3>Our Artists</h3>
