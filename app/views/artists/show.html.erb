@@ -73,7 +73,7 @@
             <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">
                 <% if @artist.artist_artwork.attachments.present? %>
                     <% @artist.artist_artwork.each do |artwork| %>
-                        <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= cdn_for_artists(artwork) %>"></div>
+                        <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= cdn_for_artists(artwork) %>" onerror="this.style.display='none'"></div>
                         <% end %>
                             <% end  %>
             </div>
@@ -82,14 +82,18 @@
                 <% if @artist.instagram_media.present? %>
                     <% @artist.instagram_media.each do |media_string| %>
                         <% media = eval(media_string) %>
-                            <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= image_url(media['media_url']) %>"></div>
-                            <% end %>
-                                <% end  %>
-                                    <% else %>
-                                        <div style="text-align: center; margin: auto; margin-top: 40px;">
-                                            <h1>No artist found.</h1>
-                                        </div>
-                                        <% end  %>
+                            <% if media['media_url'].include? "video" %>
+                                <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= video_url(media['media_url']) %> " onerror="this.style.display='none'"></div>
+                                <% else %>
+                                    <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= image_url(media['media_url']) %>" onerror="this.style.display='none'"></div>
+                                    <% end %>
+                                        <% end %>
+                                            <% end  %>
+                                                <% else %>
+                                                    <div style="text-align: center; margin: auto; margin-top: 40px;">
+                                                        <h1>No artist found.</h1>
+                                                    </div>
+                                                    <% end  %>
             </div>
         </div>
     </div>

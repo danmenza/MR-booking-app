@@ -34,6 +34,10 @@ document.addEventListener('turbolinks:load', () => {
     });
 });
 
+document.addEventListener("page:restore", () => {
+    app.init();
+});
+
 function phoneNumberFormatter() {
     // grab the value of what the user is typing into the input
     const inputField = document.querySelectorAll("artist_phone", "user_phone", "studio_phone");
