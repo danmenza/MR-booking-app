@@ -34,8 +34,11 @@ document.addEventListener('turbolinks:load', () => {
     });
 });
 
-document.addEventListener("page:restore", () => {
-    app.init();
+window.addEventListener("popstate", () => {
+    var path = window.location.pathname.match(/^\/studios\/(\d+)/);
+    if (path.length == 2) {
+        window.location.reload();
+    }
 });
 
 function phoneNumberFormatter() {
