@@ -82,7 +82,7 @@
                             <% @artist.instagram_media.each do |media_string| %>
                                 <% media = eval(media_string) %>
                                     <% if media['media_url'].include? "video" %>
-                                        <div class="image-item"><video class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= video_url(media['media_url']) %> " type="video/mp4" autoplay loop muted onerror="this.parentNode.style.display='none'"></div>
+                                        <div class="image-item"><video class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= video_url(media['media_url']) %> " type="video/mp4" autoplay loop muted webkit-playsinline playsinline onerror="this.parentNode.style.display='none'"></div>
                                         <% else %>
                                             <div class="image-item"><img class="artist-images" style="background-position: center center; background-size: 100%;" src="<%= image_url(media['media_url']) %>" onerror="this.parentNode.style.display='none'"></div>
                                             <% end %>
