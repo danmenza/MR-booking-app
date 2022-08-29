@@ -52,7 +52,7 @@
                                                         <% if media.include? "video" %>
                                                             <div class="mx-auto d-block" style="width: 100%; height: 150px; margin-top: 10px; border-radius: 4px;">
                                                                 <video style="height: 100%; width: 100%; background-position: center center; background-size: 100%; object-fit: cover;" src="<%= video_url(media) %> " type="video/mp4" autoplay loop muted webkit-playsinline playsinline onerror="this.parentNode.style.display='none'"></video>
-                                                                <div class="card-text">
+                                                                <div class="card-text" style="margin-top: -160px;">
                                                                     <p style="padding-top: 10px;">
                                                                         <%= artist.name %>
                                                                     </p>
