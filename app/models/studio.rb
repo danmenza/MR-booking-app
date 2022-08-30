@@ -8,7 +8,7 @@ class Studio < ApplicationRecord
     validates :email, uniqueness: true, on: :create, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/, message:  "must contain valid format" }
     validates :phone, uniqueness: true, length: { minimum: 12, maximum: 12, message: "number must be 10 digits long" }
 
-    # multisearch ability by city + styles
+    # filter by city
     include PgSearch::Model
     pg_search_scope :search_by_city,
     against: [ :city ],

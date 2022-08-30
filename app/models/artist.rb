@@ -10,7 +10,7 @@ class Artist < ApplicationRecord
     validates :phone, uniqueness: true, length: { minimum: 12, maximum: 12, message: "number must be 10 digits long" }, if: -> { phone? }
     validates :city, format: { with: /\A[a-zA-Z ]+\z/, message:  "must only contain letters" }
     
-    # multisearch ability by city + styles
+    # filter by city + styles
     include PgSearch::Model
     pg_search_scope :search_by_city,
     against: :city
