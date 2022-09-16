@@ -54,6 +54,7 @@ class ArtistsController < ApplicationController
         
         # include the ability to search for all artists
         @cities << "All locations"
+        @cities = @cities.sort
         
         # include all styles for filtering
         unsorted_styles = ["Anime", "Neo traditional", "Tribal", "Fine line", "Script lettering",\
@@ -63,13 +64,21 @@ class ArtistsController < ApplicationController
         @styles = unsorted_styles.sort
         
         # ACTION: need to fix filter by style code below
-        if params[:style_query].present?
-            @styles.delete(params[:style_query])
-            styles_query = Artist.search_by_styles(@styles.join(" ")).where(verified: 1)
-            @artists = styles_query.paginate(page: params[:page], per_page: 20)
-            @filtered_styles = @styles
+        if @filtered_styles
+            if params[:style_query].present?
+                @filtered_styles << params[:style_query]
+                @styles.delete(@filtered_styles)
+                styles_query = Artist.search_by_styles(@filtered_styles).where(verified: 1)
+                @artists = styles_query.paginate(page: params[:page], per_page: 20)
+            end
         else
-            @filtered_styles = @styles
+            @filtered_styles = []
+            if params[:style_query].present?
+                @filtered_styles << params[:style_query]
+                @styles.delete(params[:style_query])
+                styles_query = Artist.search_by_styles(@filtered_styles).where(verified: 1)
+                @artists = styles_query.paginate(page: params[:page], per_page: 20)
+            end
         end
     end
 
@@ -154,9 +163,14 @@ class ArtistsController < ApplicationController
         # exchange authorization code for long-lived token (valid for 60 days)
         long_token_request = client.long_lived_token(access_code: access_code)
         if long_token_request.success?
+
+            # save off the instagram_auth_token and convert seconds until expiration to future datetime
             token = long_token_request.payload.access_token
+            expiry_seconds = long_token_request.payload.expires_in
+            token_expiration_datetime = time.now + expiry_seconds
+
             @artist = Artist.last
-            if @artist.update(instagram_auth_token: token)
+            if @artist.update(instagram_auth_token: token, auth_token_expires_at: token_expiration_datetime)
                 redirect_to add_artwork_path(@artist)
                 flash[:success] = "You have successfully connected your instagram account!"
             else
@@ -170,7 +184,7 @@ class ArtistsController < ApplicationController
     private
 
     def artist_params
-        params.require(:artist).permit(:name, :phone, :email, :city, :facebook, :instagram, :instagram_auth_token, :tiktok, :artist_profile, :bio, :studio_id, styles: [], artist_artwork: [])
+        params.require(:artist).permit(:name, :phone, :email, :city, :facebook, :instagram, :instagram_auth_token, :auth_token_expires_at, :tiktok, :artist_profile, :bio, :studio_id, styles: [], artist_artwork: [])
     end
 
     def set_artist

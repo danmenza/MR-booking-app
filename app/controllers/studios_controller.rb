@@ -29,6 +29,7 @@ class StudiosController < ApplicationController
 
         # include the ability to search for all studios
         @cities << "All locations"
+        @cities = @cities.sort
 
         # create list of studio styles based on artists associated with that studio
         @studios.each do |studio|
@@ -51,6 +52,7 @@ class StudiosController < ApplicationController
         studio_popup = "#{@studio.name}" + " - " + "#{@studio.address}"
         # pin coordinates for Mapbox
         @markers = [{ lat: @studio.latitude, lng: @studio.longitude, name: studio_popup }]
+        @mr_logo_white = "mr_logo_white.png"
     end
 
     def new

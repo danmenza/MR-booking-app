@@ -17,6 +17,6 @@ class Artist < ApplicationRecord
     pg_search_scope :search_by_styles,
     against: :styles,
     using: {
-      tsearch: { any_word: true }
+      tsearch: { any_word: false }
     }
 end

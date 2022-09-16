@@ -13,12 +13,20 @@
 
                             <h1 style="text-align: center; padding-top: 10px;">Styles</h1>
                             <div class="filter-tags">
-                                <% @filtered_styles.each do |style| %>
-                                    <%= form_tag(artists_path, method: "get") do %>
-                                        <%= hidden_field_tag(:style_query, style) %>
-                                            <%= submit_tag(style, class: "style-filter" ) %>
-                                                <% end %>
+                                <% if @filtered_styles.present? %>
+                                    <% @filtered_styles.each do |style| %>
+                                        <%= form_tag(artists_path, method: "get") do %>
+                                            <%= hidden_field_tag(:style_query, style) %>
+                                                <%= submit_tag(style, class: "style-filter", style: "border: 2px solid black" ) %>
                                                     <% end %>
+                                                        <% end %>
+                                                            <% end %>
+                                                                <% @styles.each do |style| %>
+                                                                    <%= form_tag(artists_path, method: "get") do %>
+                                                                        <%= hidden_field_tag(:style_query, style) %>
+                                                                            <%= submit_tag(style, class: "style-filter", style: "color: black; background-color: rgba(255, 255, 255, 0.7); border: 2px solid black" ) %>
+                                                                                <% end %>
+                                                                                    <% end %>
                             </div>
 
                             <% @artists.each do |artist| %>
