@@ -167,7 +167,7 @@ class ArtistsController < ApplicationController
             # save off the instagram_auth_token and convert seconds until expiration to future datetime
             token = long_token_request.payload.access_token
             expiry_seconds = long_token_request.payload.expires_in
-            token_expiration_datetime = time.now + expiry_seconds
+            token_expiration_datetime = time.now + expiry_seconds.seconds
 
             @artist = Artist.last
             if @artist.update(instagram_auth_token: token, auth_token_expires_at: token_expiration_datetime)
