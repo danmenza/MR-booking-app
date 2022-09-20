@@ -1,16 +1,22 @@
 // Import Google fonts
 // @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
 // Define fonts for body and headers
-$body-font: "Din Pro",
+$body-font: "DinPro Regular",
 "Helvetica",
 "sans-serif";
-$headers-font: "Din Pro",
+$headers-font: "DinPro Bold",
 "Helvetica",
 "sans-serif";
 // To use a font file (.woff) uncomment following lines
-// @font-face {
-//     font-family: "Din Pro";
-//     src: font-url('/../../fonts/DIN_Pro_400.otf');
-//     // src: font-url('FontFile.eot?#iefix') format('embedded-opentype'), font-url('FontFile.woff') format('woff'), font-url('FontFile.ttf') format('truetype')
-// }
+@font-face {
+    font-family: "DinPro Regular";
+    src: url('DIN_Pro_400.otf');
+    // src: font-url('FontFile.eot?#iefix') format('embedded-opentype'), font-url('FontFile.woff') format('woff'), font-url('FontFile.ttf') format('truetype')
+}
+
+@font-face {
+    font-family: "DinPro Bold";
+    src: url('DIN_Pro_500.otf');
+}
+
 // $my-font: "Din Pro";
