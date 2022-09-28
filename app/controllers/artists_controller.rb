@@ -112,17 +112,13 @@ class ArtistsController < ApplicationController
 
     def update
         @artist = Artist.find(params[:id])
-        if @artist.instagram_auth_token.blank?
-            begin
-                if @artist.update(artist_params)
-                        redirect_to artists_sign_up_confirmation_path
-                else
-                    redirect_to artists_sign_up_confirmation_path
-                end
-            rescue => exception
-                flash[:alert] = "Your profile is incomplete. Please connect your instagram account or upload artist artwork to complete your profile."
-                redirect_back(fallback_location: root_path)
+        begin
+            if @artist.update(artist_params) || @artist.instagram_auth_token.present?
+                redirect_to artists_sign_up_confirmation_path
             end
+        rescue => exception
+            flash[:alert] = "Your profile is incomplete. Please connect your instagram account or upload artist artwork to complete your profile."
+            redirect_back(fallback_location: root_path)
         end
     end
 

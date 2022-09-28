@@ -26,14 +26,13 @@
                                 </p>
                         </div>
                         <% if flash[:alert] %>
-                            <p class="alert alert-danger" id="add-artwork-alert" role="alert" style="width: 300px;">
+                            <p class="alert alert-danger" role="alert" id="add-artwork-alert" style="width: 300px;">
                                 <%= flash[:alert] %>
                             </p>
                             <% end %>
         </div>
     </div>
 </div>
-
 <script>
     setTimeout(() => {
         const alert = document.getElementById('add-artwork-alert');
