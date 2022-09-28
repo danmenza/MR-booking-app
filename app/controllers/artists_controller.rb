@@ -155,7 +155,10 @@ class ArtistsController < ApplicationController
     end
 
     def auth
+        # parses Instagram redirect URI for access code and artist ID
         access_code = params[:code]
+        artist_id = params[:state]
+        
         return head :bad_request unless access_code
 
         client = InstagramBasicDisplay::Client.new
@@ -171,7 +174,7 @@ class ArtistsController < ApplicationController
             # token_expiration_datetime = Time.now + expiry_seconds.seconds
 
             # ACTION: need to fix Artist.last so if artists are signing up at the same time the instagram_auth_token association doesn't get mixed up
-            @artist = Artist.last
+            @artist = Artist.find(artist_id)
 
             # if @artist.update(instagram_auth_token: token, auth_token_expires_at: token_expiration_datetime)
             if @artist.update(instagram_auth_token: token)
