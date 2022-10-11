@@ -63,19 +63,46 @@ class ArtistsController < ApplicationController
             "Dark art", "New school", "Sticker", "Portrait", "Cover up", "American traditional"]
         @styles = unsorted_styles.sort
         
-        # ACTION: need to fix filter by style code below
-        if @filtered_styles
-            if params[:style_query].present?
+        # ACTION: this should be broken into it's own method
+        @filtered_styles = []
+        # here we unselect filtered styles
+        if params[:filtered_styles]
+            params[:filtered_styles].each do |filtered_style|
+            @filtered_styles << filtered_style
+            end
+            if params[:filtered_style_query].present?
+                # remove the filtered_style from the filtered_styles array and add back to unfiltered styles
+                @filtered_styles.delete(params[:filtered_style_query])
+                # remove each style in filtered styles from the unfiltered list
+                @filtered_styles.each do |style|
+                    @styles.delete(style)
+                end
+
+                # need to check if there are no filtered styles left in the array
+                if @filtered_styles.empty?
+                    @artists = Artist.paginate(page: params[:page], per_page: 20).where(verified: 1)
+                else
+                    styles_query = Artist.search_by_styles(@filtered_styles).where(verified: 1)
+                    @artists = styles_query.paginate(page: params[:page], per_page: 20)
+                end
+            # here we select new styles to filter
+            elsif params[:style_query].present?
                 @filtered_styles << params[:style_query]
-                @styles.delete(@filtered_styles)
+                # remove each style in filtered styles from the unfiltered list
+                @filtered_styles.each do |style|
+                    @styles.delete(style)
+                end
                 styles_query = Artist.search_by_styles(@filtered_styles).where(verified: 1)
                 @artists = styles_query.paginate(page: params[:page], per_page: 20)
             end
         else
-            @filtered_styles = []
+            # here we also select new styles to filter if no previously filtered_styles
             if params[:style_query].present?
                 @filtered_styles << params[:style_query]
-                @styles.delete(params[:style_query])
+                # remove each style in filtered styles from the unfiltered list
+                @filtered_styles.each do |style|
+                    @styles.delete(style)
+                end
                 styles_query = Artist.search_by_styles(@filtered_styles).where(verified: 1)
                 @artists = styles_query.paginate(page: params[:page], per_page: 20)
             end
