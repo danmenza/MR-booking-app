@@ -25,3 +25,14 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.studio-bio {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+}

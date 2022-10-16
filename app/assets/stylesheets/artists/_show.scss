@@ -106,3 +106,23 @@
     text-decoration: none;
     border: 2px solid black;
 }
+
+.artist-bio {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.modal-dialog {
+    overflow-y: initial !important
+}
+
+.modal-body {
+    height: 450px;
+    overflow-y: auto;
+}

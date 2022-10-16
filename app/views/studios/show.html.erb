@@ -27,40 +27,66 @@
                             </p>
                         </div>
             </div>
-            <% if @studio.bio.present? %>
-                <div style="margin-top: 10px; margin-left: 20px;">
-                    <%= @studio.bio %>
+
+            <!-- Button trigger modal -->
+            <button type="button" style="border: none; background-color: #F4F4F4;" data-toggle="modal" data-target="#exampleModalLong">
+                                    <% if @studio.bio.present? %>
+                                    <div class="studio-bio" style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+                                        <%= @studio.bio %>
+                                    </div>
+                                    <% end %>
+</button>
+            <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+            </div>
+            <% if @studio.artists.present? %>
+                <h3>Our Artists</h3>
+                <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">
+                    <% @studio.artists.each do |artist| %>
+                        <% if artist.artist_profile.attachments.present? %>
+                            <%= link_to artist_path(artist) do %>
+                                <div class="image-item">
+                                    <img class="artist-images" style="background-position: center center; background-size: 100%; background-color: black;" src="<%= cdn_for_artists(artist.artist_profile) %>" onerror="this.src='<%= image_url(@mr_logo_white) %>'">
+                                </div>
+                                <div class="studio-card-text">
+                                    <%= artist.name %>
+                                </div>
+                                <% end %>
+                                    <% else %>
+                                        <%= link_to artist_path(artist) do %>
+                                            <div class="image-item">
+                                                <img class="artist-images" style="background-position: center center; background-color: black;" src="<%= image_url(@mr_logo_white) %>">
+                                                <div class="studio-card-text">
+                                                    <%= artist.name %>
+                                                </div>
+                                            </div>
+                                            <% end %>
+
+                                                <% end %>
+                                                    <% end  %>
                 </div>
                 <% end %>
-                    <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-                    </div>
-                    <% if @studio.artists.present? %>
-                        <h3>Our Artists</h3>
-                        <div class="image-card" style="margin-bottom: 40px; margin-left: 5px; margin-right: 5px;">
-                            <% @studio.artists.each do |artist| %>
-                                <% if artist.artist_profile.attachments.present? %>
-                                    <%= link_to artist_path(artist) do %>
-                                        <div class="image-item">
-                                            <img class="artist-images" style="background-position: center center; background-size: 100%; background-color: black;" src="<%= cdn_for_artists(artist.artist_profile) %>" onerror="this.src='<%= image_url(@mr_logo_white) %>'">
-                                        </div>
-                                        <div class="studio-card-text">
-                                            <%= artist.name %>
-                                        </div>
-                                        <% end %>
-                                            <% else %>
-                                                <%= link_to artist_path(artist) do %>
-                                                    <div class="image-item">
-                                                        <img class="artist-images" style="background-position: center center; background-color: black;" src="<%= image_url(@mr_logo_white) %>">
-                                                        <div class="studio-card-text">
-                                                            <%= artist.name %>
-                                                        </div>
-                                                    </div>
-                                                    <% end %>
-
-                                                        <% end %>
-                                                            <% end  %>
-                        </div>
-                        <% end %>
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">About
+                    <%= @studio.name %>
+                </h5>
+                </button>
+            </div>
+            <div class="modal-body">
+                <%= @studio.bio %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="search-button" style="background-color: black;" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

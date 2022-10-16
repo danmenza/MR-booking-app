@@ -56,12 +56,12 @@
 
 <body>
     <div id="page-container">
-        <div id="content-wrap" style="padding-bottom: 0px;">
+        <div id="content-wrap">
             <%= yield %>
         </div>
         <footer>
             <% unless controller.controller_name == "pages" && controller.action_name == "navigation" %>
-                <div id='main-footer '>
+                <div id='main-footer'>
                     <div style="text-align: center; background-color: black;">
                         <%= link_to root_path do %>
                             <img class="footer-img" src="<%= image_url('mr_logo_white.png') %>">
