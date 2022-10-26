@@ -2,6 +2,6 @@ desc "This task is to refresh Instagram Basic Display API auth tokens that are c
 
 task :update_instagram_auth_tokens => :environment do
     puts "Updating instagram auth tokens..."
-    InstagramAuthWorker.perform
+    InstagramAuthWorker.update_instagram_token
     puts "Completed updating instagram auth tokens."
 end

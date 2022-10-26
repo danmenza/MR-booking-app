@@ -114,6 +114,7 @@ class ArtistsController < ApplicationController
         if artist.verified?
             @artist = artist
             @artist.phone = view_phone_formatter(@artist.phone)
+            @artist.styles = @artist.styles.sort
 
             # query instagram basic display API for artist instagram feed
             if @artist.instagram_auth_token?
@@ -194,21 +195,19 @@ class ArtistsController < ApplicationController
             # save off the instagram_auth_token and convert seconds until expiration to future datetime
             token = long_token_request.payload.access_token
             
-            # expiry_seconds = long_token_request.payload.expires_in
-            # token_expiration_datetime = Time.now + expiry_seconds.seconds
+            expiry_seconds = long_token_request.payload.expires_in
+            token_expiration_datetime = Time.current + expiry_seconds.seconds
 
-            # ACTION: need to fix Artist.last so if artists are signing up at the same time the instagram_auth_token association doesn't get mixed up
             @artist = Artist.find(artist_id)
 
-            # if @artist.update(instagram_auth_token: token, auth_token_expires_at: token_expiration_datetime)
-            if @artist.update(instagram_auth_token: token)
+            if @artist.update(instagram_auth_token: token, auth_token_expires_at: token_expiration_datetime)
                 redirect_to add_artwork_path(@artist)
                 flash[:success] = "You have successfully connected your instagram account!"
             else
-                render json: "An error occurred while connecting your instagram account", status: 500
+                flash[:alert] = "An error occurred while connecting your instagram account"
             end
         else
-          render json: long_token_request.error, status: 400
+            flash[:alert] = long_token_request.error
         end
     end
 

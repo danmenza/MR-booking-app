@@ -30,7 +30,7 @@ gem 'pundit'
 gem 'bootstrap'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'autoprefixer-rails'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '5.15.1'
 gem 'simple_form'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-ses'

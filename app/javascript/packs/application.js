@@ -13,6 +13,9 @@ import "select2";
 import { initMapbox } from "../plugins/init_mapbox";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+//= require jquery
+//= require jquery_ujs
+
 Rails.start()
 Turbolinks.start()
 
